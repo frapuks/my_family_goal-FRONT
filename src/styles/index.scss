@@ -1,6 +1,11 @@
-@use './_reset.css';
+@use "./_reset.css";
 
+body {
+    font-family: sans-serif;
+}
 
-body {  
-  font-family: sans-serif;  
+#root {
+    background-color: #fff8e5;
+    width: 100%;
+    height: 100%;
 }
