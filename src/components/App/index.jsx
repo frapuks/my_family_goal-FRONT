@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import Login from "../Login/Login";
+
 import { Button } from "../Common/Button";
 import { ButtonType } from "../Common/ButtonType";
 import { SettingsButton } from "../Common/SettingsButton";
@@ -29,6 +32,9 @@ function App() {
 
     return (
         <>
+
+            <Login />
+            
             <SettingsButton onClick={() => console.log("je fais les settings!")} />
             <ValidateButton onClick={() => console.log("clickounette")} />
             <Button text="Se Connecter" onClick={() => console.log("connect")} type={ButtonType.Outlined} />
