@@ -6,7 +6,7 @@ import { ButtonType } from "./ButtonType";
 
 export const ValidateButton = props => (
     <Button
-        text="Valider"
+        text={props.text ?? "Valider"}
         type={ButtonType.Contained}
         onClick={props.onClick}
         color={Colors.Primary}
@@ -18,4 +18,5 @@ export const ValidateButton = props => (
 ValidateButton.propTypes = {
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
+    text: PropTypes.string,
 };
