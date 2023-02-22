@@ -1,3 +1,6 @@
+
+
+
 import React from "react";
 
 import Login from "../Login/Login";
@@ -10,6 +13,7 @@ function App() {
             <NavBar />
         </>
     );
+
 }
 
 export default App;

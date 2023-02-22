@@ -13,7 +13,14 @@ export const Button = props => {
     const color = props.color ?? Colors.Primary;
 
     return (
-        <MUIButton startIcon={icon} variant={variant} onClick={props.onClick} color={color}>
+        <MUIButton
+            color={color}
+            disabled={props.disabled}
+            onClick={props.onClick}
+            startIcon={icon}
+            type={props.isSubmit ? "submit" : "button"}
+            variant={variant}
+        >
             {props.text}
         </MUIButton>
     );
@@ -43,8 +50,10 @@ function getIcon(icon) {
 
 Button.propTypes = {
     color: PropTypes.oneOf(Object.values(Colors)),
+    disabled: PropTypes.bool,
     icon: PropTypes.oneOf(Object.values(Icons)),
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
+    isSubmit: PropTypes.bool,
     text: PropTypes.string.isRequired,
     type: PropTypes.oneOf(Object.values(ButtonType)),
 };
