@@ -12,11 +12,10 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login />} />
-
+                <Route path="/" element={<Login />} /> 
                 <Route path="*" element={<NonExistentRoute />} />
             </Routes>
-            {token && <NavBar />}
+            {token && <NavBar />}                         
         </>
     );
 }
