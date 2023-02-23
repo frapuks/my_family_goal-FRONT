@@ -33,7 +33,6 @@ export default function Header() {
 */
 
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -46,17 +45,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+import './styles.css';
 
 export default function MenuAppBar() {
   const classes = useStyles();
@@ -77,7 +66,7 @@ export default function MenuAppBar() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className="root">
       <FormGroup>
         <FormControlLabel
           control={
