@@ -7,17 +7,17 @@ import styles from "./Login.module.scss";
 
 import logo from "/logo.svg";
 import { useState } from "react";
-import { Alert } from "@mui/material";
+import { Alert, useTheme } from "@mui/material";
 import { Button } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 
 export function Login() {
     const dispatch = useDispatch();
 
+    const theme = useTheme();
+
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [isError, setIsError] = useState(false);
-
-    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -32,8 +32,6 @@ export function Login() {
 
         setIsLoggingIn(true);
         setIsError(false);
-
-        await delay(2000);
 
         // On envoie la requête
         const response = await fetch(import.meta.env.VITE_API_ROOT + "/signin", {
