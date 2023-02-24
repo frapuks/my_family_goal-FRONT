@@ -74,7 +74,7 @@ export default function LoginPage() {
                 <ValidateButton disabled={isLoggingIn} />
             </form>
 
-            <Button text="S'inscrire" color={Colors.Secondary} />
+            <Button text="S'inscrire" href="/signup" color={Colors.Secondary} />
         </div>
     );
 }

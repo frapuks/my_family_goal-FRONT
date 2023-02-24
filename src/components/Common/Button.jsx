@@ -16,6 +16,7 @@ export const Button = props => {
         <MUIButton
             color={color}
             disabled={props.disabled}
+            href={props.href}
             onClick={props.onClick}
             startIcon={icon}
             type={props.isSubmit ? "submit" : "button"}
@@ -51,6 +52,7 @@ function getIcon(icon) {
 Button.propTypes = {
     color: PropTypes.oneOf(Object.values(Colors)),
     disabled: PropTypes.bool,
+    href: PropTypes.string,
     icon: PropTypes.oneOf(Object.values(Icons)),
     onClick: PropTypes.func,
     isSubmit: PropTypes.bool,
