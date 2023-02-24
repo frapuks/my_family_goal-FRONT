@@ -2,8 +2,10 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import LoginPage from "../../pages/LoginPage";
+// import de nos components
 
+import LoginPage from "../../pages/LoginPage";
+import NavBar from "../NavBar/NavBar";
 
 import NonExistentRoute from "./NonExistentRoute";
 import SettingsPage from "../../pages/SettingsPage";

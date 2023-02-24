@@ -1,25 +1,34 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
 
+//Import des reducers du store
 
-//Je veux creer un composant Option du profil qui va etre un bouton qui va rediriger vers la page de modification du profil
+import { setActivePage } from '../store/slices/navBarSlice';
 
 function SettingsPage() {
+  const dispatch = useDispatch();
+
+    // [dispatch] servira à modifier le state uniquement au changement de valeur, et non a chaque nouveau rendu d'une même page par exemple
+
+  React.useEffect(() => {
+    dispatch(setActivePage('settingsPage'));
+  }, [dispatch]);  
 
   const handleModifyProfile = () => {
-    window.location.href = '/UserSettingsPage';
+    window.location.href = '/usersettings';
   };
 
   const handleModifyFamily = () => {
-    window.location.href = '/FamilySettingsPage';
+    window.location.href = '/familysettings';
   }
   return (
-    <>
-    <NavBar />
     <div>
       <button onClick={handleModifyProfile}>Modifier mon profil</button>
       <button onClick={handleModifyFamily}>Famille</button>
-      <button>Famille2</button>
-    </div></>
+      <button onClick={handleModifyFamily}>Famille 2</button>
+      <button onClick={handleModifyFamily}>Famille 3</button>
+      
+    </div>
 
   );
 };

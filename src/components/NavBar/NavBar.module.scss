@@ -1,16 +1,32 @@
 .containerNavBar {
     position: fixed;
     bottom: 0;
-    display: flex;
-    justify-content: space-around;
+    display: flex;    
     width: 100%;
-    height: 5rem;
-    background-color: #ECECEC;    
+    height: 5rem;    
+    background-color: #ECECEC;
+    border-top-left-radius: 30px 30px;   
+    border-top-right-radius: 30px 30px;   
 }
 
-.buttonNavBar {
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+nav li {
     display: flex;
     text-decoration: none;    
     align-items: center;
     justify-content: center;
+    
 }
+
+// class CSS appliqué au clic au bouton
+
+.active {
+    color: #5fdf24;
+    font-weight: bold;
+  }
