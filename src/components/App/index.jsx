@@ -11,6 +11,7 @@ import SignUpPage from "../../pages/SignUpPage";
 import UserSettingsPage from "../../pages/UserSettingsPage";
 import FamilySettingsPage from "../../pages/FamilySettingsPage";
 import DashboardPage from "../../pages/DashboardPage";
+import Header from "../Header/Header";
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
 
     return (
         <>
+            {token &&<Header/>}
+            
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
@@ -29,8 +32,8 @@ function App() {
                 <Route path="*" element={<NonExistentRoute />} />
             </Routes>
 
-            {/* A utiliser une fois le token Ok: */}
-            {/* {token && <NavBar />}                          */}
+            
+            {token && <NavBar/>}
         </>
     );
 }

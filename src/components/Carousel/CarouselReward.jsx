@@ -70,7 +70,7 @@ const rewardData = [
 
 function CarouselReward() {
   return (
-    <Carousel>
+    <Carousel >
       {rewardData.map((data) => (
         <Card key={data.id} {...data} />
       ))}

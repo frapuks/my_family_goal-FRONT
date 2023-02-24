@@ -1,6 +1,5 @@
 import React from "react";
 
-import NavBar from "../components/NavBar/NavBar";
 
 //Je veux creer un composant Option du profil qui va etre un bouton qui va rediriger vers la page de modification du profil
 
