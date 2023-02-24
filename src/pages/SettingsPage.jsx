@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from "./SettingsPage.module.scss";
 import { Link } from "react-router-dom";
 //Import des reducers du store
-
+import logo_setting from '../../public/logo_setting.svg'
 import { setActivePage } from '../store/slices/navBarSlice';
 
 function SettingsPage() {
@@ -16,19 +16,26 @@ function SettingsPage() {
   }, [dispatch]);  
 
   return (
+    <>
+    
+    <img className="Logoetting" src={logo_setting} />
+
     <ul className={styles.container}>
-  
-        <li>
-          <Link to="/usersettings">SETTING</Link>
-        </li>
-        <li className={styles.li}>
-          <Link to="/familysettings">FAMILLE</Link>
-        </li>
-        <li className={styles.li}>
-          <Link to="/familysettings">PROFIL</Link>
-        </li>
-      
+
+      <li className= {styles.li}>
+        <Link className= {styles.link} to="/usersettings">PROFIL</Link>
+      </li>
+    
+      <li className= {styles.li}>
+        <Link className={styles.link} to="/familysettings">FAMILLE 1</Link>
+      </li>
+
+      <li className= {styles.li}>
+        <Link className= {styles.link} to="/familysettings">FAMILLE 2</Link>
+      </li>
+
     </ul>
+    </>
   );
   }
 export default SettingsPage;
