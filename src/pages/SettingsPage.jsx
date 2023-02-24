@@ -18,7 +18,7 @@ function SettingsPage() {
   return (
     <>
     
-    <img className="Logoetting" src={logo_setting} />
+    <img className="LogoSetting" src={logo_setting} />
 
     <ul className={styles.container}>
 
