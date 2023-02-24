@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import styles from "./SettingsPage.module.scss";
-
+import { Link } from "react-router-dom";
 //Import des reducers du store
 
 import { setActivePage } from '../store/slices/navBarSlice';
@@ -15,23 +15,20 @@ function SettingsPage() {
     dispatch(setActivePage('settingsPage'));
   }, [dispatch]);  
 
-  const handleModifyProfile = () => {
-    window.location.href = '/usersettings';
-  };
-
-  const handleModifyFamily = () => {
-    window.location.href = '/familysettings';
-  }
   return (
-    <div className={styles.container}>
-      <button onClick={handleModifyProfile}>Modifier mon profil</button>
-      <button onClick={handleModifyFamily}>Famille</button>
-      <button onClick={handleModifyFamily}>Famille 2</button>
-      <button onClick={handleModifyFamily}>Famille 3</button>
+    <ul className={styles.container}>
+  
+        <li>
+          <Link to="/usersettings">SETTING</Link>
+        </li>
+        <li className={styles.li}>
+          <Link to="/familysettings">FAMILLE</Link>
+        </li>
+        <li className={styles.li}>
+          <Link to="/familysettings">PROFIL</Link>
+        </li>
       
-    </div>
-
+    </ul>
   );
-};
-
+  }
 export default SettingsPage;
