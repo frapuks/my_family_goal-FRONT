@@ -19,7 +19,7 @@ function App() {
 
     return (
         <>
-            <Header/>
+            {token &&<Header/>}
             
             <Routes>
                 <Route path="/" element={<LoginPage />} />
@@ -33,9 +33,7 @@ function App() {
             </Routes>
 
             
-
-            {/* A utiliser une fois le token Ok: */}
-            {/* {token && <NavBar />}                          */}
+            {token && <NavBar/>}
         </>
     );
 }
