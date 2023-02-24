@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import styles from "./SettingsPage.module.scss";
-
+import { Link } from "react-router-dom";
 //Import des reducers du store
-
+import logo_setting from '../../public/logo_setting.svg'
 import { setActivePage } from '../store/slices/navBarSlice';
 
 function SettingsPage() {
@@ -15,23 +15,27 @@ function SettingsPage() {
     dispatch(setActivePage('settingsPage'));
   }, [dispatch]);  
 
-  const handleModifyProfile = () => {
-    window.location.href = '/usersettings';
-  };
-
-  const handleModifyFamily = () => {
-    window.location.href = '/familysettings';
-  }
   return (
-    <div className={styles.container}>
-      <button onClick={handleModifyProfile}>Modifier mon profil</button>
-      <button onClick={handleModifyFamily}>Famille</button>
-      <button onClick={handleModifyFamily}>Famille 2</button>
-      <button onClick={handleModifyFamily}>Famille 3</button>
-      
-    </div>
+    <>
+    
+    <img className="LogoSetting" src={logo_setting} />
 
+    <ul className={styles.container}>
+
+      <li className= {styles.li}>
+        <Link className= {styles.link} to="/usersettings">PROFIL</Link>
+      </li>
+    
+      <li className= {styles.li}>
+        <Link className={styles.link} to="/familysettings">FAMILLE 1</Link>
+      </li>
+
+      <li className= {styles.li}>
+        <Link className= {styles.link} to="/familysettings">FAMILLE 2</Link>
+      </li>
+
+    </ul>
+    </>
   );
-};
-
+  }
 export default SettingsPage;

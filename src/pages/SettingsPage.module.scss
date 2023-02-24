@@ -1,7 +1,56 @@
-.container{
-display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+.container {
+    display: flex;
+
+    list-style: none;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+  
+   
+  }
+  
+  .li {
+
+
+
+    margin-top: 20px;
+  }
+
+  .link{
+    text-decoration: none;
+    color: rgb(204, 71, 48);
+    font-style: italic;
+    font-weight: bold; 
+    font-size: 1em;
+    transition: all 0.2s ease-in-out;
+    text-decoration: underline;
+    position: relative;
+    top: -131px;
+    left: -30px;
+   
+    
+}
+
+.link:hover {
+    font-size: 120%;
+    color: rgb(204, 71, 48);
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: all 0.2s ease-in-out; 
+
+}
+
+.LogoSetting{
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    background-position: center; background-repeat: no-repeat;
+
+
+
 }
