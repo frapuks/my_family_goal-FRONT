@@ -13,6 +13,7 @@ const SignUpForm = () => {
     const navigate = useNavigate();
     const [passwordConfirm, setPasswordConfirm] = useState();
     const [isError, setIsError] = useState(false);
+    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -22,6 +23,14 @@ const SignUpForm = () => {
         const pseudo = data.get("pseudo");
         const email = data.get("email");
         const password = data.get("password");
+
+        setIsConfirmPasswordValid(true);
+
+        if (password !== passwordConfirm) {
+            setIsConfirmPasswordValid(false);
+
+            return;
+        }
 
         setIsError(false);
 
@@ -61,6 +70,7 @@ const SignUpForm = () => {
                 value={passwordConfirm}
                 onChange={setPasswordConfirm}
                 type="password"
+                errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
             />
 
             <ValidateButton text="S'inscrire" />
