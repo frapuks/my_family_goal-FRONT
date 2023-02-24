@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
+import styles from "./SettingsPage.module.scss";
 
 //Import des reducers du store
 
@@ -22,7 +23,7 @@ function SettingsPage() {
     window.location.href = '/familysettings';
   }
   return (
-    <div>
+    <div className={styles.container}>
       <button onClick={handleModifyProfile}>Modifier mon profil</button>
       <button onClick={handleModifyFamily}>Famille</button>
       <button onClick={handleModifyFamily}>Famille 2</button>
