@@ -27,17 +27,17 @@ function App() {
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/settings" element={<ProtectedRoute />}>
-                    <Route element={<SettingsPage />} />
+                    <Route path="/settings" element={<SettingsPage />} />
                 </Route>
                 <Route path="/signup" element={<SignUpPage />} />
                 <Route path="/usersettings" element={<ProtectedRoute />}>
-                    <Route element={<UserSettingsPage />} />
+                    <Route path="/usersettings" element={<UserSettingsPage />} />
                 </Route>
                 <Route path="/familysettings" element={<ProtectedRoute />}>
-                    <Route element={<FamilySettingsPage />} />
+                    <Route path="/familysettings" element={<FamilySettingsPage />} />
                 </Route>
                 <Route path="/dashboard" element={<ProtectedRoute />}>
-                    <Route element={<DashboardPage />} />
+                    <Route path="/dashboard" element={<DashboardPage />} />
                 </Route>
 
                 <Route path="*" element={<NonExistentRoute />} />
