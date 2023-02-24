@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from 'react-redux';
 
 // Import de nos components
-import NavBar from "../components/NavBar/NavBar";
 
 //Import des reducers du store
 import { setActivePage } from '../store/slices/navBarSlice';
@@ -16,7 +15,7 @@ function UserSettingsPage() {
     dispatch(setActivePage('userSettingsPage'));
   }, [dispatch]);
 
-  return <NavBar />;
+  return;
 }
 
 export default UserSettingsPage;

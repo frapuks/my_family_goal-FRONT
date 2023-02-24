@@ -1,10 +1,8 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 
-// Import de nos components
-import NavBar from "../components/NavBar/NavBar";
-
 //Import des reducers du store
+
 import { setActivePage } from '../store/slices/navBarSlice';
 
 function SettingsPage() {
@@ -14,9 +12,25 @@ function SettingsPage() {
 
   React.useEffect(() => {
     dispatch(setActivePage('settingsPage'));
-  }, [dispatch]);
+  }, [dispatch]);  
 
-  return <NavBar />;
-}
+  const handleModifyProfile = () => {
+    window.location.href = '/usersettings';
+  };
+
+  const handleModifyFamily = () => {
+    window.location.href = '/familysettings';
+  }
+  return (
+    <div>
+      <button onClick={handleModifyProfile}>Modifier mon profil</button>
+      <button onClick={handleModifyFamily}>Famille</button>
+      <button onClick={handleModifyFamily}>Famille 2</button>
+      <button onClick={handleModifyFamily}>Famille 3</button>
+      
+    </div>
+
+  );
+};
 
 export default SettingsPage;

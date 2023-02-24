@@ -2,8 +2,10 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import LoginPage from "../../pages/LoginPage";
+// import de nos components
 
+import LoginPage from "../../pages/LoginPage";
+import NavBar from "../NavBar/NavBar";
 
 import NonExistentRoute from "./NonExistentRoute";
 import SettingsPage from "../../pages/SettingsPage";
@@ -11,6 +13,7 @@ import SignUpPage from "../../pages/SignUpPage";
 import UserSettingsPage from "../../pages/UserSettingsPage";
 import FamilySettingsPage from "../../pages/FamilySettingsPage";
 import DashboardPage from "../../pages/DashboardPage";
+import Header from "../Header/Header";
 
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
 
     return (
         <>
+            {token &&<Header/>}
+            
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
@@ -29,8 +34,8 @@ function App() {
                 <Route path="*" element={<NonExistentRoute />} />
             </Routes>
 
-            {/* A utiliser une fois le token Ok: */}
-            {/* {token && <NavBar />}                          */}
+            
+            {token && <NavBar/>}
         </>
     );
 }

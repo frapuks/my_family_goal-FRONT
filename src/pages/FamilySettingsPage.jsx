@@ -1,8 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 
-// Import de nos components
-import NavBar from "../components/NavBar/NavBar";
 
 //Import des reducers du store
 import { setActivePage } from '../store/slices/navBarSlice';
@@ -16,7 +14,7 @@ function FamilySettingsPage() {
     dispatch(setActivePage('settingsPage'));
   }, [dispatch]);
 
-  return <NavBar />;
+  return;
 }
 
 export default FamilySettingsPage;
