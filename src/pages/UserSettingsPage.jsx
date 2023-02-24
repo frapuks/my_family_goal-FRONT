@@ -1,9 +1,7 @@
 import React from "react";
 
-import NavBar from "../components/NavBar/NavBar";
-
 function UserSettingsPage() {
-  return <NavBar />;
+  return;
 }
 
 export default UserSettingsPage;
