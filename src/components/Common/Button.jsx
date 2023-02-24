@@ -2,10 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import MUIButton from "@mui/material/Button";
 import { AddCircle, CheckCircle, Delete, Info, Settings } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import { Icons } from "../../constants/Icons";
 import { ButtonType } from "./ButtonType";
 import { Colors } from "../../constants/Colors";
+
+const LinkBehavior = React.forwardRef((props, ref) => {
+    const { href, ...other } = props;
+    // Map href (MUI) -> to (react-router)
+    return <Link data-testid="custom-link" ref={ref} to={href} {...other} />;
+});
 
 export const Button = props => {
     const icon = getIcon(props.icon);
@@ -21,6 +28,7 @@ export const Button = props => {
             startIcon={icon}
             type={props.isSubmit ? "submit" : "button"}
             variant={variant}
+            LinkComponent={props.href ? LinkBehavior : "a"}
         >
             {props.text}
         </MUIButton>

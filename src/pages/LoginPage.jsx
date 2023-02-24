@@ -66,15 +66,17 @@ export default function LoginPage() {
         <div className={styles.container}>
             <img src={logo} />
 
-            <form onSubmit={onSubmit} className={styles.form}>
-                {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}
+            <div className={styles.actionContainer}>
+                <form onSubmit={onSubmit} className={styles.form}>
+                    {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}
 
-                <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} />
-                <TextField name="password" label="Mot de passe" type="password" required disabled={isLoggingIn} />
-                <ValidateButton disabled={isLoggingIn} />
-            </form>
+                    <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} />
+                    <TextField name="password" label="Mot de passe" type="password" required disabled={isLoggingIn} />
+                    <ValidateButton disabled={isLoggingIn} />
+                </form>
 
-            <Button text="S'inscrire" href="/signup" color={Colors.Secondary} />
+                <Button text="S'inscrire" href="/signup" color={Colors.Secondary} />
+            </div>
         </div>
     );
 }
