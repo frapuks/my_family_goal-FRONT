@@ -14,11 +14,13 @@ function SettingsPage() {
     window.location.href = '/FamilySettingsPage';
   }
   return (
+    <>
+    <NavBar />
     <div>
       <button onClick={handleModifyProfile}>Modifier mon profil</button>
-      <button onClick={handleModifyFamily}>Famille1</button>
+      <button onClick={handleModifyFamily}>Famille</button>
       <button>Famille2</button>
-    </div>
+    </div></>
 
   );
 };
