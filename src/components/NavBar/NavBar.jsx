@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import styles from "./NavBar.module.scss";
 
@@ -11,36 +12,17 @@ function NavBar() {
     <nav className={styles.containerNavBar}>
       <ul>
         <li className={activePage === 'settingsPage' ? styles.active : ''}>
-          <a href="/settings">SETTING</a>
+          <Link to="/settings">SETTING</Link>
         </li>
         <li className={activePage === 'dashBoardPage' ? styles.active : ''}>
-          <a href="/dashboard">FAMILLE</a>
+          <Link to="/dashboard">FAMILLE</Link>
         </li>
         <li className={activePage === 'userSettingsPage' ? styles.active : ''}>
-          <a href="/usersettings">PROFIL</a>
+          <Link to="/usersettings">PROFIL</Link>
         </li>
-         {/* regrouper les pages settings famille egalement sur le même bouton */}
       </ul>
     </nav>
   );
 }
 
 export default NavBar;
-
-
-// return (
-//   <div className={styles.containerNavBar}>
-//     <a href="/settings"
-//     className=
-//       {styles.buttonNavBar}
-//       {activePage === 'home' ? 'active' : ''}>
-//        SETTING
-//     </a>
-//     <a href="/dashboard" className={styles.buttonNavBar}>
-//       FAMILLE
-//     </a>
-//     <a href="/usersettings" className={styles.buttonNavBar}>
-//       PROFIL
-//     </a>
-//   </div>
-// );
