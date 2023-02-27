@@ -1,0 +1,21 @@
+.containerCreateFamily {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.textWelcomeParents {
+    background-color: aqua;
+}
+
+.textWelcomeChildrens{
+    background-color: aquamarine;
+
+}
