@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+.formButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
