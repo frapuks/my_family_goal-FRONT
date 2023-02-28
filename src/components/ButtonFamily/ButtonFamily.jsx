@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const StyledMenu = styled((props) => (
@@ -70,7 +70,7 @@ function ButtonFamily() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        sx={{ mr: 15 }}
+        sx={{ mr: 15 , borderRadius: 4 }}
         color="info"
       >
         My Family
@@ -85,7 +85,7 @@ function ButtonFamily() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
+          <FamilyRestroomIcon />
           Other Family
         </MenuItem>
       </StyledMenu>

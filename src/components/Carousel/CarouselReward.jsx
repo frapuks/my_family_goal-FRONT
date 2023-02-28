@@ -1,6 +1,13 @@
-import React from "react";
+import { Button, Box } from "@mui/material";
+import React, {useState}from "react";
 import Carousel from "react-material-ui-carousel";
-import Card from "../Card/Card";
+import CardReward from "../Cards/CardReward";
+
+import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
+
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+import styles from "./Carousel.module.scss"
 
 const rewardData = [
   {
@@ -68,13 +75,35 @@ const rewardData = [
   },
 ];
 
+const handleClick = () => {
+  <>
+  
+ <Box>
+  <h1>Salut</h1>
+ </Box>
+
+ </>
+}
+
 function CarouselReward() {
   return (
-    <Carousel >
+   <>
+   
+    <h2 className={styles.title}><MilitaryTechOutlinedIcon/>RECOMPENSES
+    <Button onClick={handleClick}><AddCircleOutlineIcon sx={{color: "green"}}/>
+    </Button>
+
+    </h2>
+   
+    <Carousel autoPlay={false}>
+      
       {rewardData.map((data) => (
-        <Card key={data.id} {...data} />
+        <CardReward key={data.id} {...data} />
       ))}
     </Carousel>
+
+   </>
+
   );
 }
 
