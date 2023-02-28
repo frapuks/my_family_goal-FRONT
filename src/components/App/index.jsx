@@ -35,12 +35,12 @@ function App() {
                 <Route path="/usersettings" element={<ProtectedRoute />}>
                     <Route path="/usersettings" element={<UserSettingsPage />} />
                 </Route>
-                {/* <Route path="/createFamily" element={<ProtectedRoute />}> */}
+                <Route path="/createfamily" element={<ProtectedRoute />}>
                     <Route path="/createfamily" element={<CreateFamilyPage />} />
-                {/* </Route> */}
-                {/* <Route path="/nameFamily" element={<ProtectedRoute />}> */}
+                </Route>
+                <Route path="/namefamily" element={<ProtectedRoute />}>
                     <Route path="/namefamily" element={<NameFamilyPage />} />
-                {/* </Route> */}
+                </Route>
                 <Route path="/familysettings" element={<ProtectedRoute />}>
                     <Route path="/familysettings" element={<FamilySettingsPage />} />
                 </Route>

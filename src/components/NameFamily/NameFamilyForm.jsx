@@ -1,33 +1,43 @@
 import React from "react";
+
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectToken, setToken } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 import { Alert } from "@mui/material";
 
-import styles from "./NameFamilyForm.scss";
+import styles from "./NameFamilyForm.module.scss";
 
 const NameFamilyForm = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const [isError, setIsError] = useState(false);
+
+    const token = useSelector(selectToken);
 
     const onSubmit = async event => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const name = data.get("name");
+        console.log(data);
 
     setIsError(false);
 
     const response = await fetch(import.meta.env.VITE_API_ROOT + "/family", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", authorization:`bearer ${token}`},
         body: JSON.stringify({
             name,
         }),
     });
 
     if (response.ok) {
+        dispatch(setToken(token))
         navigate("/dashboard");
     } else {
         setIsError(true);

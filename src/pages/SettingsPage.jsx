@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styles from "./SettingsPage.module.scss";
 import { Link } from "react-router-dom";
-//Import des reducers du store
 import logo_setting from "/logo_setting.svg";
 import { setActivePage } from "../store/slices/navBarSlice";
 

@@ -1,3 +1,7 @@
+import React from "react";
+
+import { useState } from "react";
+
 import { ValidateButton } from "../components/Common/ValidateButton";
 import { TextField } from "../components/Common/TextField";
 import { useDispatch } from "react-redux";
@@ -8,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.scss";
 
 import logo from "/logo.svg";
-import { useState, useEffect } from "react";
 import { Alert, useTheme } from "@mui/material";
 import { Button } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
@@ -55,7 +58,8 @@ export default function LoginPage() {
 
             dispatch(setToken(token));
 
-            navigate("/dashboard");
+            // on va directement a la page create family, il faudra creer une redirection dashboard si l'user a deja une famille
+            navigate("/createfamily");
         } else {
             // Ici on a recu une erreur du serveur
             setIsError(true);
