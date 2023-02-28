@@ -31,7 +31,7 @@ function App() {
                 </Route>
                 <Route path="/signup" element={<SignUpPage />} />
 
-                <Route path="/usersettings/:userId" element={<UserSettingsPage />} />
+                <Route path="/usersettings" element={<UserSettingsPage />} />
 
                 <Route path="/familysettings" element={<ProtectedRoute />}>
                     <Route path="/familysettings" element={<FamilySettingsPage />} />

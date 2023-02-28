@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setToken, setUser } from "../../store/slices/userSlice";
 import { Alert } from "@mui/material";
 import { Button } from "../Common/Button";
@@ -19,8 +19,7 @@ const UserSettingsForm = () => {
     const token = useSelector(state => state.user.token);
     const user = useSelector(state => state.user.user);
 
-    const { userId } = useParams();
-    // console.log("mon userid", userId);
+    // console.log("mon userid", user.id);
 
     const [lastname, setLastName] = useState(user.lastname);
 
@@ -49,15 +48,14 @@ const UserSettingsForm = () => {
         setIsError(false);
 
         console.log("c'est ma data", lastname, firstname);
-        const response = await fetch(import.meta.env.VITE_API_ROOT + `/user/${userId}`, {
+        const response = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json", authorization: `bearer ${token}` },
+            headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
             body: JSON.stringify({
                 firstname,
                 lastname,
                 pseudo,
                 email,
-                password,
                 newPassword,
             }),
         });
@@ -85,7 +83,7 @@ const UserSettingsForm = () => {
                 <TextField label="Mot de passe actuel" name="password" type="password" />
                 <TextField label="Nouveau mot de passe" name="newPassword" type="password" />
                 <TextField
-                    label="Confirmation du mot de passe ou du nouveau"
+                    label="Confirmation du nouveau mot de passe "
                     value={passwordConfirm}
                     onChange={setPasswordConfirm}
                     type="password"

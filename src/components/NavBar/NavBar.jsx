@@ -7,7 +7,6 @@ import styles from "./NavBar.module.scss";
 function NavBar() {
     const activePage = useSelector(state => state.navBar.activePage);
     //console.log(activePage);
-    const user = useSelector(state => state.user.user);
 
     return (
         <nav className={styles.containerNavBar}>
@@ -19,7 +18,7 @@ function NavBar() {
                     <Link to="/dashboard">FAMILLE</Link>
                 </li>
                 <li className={activePage === "userSettingsPage" ? styles.active : ""}>
-                    <Link to={`/usersettings/${user.id}`}>PROFIL</Link>
+                    <Link to={`/usersettings`}>PROFIL</Link>
                 </li>
             </ul>
         </nav>

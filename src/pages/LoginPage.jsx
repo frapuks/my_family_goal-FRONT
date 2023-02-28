@@ -54,7 +54,10 @@ export default function LoginPage() {
             // console.log(token);
 
             dispatch(setToken(token));
-            dispatch(setUser(user));
+
+            const { families, ...userData } = user;
+
+            dispatch(setUser(userData));
 
             navigate("/dashboard");
         } else {
