@@ -1,10 +1,9 @@
 import React from "react";
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectToken, setToken } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
