@@ -50,8 +50,8 @@ export default function LoginPage() {
         if (response.ok) {
             // Ici on a recu un code HTTP valide
             const { token, user } = await response.json();
-            console.log(user);
-            console.log(token);
+            // console.log(user);
+            // console.log(token);
 
             dispatch(setToken(token));
             dispatch(setUser(user));

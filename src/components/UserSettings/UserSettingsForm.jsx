@@ -20,13 +20,13 @@ const UserSettingsForm = () => {
     const user = useSelector(state => state.user.user);
 
     const { userId } = useParams();
-    console.log("mon userid", userId);
+    // console.log("mon userid", userId);
 
     // const [name, setName] = useState(user.lastname);
     // console.log("name du usestate", name);
 
-    console.log("mon token", token);
-    console.log("mon user", user);
+    //console.log("mon token", token);
+    //console.log("mon user", user);
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -64,12 +64,12 @@ const UserSettingsForm = () => {
 
         if (response.ok) {
             const { token, user } = await response.json();
-            console.log("mareponse", response.json());
             console.log("votre formulaire a été modifié");
             dispatch(setToken(token));
             dispatch(setUser(user));
+            console.log("mon nouveau token", token);
             console.log("mon nouveau user", user);
-            navigate("/dashboard");
+            // navigate("/dashboard");
         } else {
             setIsError(true);
         }
@@ -78,11 +78,11 @@ const UserSettingsForm = () => {
     return (
         <div className={styles.container}>
             <form onSubmit={onSubmit} className={styles.form}>
-                <TextField label="Nom" name="lastname" />
-                <TextField label="Prénom" name="firstname" />
-                <TextField label="Pseudo" name="pseudo" />
-                <TextField label="Email" name="email" required type="email" />
-                <TextField label="Mot de passe actuel" name="password" required type="password" />
+                <TextField label="Nom" placeholder={user.lastname} name="lastname" />
+                <TextField label="Prénom" placeholder={user.firstname} name="firstname" />
+                <TextField label="Pseudo" placeholder={user.pseudo} name="pseudo" />
+                <TextField label="Email" name="email" type="email" />
+                <TextField label="Mot de passe actuel" name="password" type="password" />
                 <TextField label="Nouveau mot de passe" name="newPassword" type="password" />
                 <TextField
                     label="Confirmation du mot de passe ou du nouveau"

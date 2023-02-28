@@ -6,7 +6,7 @@ import styles from "./NavBar.module.scss";
 
 function NavBar() {
     const activePage = useSelector(state => state.navBar.activePage);
-    console.log(activePage);
+    //console.log(activePage);
     const user = useSelector(state => state.user.user);
 
     return (
