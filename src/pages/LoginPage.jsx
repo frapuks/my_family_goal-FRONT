@@ -1,14 +1,14 @@
 import { ValidateButton } from "../components/Common/ValidateButton";
 import { TextField } from "../components/Common/TextField";
 import { useDispatch } from "react-redux";
-import { setToken } from "../store/slices/userSlice";
+import { setToken, setUser } from "../store/slices/userSlice";
 
 import { useNavigate } from "react-router-dom";
 
 import styles from "./LoginPage.module.scss";
 
 import logo from "/logo.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Alert, useTheme } from "@mui/material";
 import { Button } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
@@ -54,6 +54,7 @@ export default function LoginPage() {
             console.log(token);
 
             dispatch(setToken(token));
+            dispatch(setUser(user));
 
             navigate("/dashboard");
         } else {

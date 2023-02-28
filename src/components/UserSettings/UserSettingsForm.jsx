@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setToken } from "../../store/slices/userSlice";
 import { Alert } from "@mui/material";
@@ -15,6 +15,12 @@ const UserSettingsForm = () => {
     const [passwordConfirm, setPasswordConfirm] = useState();
     const [isError, setIsError] = useState(false);
     const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
+
+    const token = useSelector(state => state.user.token);
+    const user = useSelector(state => state.user.user);
+
+    console.log("mon token", token);
+    console.log("mon user", user);
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -37,11 +43,11 @@ const UserSettingsForm = () => {
 
         // console.log("c'est ma data", lastname, firstname);
         const response = await fetch(import.meta.env.VITE_API_ROOT + "/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+            method: "PATCH",
+            headers: { "Content-Type": "application/json", authorization: `bearer ${token}` },
             body: JSON.stringify({
-                lastname,
                 firstname,
+                lastname,
                 pseudo,
                 email,
                 password,
@@ -61,7 +67,7 @@ const UserSettingsForm = () => {
 
     return (
         <form onSubmit={onSubmit} className={styles.container}>
-            <TextField label="Nom" name="lastname" required />
+            <TextField label="Nom" name="lastname" placeholder={user.lastname} required />
             <TextField label="Prénom" name="firstname" required />
             <TextField label="Pseudo" name="pseudo" required />
             <TextField label="Email" name="email" required type="email" />
@@ -76,7 +82,7 @@ const UserSettingsForm = () => {
                 errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
             />
             <div className={styles.formButton}>
-                <ValidateButton text="Valider" />
+                <ValidateButton text="Valider les modifications" />
                 <Button text="Annuler" color={Colors.Warning} />
             </div>
             {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
