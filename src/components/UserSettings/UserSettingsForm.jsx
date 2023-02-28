@@ -22,8 +22,7 @@ const UserSettingsForm = () => {
     const { userId } = useParams();
     // console.log("mon userid", userId);
 
-    // const [name, setName] = useState(user.lastname);
-    // console.log("name du usestate", name);
+    const [lastname, setLastName] = useState(user.lastname);
 
     //console.log("mon token", token);
     //console.log("mon user", user);
@@ -40,11 +39,12 @@ const UserSettingsForm = () => {
 
         setIsConfirmPasswordValid(true);
 
-        // if (newPassword !== passwordConfirm) {
-        //     setIsConfirmPasswordValid(false);
-
-        //     return;
-        // }
+        if (newPassword) {
+            if (newPassword !== passwordConfirm) {
+                setIsConfirmPasswordValid(false);
+            }
+            return;
+        }
 
         setIsError(false);
 
@@ -69,7 +69,7 @@ const UserSettingsForm = () => {
             dispatch(setUser(user));
             console.log("mon nouveau token", token);
             console.log("mon nouveau user", user);
-            // navigate("/dashboard");
+            navigate("/dashboard");
         } else {
             setIsError(true);
         }
@@ -78,9 +78,9 @@ const UserSettingsForm = () => {
     return (
         <div className={styles.container}>
             <form onSubmit={onSubmit} className={styles.form}>
-                <TextField label="Nom" placeholder={user.lastname} name="lastname" />
-                <TextField label="Prénom" placeholder={user.firstname} name="firstname" />
-                <TextField label="Pseudo" placeholder={user.pseudo} name="pseudo" />
+                <TextField label="Nom" value={lastname} onChange={setLastName} name="lastname" />
+                <TextField label="Prénom" value={user.firstname} name="firstname" />
+                <TextField label="Pseudo" value={user.pseudo} name="pseudo" />
                 <TextField label="Email" name="email" type="email" />
                 <TextField label="Mot de passe actuel" name="password" type="password" />
                 <TextField label="Nouveau mot de passe" name="newPassword" type="password" />
@@ -89,7 +89,7 @@ const UserSettingsForm = () => {
                     value={passwordConfirm}
                     onChange={setPasswordConfirm}
                     type="password"
-                    // errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
+                    errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
                 />
                 <div className={styles.formButton}>
                     <ValidateButton text="Valider les modifications" />

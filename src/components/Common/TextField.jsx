@@ -16,6 +16,7 @@ export const TextField = props => {
             required={props.required}
             type={props.type}
             placeholder={props.placeholder}
+            value={props.value}
         />
     );
 };
