@@ -7,7 +7,10 @@ import Button from "@mui/material/Button";
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
+import { setSelectFamily } from "../../store/slices/familiesSlice";
+
 import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -55,22 +58,31 @@ const StyledMenu = styled((props) => (
 
 function ButtonFamily() {
 
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  // function au click qui referme le menu déroulant
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null);    
+  };
+
+  // function au click qui change le state de la selectFamily
+  const selectNameFamily = (family) => {    
+    dispatch(setSelectFamily(family.name))
   };
 
   const families = useSelector(state => state.families.families);
-  console.log(families)
-
+  const selectFamily = useSelector(state => state.families.selectFamily);
+  console.log(selectFamily);
 
   return (
-    <div>
-      <Button
+    <div className="">
+      <Button 
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
@@ -79,12 +91,11 @@ function ButtonFamily() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        sx={{ mr: 15 , borderRadius: 4 }}
+        sx={{ mr: "auto", borderRadius: 4 }}
         color="info"
       >
-
-        {/* On va vouloir creer un state de la famille selectionner qui prendra cette place */}
-        {families[0].name}
+        {/* Affichage de la famille active */}
+        {selectFamily}
 
       </Button>
       <StyledMenu 
@@ -96,10 +107,14 @@ function ButtonFamily() {
         open={open}
         onClose={handleClose}
       >
-        {families.map((famille) => (
-          <MenuItem key={famille.id} onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
+        {families.map((family) => (
+          <MenuItem key={family.id} onClick={() => {
+            handleClose();
+            selectNameFamily(family);
+          }} 
+          disableRipple>
             <FamilyRestroomIcon />
-            {famille.name}
+            {family.name}
           </MenuItem>
         ))
         };
