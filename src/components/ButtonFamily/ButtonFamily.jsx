@@ -82,7 +82,10 @@ function ButtonFamily() {
         sx={{ mr: 15 , borderRadius: 4 }}
         color="info"
       >
-        FamilleIndex0
+
+        {/* On va vouloir creer un state de la famille selectionner qui prendra cette place */}
+        {families[0].name}
+
       </Button>
       <StyledMenu 
         id="demo-customized-menu"
@@ -93,10 +96,13 @@ function ButtonFamily() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
-          <FamilyRestroomIcon />
-          FamilleIndex1
-        </MenuItem>
+        {families.map((famille) => (
+          <MenuItem key={famille.id} onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
+            <FamilyRestroomIcon />
+            {famille.name}
+          </MenuItem>
+        ))
+        };
       </StyledMenu>
     </div>
   );

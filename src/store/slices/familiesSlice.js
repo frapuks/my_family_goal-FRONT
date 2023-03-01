@@ -4,6 +4,7 @@ const familiesSlice = createSlice({
   name: 'families',
   initialState: {
     families: null,
+    
   },
   reducers: {
     setFamilies: (state, action) => {
