@@ -5,7 +5,7 @@ import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../store/slices/userSlice";
+import { setToken, setUser } from "../../store/slices/userSlice";
 import { Alert } from "@mui/material";
 
 import styles from "./SignUpForm.module.scss";
@@ -50,9 +50,10 @@ const SignUpForm = () => {
         });
 
         if (response.ok) {
-            const { token } = await response.json();
+            const { token, user } = await response.json();
 
             dispatch(setToken(token));
+            dispatch(setUser(user));
             navigate("/dashboard");
         } else {
             setIsError(true);

@@ -23,6 +23,7 @@ const UserSettingsForm = () => {
     const [firstname, setFirstName] = useState(user.firstname);
     const [pseudo, setPseudo] = useState(user.pseudo);
     const [email, setEmail] = useState(user.email);
+    const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
     //console.log("mon token", token);
@@ -45,6 +46,7 @@ const UserSettingsForm = () => {
             lastname,
             pseudo,
             email,
+            password,
         };
 
         const response = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
@@ -73,7 +75,7 @@ const UserSettingsForm = () => {
                 <TextField label="Prénom" value={firstname} onChange={setFirstName} />
                 <TextField label="Pseudo" value={pseudo} onChange={setPseudo} />
                 <TextField label="Email" value={email} onChange={setEmail} type="email" />
-                <TextField label="Mot de passe actuel" name="password" type="password" />
+                <TextField label="Mot de passe actuel" value={password} onChange={setPassword} type="password" />
                 <TextField label="Nouveau mot de passe" value={newPassword} onChange={setNewPassword} type="password" />
                 <TextField
                     label="Confirmation du nouveau mot de passe "
