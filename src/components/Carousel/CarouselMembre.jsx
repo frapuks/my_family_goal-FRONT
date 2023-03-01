@@ -30,16 +30,17 @@ const membreData=
 
 function CarouselMembres() {
 
+    
+
     return (
             <>
-            <h2 className={styles.title}> <Diversity1OutlinedIcon/> MEMBRES<Button><AddCircleOutlineIcon sx={{color: "green"}}/></Button> </h2>
+                <h2 className={styles.title}> <Diversity1OutlinedIcon/> MEMBRES<Button><AddCircleOutlineIcon sx={{color: "green"}}/></Button> </h2>
 
-            <Carousel autoPlay={false}>
+                <Carousel autoPlay={false}>
                 {
                 membreData.map( (data) => <CardMembre key={data.id} {...data}/> )
                 }
-            </Carousel>
-
+                </Carousel>
             </>
     )
     

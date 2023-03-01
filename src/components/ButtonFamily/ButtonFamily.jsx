@@ -1,10 +1,16 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+import { setSelectFamily } from "../../store/slices/familiesSlice";
+
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -49,19 +55,34 @@ const StyledMenu = styled((props) => (
   },
 }));
 
+
 function ButtonFamily() {
+
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  // function au click qui referme le menu déroulant
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null);    
   };
+
+  // function au click qui change le state de la selectFamily
+  const selectNameFamily = (family) => {    
+    dispatch(setSelectFamily(family.name))
+  };
+
+  const families = useSelector(state => state.families.families);
+  const selectFamily = useSelector(state => state.families.selectFamily);
+  console.log(selectFamily);
 
   return (
     <div>
-      <Button
+      <Button 
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
@@ -70,10 +91,12 @@ function ButtonFamily() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        sx={{ mr: 15 , borderRadius: 4 }}
+        sx={{ mr: "auto", borderRadius: 4 }}
         color="info"
       >
-        FamilleIndex0
+        {/* Affichage de la famille active */}
+        {selectFamily}
+
       </Button>
       <StyledMenu 
         id="demo-customized-menu"
@@ -84,18 +107,17 @@ function ButtonFamily() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
-          <FamilyRestroomIcon />
-          FamilleIndex1
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
-          <FamilyRestroomIcon />
-          FamilleIndex2
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
-          <FamilyRestroomIcon />
-          FamilleIndex3
-        </MenuItem>
+        {families.map((family) => (
+          <MenuItem key={family.id} onClick={() => {
+            handleClose();
+            selectNameFamily(family);
+          }} 
+          disableRipple>
+            <FamilyRestroomIcon />
+            {family.name}
+          </MenuItem>
+        ))
+        };
       </StyledMenu>
     </div>
   );

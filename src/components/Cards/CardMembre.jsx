@@ -9,7 +9,7 @@ import styles from "./Card.module.scss"
 function CardMembre({ id, name, title, price, description }) {
   const card = (
     <div  className={styles.containerCardMembre}> 
-    <React.Fragment className={styles.containerCard} >
+    <React.Fragment >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {id} {name} 
