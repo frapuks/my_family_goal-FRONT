@@ -62,8 +62,13 @@ export default function LoginPage() {
 
             dispatch(setUser(userData));
 
-            // on va directement a la page create family, il faudra creer une redirection dashboard si l'user a deja une famille
-            navigate("/createfamily");
+            // on check si le user a deja une famille ou non pour gerer la redirection
+            
+            if(families === null) {
+                navigate("/createfamily");
+            } else {
+                navigate("/dashboard")
+            }
         } else {
             // Ici on a recu une erreur du serveur
             setIsError(true);
