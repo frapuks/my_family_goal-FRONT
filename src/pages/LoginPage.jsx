@@ -61,9 +61,8 @@ export default function LoginPage() {
             const { families, ...userData } = user;
 
             // on envoi au store notre userData ( sans ses familles), pour pouvoir le modifier par la suite ( notament dans les settings ) sans pour autant modifier/ecraser ses familles
-            dispatch(setUser(userData));
+            dispatch(setUser(userData));            
             dispatch(setFamilies(families));
-            //console.log(families);
 
             // on check si le user a deja une famille ou non pour gerer la redirection            
             if(families === null) {
