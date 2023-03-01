@@ -6,7 +6,6 @@ import styles from "./NavBar.module.scss";
 
 function NavBar() {
     const activePage = useSelector(state => state.navBar.activePage);
-    //console.log(activePage);
 
     return (
         <nav className={styles.containerNavBar}>

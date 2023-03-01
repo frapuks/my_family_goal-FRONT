@@ -1,10 +1,12 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useSelector } from 'react-redux';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -49,7 +51,9 @@ const StyledMenu = styled((props) => (
   },
 }));
 
+
 function ButtonFamily() {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -58,6 +62,10 @@ function ButtonFamily() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const families = useSelector((state) => state.families.families);
+  console.log(families)
+
 
   return (
     <div>
@@ -87,14 +95,6 @@ function ButtonFamily() {
         <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
           <FamilyRestroomIcon />
           FamilleIndex1
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
-          <FamilyRestroomIcon />
-          FamilleIndex2
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
-          <FamilyRestroomIcon />
-          FamilleIndex3
         </MenuItem>
       </StyledMenu>
     </div>
