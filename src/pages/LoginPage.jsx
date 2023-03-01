@@ -5,7 +5,9 @@ import { useState } from "react";
 import { ValidateButton } from "../components/Common/ValidateButton";
 import { TextField } from "../components/Common/TextField";
 import { useDispatch } from "react-redux";
+
 import { setToken, setUser } from "../store/slices/userSlice";
+import { setFamilies } from "../store/slices/familiesSlice";
 
 import { useNavigate } from "react-router-dom";
 
@@ -60,6 +62,8 @@ export default function LoginPage() {
 
             // on envoi au store notre userData ( sans ses familles), pour pouvoir le modifier par la suite ( notament dans les settings ) sans pour autant modifier/ecraser ses familles
             dispatch(setUser(userData));
+            dispatch(setFamilies(families));
+            console.log(families);
 
             // on check si le user a deja une famille ou non pour gerer la redirection            
             if(families === null) {

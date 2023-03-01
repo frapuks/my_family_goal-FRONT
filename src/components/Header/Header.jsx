@@ -7,7 +7,7 @@ import ButtonFamily from "../ButtonFamily/ButtonFamily"
 
 function Header() {
   return (
-    <AppBar position="sticky" color="secondary">
+    <AppBar position="sticky" color="secondary" sx={{borderBottomLeftRadius: 100 , borderBottomRightRadius: 100}}>
       <Toolbar>
 
         <Typography variant="h6" color="white" component="div" sx={{ flexGrow: 1 }}>

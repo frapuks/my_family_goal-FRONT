@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const StyledMenu = styled((props) => (
@@ -70,12 +70,12 @@ function ButtonFamily() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        sx={{ mr: 15 }}
+        sx={{ mr: 15 , borderRadius: 4 }}
         color="info"
       >
         FamilleIndex0
       </Button>
-      <StyledMenu
+      <StyledMenu 
         id="demo-customized-menu"
         MenuListProps={{
           "aria-labelledby": "demo-customized-button",
@@ -84,20 +84,16 @@ function ButtonFamily() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
+        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
+          <FamilyRestroomIcon />
           FamilleIndex1
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
+        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
+          <FamilyRestroomIcon />
           FamilleIndex2
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
-          FamilleIndex3
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
+        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
+          <FamilyRestroomIcon />
           FamilleIndex3
         </MenuItem>
       </StyledMenu>
