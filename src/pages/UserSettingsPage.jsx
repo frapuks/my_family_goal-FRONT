@@ -16,7 +16,11 @@ function UserSettingsPage() {
         dispatch(setActivePage("userSettingsPage"));
     }, [dispatch]);
 
-    return <UserSettingsForm />;
+    return (
+        <>
+            <UserSettingsForm />
+        </>
+    );
 }
 
 export default UserSettingsPage;
