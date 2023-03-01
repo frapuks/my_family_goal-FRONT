@@ -1,15 +1,18 @@
+import React from "react";
+
+import { useState } from "react";
+
 import { ValidateButton } from "../components/Common/ValidateButton";
 import { TextField } from "../components/Common/TextField";
 import { useDispatch } from "react-redux";
-import { setToken } from "../store/slices/userSlice";
+import { setToken, setUser } from "../store/slices/userSlice";
 
 import { useNavigate } from "react-router-dom";
 
 import styles from "./LoginPage.module.scss";
 
 import logo from "/logo.svg";
-import { useState, useEffect } from "react";
-import { Alert, useTheme } from "@mui/material";
+import { Alert } from "@mui/material";
 import { Button } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
 
@@ -17,7 +20,7 @@ export default function LoginPage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const theme = useTheme();
+    // const theme = useTheme();  Sa valeur n'est jamais lu apparement.
 
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -50,12 +53,22 @@ export default function LoginPage() {
         if (response.ok) {
             // Ici on a recu un code HTTP valide
             const { token, user } = await response.json();
-            console.log(user);
-            console.log(token);
+            // console.log(user);
+            // console.log(token);
 
             dispatch(setToken(token));
 
-            navigate("/dashboard");
+            const { families, ...userData } = user;
+
+            dispatch(setUser(userData));
+
+            // on check si le user a deja une famille ou non pour gerer la redirection
+            
+            if(families === null) {
+                navigate("/createfamily");
+            } else {
+                navigate("/dashboard")
+            }
         } else {
             // Ici on a recu une erreur du serveur
             setIsError(true);

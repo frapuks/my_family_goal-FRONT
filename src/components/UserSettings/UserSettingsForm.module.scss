@@ -1,9 +1,16 @@
 .container {
     display: flex;
-    height: 90%;
+    height: 80%;
     flex-direction: column;
     justify-content: center;
     gap: 15px;
+}
+.form {
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
 }
 .formButton {
     display: flex;

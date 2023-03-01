@@ -1,13 +1,14 @@
 import { Button, Box } from "@mui/material";
-import React, {useState}from "react";
+import React, {useState , Component} from "react";
 import Carousel from "react-material-ui-carousel";
 import CardReward from "../Cards/CardReward";
+import styles from "./Carousel.module.scss"
 
+// Import des Icones Material UI
 import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
-
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-import styles from "./Carousel.module.scss"
+
 
 const rewardData = [
   {
@@ -76,13 +77,8 @@ const rewardData = [
 ];
 
 const handleClick = () => {
-  <>
-  
- <Box>
-  <h1>Salut</h1>
- </Box>
+  alert("Ca fonctionne !")
 
- </>
 }
 
 function CarouselReward() {
@@ -108,3 +104,6 @@ function CarouselReward() {
 }
 
 export default CarouselReward;
+
+
+

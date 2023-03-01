@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useState } from "react";
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
@@ -51,7 +53,8 @@ const SignUpForm = () => {
             const { token } = await response.json();
 
             dispatch(setToken(token));
-            navigate("/dashboard");
+            
+            navigate("/createfamily");
         } else {
             setIsError(true);
         }

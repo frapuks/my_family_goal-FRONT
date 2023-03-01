@@ -75,7 +75,7 @@ function ButtonFamily() {
       >
         My Family
       </Button>
-      <StyledMenu
+      <StyledMenu 
         id="demo-customized-menu"
         MenuListProps={{
           "aria-labelledby": "demo-customized-button",
@@ -84,7 +84,7 @@ function ButtonFamily() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple sx={{backgroundColor:""}}>
           <FamilyRestroomIcon />
           Other Family
         </MenuItem>

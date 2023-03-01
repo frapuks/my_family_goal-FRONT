@@ -21,7 +21,7 @@ nav ul {
     justify-content: space-around;
     padding: 0;
 }
-  
+
 nav li {    
     display: flex;      
     align-items: center;    
@@ -31,10 +31,10 @@ nav li {
     line-height: 3.5rem;
     font-size: 1rem;
     // background-image: url(../../../public/family-bouton-logo.svg) ;
-    // background-repeat: no-repeat;  
+    // background-repeat: no-repeat;     
 }
 
-nav li a {    
+nav li a {
     margin: 0 auto;
     font-weight: bold;
     color: #f1f1f1;
@@ -49,6 +49,5 @@ nav li a {
     justify-content: center;
     width: 5rem;
     height: 5rem;
-    border-radius: 51% 49% 51% 49% / 63% 62% 38% 37%  ;
-    
+    border-radius: 51% 49% 51% 49% / 63% 62% 38% 37%;    
 }
