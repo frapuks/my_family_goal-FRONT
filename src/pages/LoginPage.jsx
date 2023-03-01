@@ -53,11 +53,14 @@ export default function LoginPage() {
         if (response.ok) {
             // Ici on a recu un code HTTP valide
             const { token, user } = await response.json();
-            console.log(user);
-            console.log(token);
+            // console.log(user);
+            // console.log(token);
 
             dispatch(setToken(token));
-            dispatch(setUser(user));
+
+            const { families, ...userData } = user;
+
+            dispatch(setUser(userData));
 
             // on va directement a la page create family, il faudra creer une redirection dashboard si l'user a deja une famille
             navigate("/createfamily");

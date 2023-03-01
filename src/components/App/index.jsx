@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // import de nos components
@@ -32,6 +32,9 @@ function App() {
                     <Route path="/settings" element={<SettingsPage />} />
                 </Route>
                 <Route path="/signup" element={<SignUpPage />} />
+
+
+
                 <Route path="/usersettings" element={<ProtectedRoute />}>
                     <Route path="/usersettings" element={<UserSettingsPage />} />
                 </Route>
@@ -41,6 +44,7 @@ function App() {
                 <Route path="/namefamily" element={<ProtectedRoute />}>
                     <Route path="/namefamily" element={<NameFamilyPage />} />
                 </Route>
+
                 <Route path="/familysettings" element={<ProtectedRoute />}>
                     <Route path="/familysettings" element={<FamilySettingsPage />} />
                 </Route>

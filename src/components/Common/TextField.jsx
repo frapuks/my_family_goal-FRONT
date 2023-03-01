@@ -15,6 +15,8 @@ export const TextField = props => {
             name={props.name}
             required={props.required}
             type={props.type}
+            placeholder={props.placeholder}
+            value={props.value}
         />
     );
 };
@@ -25,6 +27,7 @@ TextField.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string,
     onChange: PropTypes.func,
+    placeholder: PropTypes.string,
     required: PropTypes.bool,
     type: PropTypes.string,
     value: PropTypes.string,
