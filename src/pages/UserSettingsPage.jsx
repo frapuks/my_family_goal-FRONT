@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import DeconnextionButton from "../components/UserSettings/DeconnexionButton";
+import DeleteButton from "../components/UserSettings/DeleteButton";
 import UserSettingsForm from "../components/UserSettings/UserSettingsForm";
+import styles from "./UserSettingPage.module.scss";
 
 // Import de nos components
 
@@ -19,6 +22,10 @@ function UserSettingsPage() {
     return (
         <>
             <UserSettingsForm />
+            <div className={styles.formButton}>
+                <DeconnextionButton />
+                <DeleteButton />
+            </div>
         </>
     );
 }

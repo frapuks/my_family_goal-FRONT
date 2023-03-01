@@ -33,14 +33,14 @@ function App() {
                 </Route>
                 <Route path="/signup" element={<SignUpPage />} />
 
-
-
                 <Route path="/usersettings" element={<ProtectedRoute />}>
                     <Route path="/usersettings" element={<UserSettingsPage />} />
                 </Route>
+
                 <Route path="/createfamily" element={<ProtectedRoute />}>
                     <Route path="/createfamily" element={<CreateFamilyPage />} />
                 </Route>
+
                 <Route path="/namefamily" element={<ProtectedRoute />}>
                     <Route path="/namefamily" element={<NameFamilyPage />} />
                 </Route>
@@ -48,6 +48,7 @@ function App() {
                 <Route path="/familysettings" element={<ProtectedRoute />}>
                     <Route path="/familysettings" element={<FamilySettingsPage />} />
                 </Route>
+
                 <Route path="/dashboard" element={<ProtectedRoute />}>
                     <Route path="/dashboard" element={<DashboardPage />} />
                 </Route>
