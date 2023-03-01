@@ -73,7 +73,7 @@ function ButtonFamily() {
         sx={{ mr: 15 }}
         color="info"
       >
-        My Family
+        FamilleIndex0
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -86,7 +86,19 @@ function ButtonFamily() {
       >
         <MenuItem onClick={handleClose} disableRipple>
           <MoreHorizIcon />
-          Other Family
+          FamilleIndex1
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <MoreHorizIcon />
+          FamilleIndex2
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <MoreHorizIcon />
+          FamilleIndex3
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <MoreHorizIcon />
+          FamilleIndex3
         </MenuItem>
       </StyledMenu>
     </div>

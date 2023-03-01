@@ -20,8 +20,6 @@ export default function LoginPage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const theme = useTheme();  Sa valeur n'est jamais lu apparement.
-
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [isError, setIsError] = useState(false);
 
@@ -31,11 +29,11 @@ export default function LoginPage() {
         // On récupère les champs du formulaire
         const data = new FormData(e.currentTarget);
 
+        // On destructure data pour extraire email et password
         const email = data.get("email");
         const password = data.get("password");
 
         // On valide les données si besoin ici
-
         setIsLoggingIn(true);
         setIsError(false);
 
@@ -53,17 +51,17 @@ export default function LoginPage() {
         if (response.ok) {
             // Ici on a recu un code HTTP valide
             const { token, user } = await response.json();
-            // console.log(user);
-            // console.log(token);
 
+            // on envoi au store notre token
             dispatch(setToken(token));
 
+            // on destructure le user pour separer les infos du user et les infos de ses familles
             const { families, ...userData } = user;
 
+            // on envoi au store notre userData ( sans ses familles), pour pouvoir le modifier par la suite ( notament dans les settings ) sans pour autant modifier/ecraser ses familles
             dispatch(setUser(userData));
 
-            // on check si le user a deja une famille ou non pour gerer la redirection
-            
+            // on check si le user a deja une famille ou non pour gerer la redirection            
             if(families === null) {
                 navigate("/createfamily");
             } else {
@@ -89,7 +87,6 @@ export default function LoginPage() {
                     <TextField name="password" label="Mot de passe" type="password" required disabled={isLoggingIn} />
                     <ValidateButton disabled={isLoggingIn} />
                 </form>
-
                 <Button text="S'inscrire" href="/signup" color={Colors.Secondary} />
             </div>
         </div>
