@@ -1,5 +1,5 @@
-import { Button, Box } from "@mui/material";
-import React, {useState , Component} from "react";
+import { Button} from "@mui/material";
+import React from "react";
 import Carousel from "react-material-ui-carousel";
 import CardReward from "../Cards/CardReward";
 import styles from "./Carousel.module.scss"
