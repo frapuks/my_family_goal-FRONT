@@ -12,7 +12,7 @@ function Header() {
 
   return (
     <>
-      {families[0] ? (
+      {families && families[0] ? (
         <AppBar
           position="sticky"
           color="secondary"
