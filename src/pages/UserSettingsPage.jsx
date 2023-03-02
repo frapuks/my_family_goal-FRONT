@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import DeconnextionButton from "../components/UserSettings/DeconnexionButton";
-import DeleteButton from "../components/UserSettings/DeleteButton";
+import DeleteButton from "../components/UserSettings/DeleteButton/DeleteButton";
 import UserSettingsForm from "../components/UserSettings/UserSettingsForm";
 import styles from "./UserSettingPage.module.scss";
 
