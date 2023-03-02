@@ -1,6 +1,13 @@
 import React from 'react';
+import { Button } from "@mui/material";
 import Carousel from 'react-material-ui-carousel';
-import Card from "../Card/Card";
+import CardMembre from "../Cards/CardMembre";
+
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+import styles from "./Carousel.module.scss"
+
+import Diversity1OutlinedIcon from '@mui/icons-material/Diversity1Outlined';
 
 const membreData=
 [
@@ -21,17 +28,23 @@ const membreData=
 
 
 
-function CarouselMembre() {
+function CarouselMembres() {
+
+    
 
     return (
-            <Carousel>
+            <>
+                <h2 className={styles.title}> <Diversity1OutlinedIcon/> MEMBRES<Button><AddCircleOutlineIcon sx={{color: "green"}}/></Button> </h2>
+
+                <Carousel autoPlay={false}>
                 {
-                membreData.map( (data) => <Card key={data.id} {...data}/> )
+                membreData.map( (data) => <CardMembre key={data.id} {...data}/> )
                 }
-            </Carousel>
+                </Carousel>
+            </>
     )
     
 }
 
 
-export default CarouselMembre;
+export default CarouselMembres;

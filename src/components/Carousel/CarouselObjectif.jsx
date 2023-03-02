@@ -1,6 +1,12 @@
 import React from 'react';
+import { Button } from "@mui/material";
 import Carousel from 'react-material-ui-carousel';
-import Card from "../Card/Card";
+import CardObjectif from "../Cards/CardObjectif";
+
+import styles from "./Carousel.module.scss"
+
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RocketLaunchOutlinedIcon from '@mui/icons-material/RocketLaunchOutlined';
 
 const objectifData=
 [
@@ -81,11 +87,18 @@ const objectifData=
 function CarouselObjectif() {
 
     return (
-            <Carousel>
+
+        <>
+            <h2 className={styles.title}> <RocketLaunchOutlinedIcon/>OBJECTIFS<Button><AddCircleOutlineIcon sx={{color: "green"}}/></Button></h2>
+        
+            <Carousel autoPlay={false}>
                 {
-                objectifData.map( (data) => <Card key={data.id} {...data}/> )
+                objectifData.map( (data) => <CardObjectif key={data.id} {...data}/> )
                 }
             </Carousel>
+
+        </>
+
     )
     
 }

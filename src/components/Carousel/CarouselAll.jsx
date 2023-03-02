@@ -1,18 +1,20 @@
 import React from "react";
-import CarouselMembre from "./CarouselMembre";
+import CarouselMembres from "./CarouselMembre";
 import CarouselObjectif from "./CarouselObjectif";
 import CarouselReward from "./CarouselReward";
+
+import styles from "./Carousel.module.scss"
 
 function CarouselAll() {
 
     return (
-        <>
+    
+        <div className={styles.container}>
             <CarouselReward/>
             <CarouselObjectif/>
-            <CarouselMembre/>
-
-        </>
-
+            <CarouselMembres/>
+        </div>
+    
     )
 }
 

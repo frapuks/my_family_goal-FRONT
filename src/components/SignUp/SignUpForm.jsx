@@ -53,8 +53,13 @@ const SignUpForm = () => {
             const { token, user } = await response.json();
 
             dispatch(setToken(token));
+
             dispatch(setUser(user));
-            navigate("/dashboard");
+            
+
+            
+            navigate("/createfamily");
+
         } else {
             setIsError(true);
         }
