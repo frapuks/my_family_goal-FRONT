@@ -1,21 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const familiesSlice = createSlice({
-  name: 'families',
-  initialState: {
-    families: [],
-    selectFamily: null,
-  },
-  reducers: {
-    setFamilies: (state, action) => {
-      state.families = action.payload;
+    name: "families",
+    initialState: {
+        families: [],
+        selectFamily: null,
     },
-    setSelectFamily: (state, action) => {
-      state.selectFamily = action.payload;
-    }
-  },
+    reducers: {
+        addFamily: (state, action) => {
+            // state.families = [...state.families, payload];
+            state.families.push(action.payload);
+        },
+        setFamilies: (state, action) => {
+            state.families = action.payload;
+        },
+        setSelectFamily: (state, action) => {
+            state.selectFamily = action.payload;
+        },
+    },
 });
 
-export const { setFamilies, setSelectFamily } = familiesSlice.actions;
+export const { addFamily, setFamilies, setSelectFamily } = familiesSlice.actions;
 
 export default familiesSlice.reducer;
