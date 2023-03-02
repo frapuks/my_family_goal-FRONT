@@ -2,12 +2,14 @@ import React from "react";
 
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectToken, setToken } from "../../store/slices/userSlice";
+import { selectToken } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 import { Alert } from "@mui/material";
+
+import { setFamilies } from "../../store/slices/familiesSlice";
 
 import styles from "./NameFamilyForm.module.scss";
 
@@ -22,8 +24,7 @@ const NameFamilyForm = () => {
     const onSubmit = async event => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const name = data.get("name");
-        console.log(data);
+        const name = data.get("name");        
 
     setIsError(false);
 
@@ -35,14 +36,15 @@ const NameFamilyForm = () => {
         }),
     });
 
-    if (response.ok) {
-        dispatch(setToken(token))
-        navigate("/dashboard");
-    } else {
-        setIsError(true);
-    }
+        if (response.ok) {            
+            const { name } = await response.json();
+            dispatch(setFamilies([{name}]));
+            navigate("/dashboard");
+        } else {
+            setIsError(true);
+        }
+    };
 
-    }
     return (
         <form onSubmit={onSubmit} className={styles.container}>
             <TextField label="Nom de votre Famille" name="name" required />
