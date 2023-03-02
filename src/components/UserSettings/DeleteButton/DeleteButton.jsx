@@ -10,9 +10,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
+import { setToken, setUser } from "../../../store/slices/userSlice";
 
 function DeleteButton() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const user = useSelector(state => state.user.user);
     const token = useSelector(state => state.user.token);
@@ -36,6 +38,8 @@ function DeleteButton() {
         });
 
         if (response.ok) {
+            dispatch(setUser());
+            dispatch(setToken());
             console.log("je delete");
             navigate("/");
         }
