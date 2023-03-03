@@ -38,7 +38,6 @@ const NameFamilyForm = () => {
 
         if (response.ok) {
             const { id, name } = await response.json();
-            // dispatch(setFamilies([{ name }]));
             dispatch(addFamily({ id, name }));
             navigate("/dashboard");
         } else {
