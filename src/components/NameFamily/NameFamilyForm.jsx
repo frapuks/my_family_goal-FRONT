@@ -9,7 +9,7 @@ import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 import { Alert } from "@mui/material";
 
-import { setFamilies } from "../../store/slices/familiesSlice";
+import { addFamily, setFamilies } from "../../store/slices/familiesSlice";
 
 import styles from "./NameFamilyForm.module.scss";
 
@@ -24,21 +24,21 @@ const NameFamilyForm = () => {
     const onSubmit = async event => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const name = data.get("name");        
+        const name = data.get("name");
 
-    setIsError(false);
+        setIsError(false);
 
-    const response = await fetch(import.meta.env.VITE_API_ROOT + "/family", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", authorization:`bearer ${token}`},
-        body: JSON.stringify({
-            name,
-        }),
-    });
+        const response = await fetch(import.meta.env.VITE_API_ROOT + "/family", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", authorization: `bearer ${token}` },
+            body: JSON.stringify({
+                name,
+            }),
+        });
 
-        if (response.ok) {            
-            const { name } = await response.json();
-            dispatch(setFamilies([{name}]));
+        if (response.ok) {
+            const { id, name } = await response.json();
+            dispatch(addFamily({ id, name }));
             navigate("/dashboard");
         } else {
             setIsError(true);
@@ -52,7 +52,7 @@ const NameFamilyForm = () => {
 
             {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
         </form>
-    )
-}
+    );
+};
 
 export default NameFamilyForm;
