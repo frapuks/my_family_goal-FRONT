@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 // Import de nos components
 import CarouselAll from "../components/Carousel/CarouselAll";
@@ -9,9 +8,7 @@ import CarouselAll from "../components/Carousel/CarouselAll";
 import { setActivePage } from "../store/slices/navBarSlice";
 
 function DashboardPage() {
-    const dispatch = useDispatch();
-
-    const navigate = useNavigate();
+    const dispatch = useDispatch();    
 
     // [dispatch] servira à modifier le state uniquement au changement de valeur, et non a chaque nouveau rendu d'une même page par exemple
 
@@ -20,8 +17,7 @@ function DashboardPage() {
     }, []);
 
     return (
-        <>
-            <button onClick={() => navigate("/namefamily")}>Créer</button>
+        <>            
             <CarouselAll />
         </>
     );

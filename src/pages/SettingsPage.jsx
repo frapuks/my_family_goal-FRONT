@@ -36,6 +36,12 @@ function SettingsPage() {
                         FAMILLE 2
                     </Link>
                 </li>
+
+                <li className={styles.li}>
+                    <Link className={styles.link} to="/namefamily">
+                        CREER UNE NOUVELLE FAMILLE
+                    </Link>
+                </li>
             </ul>
         </>
     );
