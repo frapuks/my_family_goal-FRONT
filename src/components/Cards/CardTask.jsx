@@ -10,14 +10,13 @@ import styles from "./Card.module.scss";
 
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 
-
-function CardTask({ id, name, title, price, gain, description }) {
+function CardTask({ title, gain, description, isComplete }) {
   const card = (
     <div  className={styles.containerCardTask}>  
     <React.Fragment>
       <CardContent className={styles.container}>
         <Typography variant="h5" component="div">
-          {id} {title}
+          {title}
         </Typography>
         <Typography 
           sx={{ fontSize: 14 }}

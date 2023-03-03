@@ -73,7 +73,7 @@ function ButtonFamily() {
         console.log("ON NAVIGATE");
     };
 
-    const families = useSelector(state => state.families.families);
+    const listFamilies = useSelector(state => state.families.listFamilies);
     const selectFamily = useSelector(state => state.families.selectFamily);
 
     return (
@@ -92,7 +92,7 @@ function ButtonFamily() {
             >
                 {/* Affichage de la famille active */}
 
-                {selectFamily ? selectFamily.name : families[0]?.name}
+                {selectFamily ? selectFamily.name : listFamilies[0]?.name}
             </Button>
             <StyledMenu
                 id="demo-customized-menu"
@@ -103,8 +103,8 @@ function ButtonFamily() {
                 open={open}
                 onClose={handleClose}
             >
-                {families ? (
-                    families.map(family => (
+                {listFamilies ? (
+                    listFamilies.map(family => (
                         <MenuItem
                             key={family.name}
                             onClick={() => {

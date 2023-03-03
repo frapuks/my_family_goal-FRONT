@@ -4,12 +4,13 @@ import Carousel from 'react-material-ui-carousel';
 import CardMembre from "../Cards/CardMembre";
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Diversity1OutlinedIcon from '@mui/icons-material/Diversity1Outlined';
 
 import styles from "./Carousel.module.scss"
 
 import { useSelector } from "react-redux";
 
-import Diversity1OutlinedIcon from '@mui/icons-material/Diversity1Outlined';
+
 
 function CarouselMembres() {
     const memberData = useSelector(state => state.members.listMembers);    

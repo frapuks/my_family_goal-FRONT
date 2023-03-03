@@ -22,7 +22,7 @@ function CarouselAll() {
     const [isError, setIsError] = useState(false);
     const token = useSelector(selectToken);
     let select = useSelector(state => state.families.selectFamily);
-    let familyIndex = useSelector(state => state.families.families[0]);
+    let familyIndex = useSelector(state => state.families.listFamilies[0]);
     const familyId = select?.id || familyIndex.id
 
     async function getFamily () {
