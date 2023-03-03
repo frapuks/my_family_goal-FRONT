@@ -13,8 +13,8 @@ function DeconnextionButton() {
 
     const onDeconnexionButton = () => {
         dispatch(setToken()),
-        dispatch(setFamilies()),
-        dispatch(setSelectFamily()),
+        dispatch(setFamilies([])),
+        dispatch(setSelectFamily(null)),
         navigate('/')
     }
 
