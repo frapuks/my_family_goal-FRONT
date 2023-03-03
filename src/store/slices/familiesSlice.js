@@ -18,7 +18,6 @@ const familiesSlice = createSlice({
 
             return state;
         },
-
         setFamilies: (state, action) => {
             state.listFamilies = action.payload;
         },
