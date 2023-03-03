@@ -10,7 +10,7 @@ const familiesSlice = createSlice({
         addFamily: (state, action) => {
             // state.families = [...state.families, payload];
             state.families.push(action.payload);
-        },
+        },        
         setFamilies: (state, action) => {
             state.families = action.payload;
         },
@@ -20,6 +20,6 @@ const familiesSlice = createSlice({
     },
 });
 
-export const { addFamily, setFamilies, setSelectFamily } = familiesSlice.actions;
+export const { addFamily, setFamilies, setSelectFamily, resetFamilies } = familiesSlice.actions;
 
 export default familiesSlice.reducer;
