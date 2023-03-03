@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 function Header() {
 
   const families = useSelector((state) => state.families.families);
-  console.log(families);
 
   return (
     <>
