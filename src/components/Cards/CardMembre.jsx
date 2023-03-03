@@ -6,19 +6,19 @@ import Typography from "@mui/material/Typography";
 
 import styles from "./Card.module.scss"
 
-function CardMembre({ id, name, title, price, description }) {
+function CardMembre({ firstname, lastname, pseudo, isParent, credit }) {
   const card = (
     <div  className={styles.containerCardMembre}> 
     <React.Fragment >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {id} {name} 
+         {firstname} {lastname} 
         </Typography>
         <Typography variant="h5" component="div">
-          {title}
+          {pseudo}
         </Typography>
         <Typography variant="body2" sx={{color: "red"}}>
-          {price}
+          {credit }
         </Typography>
       </CardContent>
     </React.Fragment>

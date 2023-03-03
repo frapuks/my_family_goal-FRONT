@@ -7,6 +7,7 @@ const initialState = {
 
 const familiesSlice = createSlice({
     name: "families",
+
     initialState,
     reducers: {
         addFamily: (state, action) => {
@@ -18,8 +19,10 @@ const familiesSlice = createSlice({
 
             return state;
         },
+
+    
         setFamilies: (state, action) => {
-            state.families = action.payload;
+            state.listFamilies = action.payload;
         },
         setSelectFamily: (state, action) => {
             state.selectFamily = action.payload;
@@ -31,6 +34,9 @@ const familiesSlice = createSlice({
     },
 });
 
+
 export const { addFamily, setFamilies, setSelectFamily, resetFamily, resetSelectedFamily } = familiesSlice.actions;
+
+
 
 export default familiesSlice.reducer;

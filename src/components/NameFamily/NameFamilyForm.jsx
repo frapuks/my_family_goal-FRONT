@@ -9,7 +9,7 @@ import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 import { Alert } from "@mui/material";
 
-import { addFamily, setFamilies } from "../../store/slices/familiesSlice";
+import { addFamily } from "../../store/slices/familiesSlice";
 
 import styles from "./NameFamilyForm.module.scss";
 
@@ -39,6 +39,7 @@ const NameFamilyForm = () => {
         if (response.ok) {
             const { id, name } = await response.json();
             dispatch(addFamily({ id, name }));
+
             navigate("/dashboard");
         } else {
             setIsError(true);

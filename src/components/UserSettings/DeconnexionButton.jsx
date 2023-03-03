@@ -11,12 +11,14 @@ function DeconnextionButton() {
     const navigate = useNavigate();
 
     const onDeconnexionButton = () => {
+
         dispatch(deleteToken());
         dispatch(resetFamily());
         dispatch(resetSelectedFamily());
 
         navigate("/");
     };
+
 
     return (
         <div className={styles.formButton}>
