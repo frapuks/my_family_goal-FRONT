@@ -3,10 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const membersSlice = createSlice({
   name: 'members',
-  initialState: [],
+  initialState: {
+    listMembers: [],
+  },
   reducers: {
     setMembers: (state, action) => {
-      state.initialState = action.payload;    
+      state.listMembers = action.payload;    
     },
   }
 });

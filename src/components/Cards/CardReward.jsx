@@ -12,9 +12,6 @@ import styles from "./Card.module.scss"
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 
-
-
-
 function CardReward({ id, name, title, price, description }) {
   const card = (
     <div className={styles.containerCardReward}>

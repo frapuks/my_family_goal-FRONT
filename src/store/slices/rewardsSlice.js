@@ -3,10 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const rewardsSlice = createSlice({
   name: 'rewards',
-  initialState: [],
+  initialState: {
+    listRewards: [],
+  },
   reducers: {
     setRewards: (state, action) => {
-      state.initialState = action.payload;    
+      state.listRewards = action.payload;
     },
   }
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import CarouselMembres from "./CarouselMembre";
-import CarouselObjectif from "./CarouselObjectif";
+import CarouselTask from "./CarouselTask";
 import CarouselReward from "./CarouselReward";
 
 import { Alert } from "@mui/material";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Carousel.module.scss"
 
 import { selectToken } from "../../store/slices/userSlice";
-import { setObjectifs } from "../../store/slices/objectifsSlice";
+import { setTasks } from "../../store/slices/tasksSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 
@@ -35,16 +35,13 @@ function CarouselAll() {
             const family = await response.json();
 
             // on destructure la famille pour separer les objectif, reward, membre de cette famille
-            const tasks = family.tasks || [];
             const rewards = family.rewards || [];
+            const tasks = family.tasks || [];
             const members = family.members || [];
-            console.log(tasks);
-            console.log(rewards);
-            console.log(members);
-
+            
             // on envoi au store nos rewards, tasks et members
-            dispatch(setObjectifs(tasks));
             dispatch(setRewards(rewards));
+            dispatch(setTasks(tasks));
             dispatch(setMembers(members));
             
         } else {
@@ -60,7 +57,7 @@ function CarouselAll() {
             {isError && <Alert severity="warning">Une erreur est survenue</Alert>}  
             <div className={styles.container}>
                 <CarouselReward/>
-                <CarouselObjectif/>
+                <CarouselTask/>
                 <CarouselMembres/>
             </div>
         </>  

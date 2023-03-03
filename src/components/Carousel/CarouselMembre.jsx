@@ -7,30 +7,12 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import styles from "./Carousel.module.scss"
 
+import { useSelector } from "react-redux";
+
 import Diversity1OutlinedIcon from '@mui/icons-material/Diversity1Outlined';
 
-const membreData=
-[
-    {
-        "id": 1,
-        "name": "Moaï"
-    },
-    {
-        "id": 2,
-        "name": "Front"
-    },
-    {
-        "id": 3,
-        "name": "Back"
-    }
-]
-
-
-
-
 function CarouselMembres() {
-
-    
+    const memberData = useSelector(state => state.members.listMembers);    
 
     return (
             <>
@@ -38,7 +20,7 @@ function CarouselMembres() {
 
                 <Carousel autoPlay={false}>
                 {
-                membreData.map( (data) => <CardMembre key={data.id} {...data}/> )
+                memberData.map( (data) => <CardMembre key={data.id} {...data}/> )
                 }
                 </Carousel>
             </>

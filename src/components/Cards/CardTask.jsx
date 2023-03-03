@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+
 import Typography from "@mui/material/Typography";
 
 import styles from "./Card.module.scss";
@@ -11,9 +11,9 @@ import styles from "./Card.module.scss";
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 
 
-function CardObjectif({ id, name, title, price, gain, description }) {
+function CardTask({ id, name, title, price, gain, description }) {
   const card = (
-    <div  className={styles.containerCardObjectif}>  
+    <div  className={styles.containerCardTask}>  
     <React.Fragment>
       <CardContent className={styles.container}>
         <Typography variant="h5" component="div">
@@ -46,4 +46,4 @@ function CardObjectif({ id, name, title, price, gain, description }) {
   );
 }
 
-export default CardObjectif;
+export default CardTask;
