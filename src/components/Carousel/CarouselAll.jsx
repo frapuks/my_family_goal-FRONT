@@ -10,11 +10,9 @@ function CarouselAll() {
     return (
     
         <div className={styles.container}>
-
             <CarouselReward/>
             <CarouselObjectif/>
             <CarouselMembres/>
-
         </div>
     
     )
