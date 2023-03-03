@@ -12,6 +12,7 @@ import { setSelectFamily } from "../../store/slices/familiesSlice";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const StyledMenu = styled(props => (
     <Menu
@@ -52,6 +53,7 @@ const StyledMenu = styled(props => (
 
 function ButtonFamily() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -66,10 +68,12 @@ function ButtonFamily() {
 
     // function au click qui change le state de la selectFamily
     const selectNameFamily = family => {
-        dispatch(setSelectFamily(family.name));
+        dispatch(setSelectFamily(family));
+        navigate("/dashboard");
+        console.log("ON NAVIGATE");
     };
 
-    const families = useSelector(state => state.families.families);
+    const listFamilies = useSelector(state => state.families.listFamilies);
     const selectFamily = useSelector(state => state.families.selectFamily);
 
     return (
@@ -88,7 +92,7 @@ function ButtonFamily() {
             >
                 {/* Affichage de la famille active */}
 
-                {selectFamily ? selectFamily : families[0]?.name}
+                {selectFamily ? selectFamily.name : listFamilies[0]?.name}
             </Button>
             <StyledMenu
                 id="demo-customized-menu"
@@ -99,8 +103,8 @@ function ButtonFamily() {
                 open={open}
                 onClose={handleClose}
             >
-                {families ? (
-                    families.map(family => (
+                {listFamilies ? (
+                    listFamilies.map(family => (
                         <MenuItem
                             key={family.name}
                             onClick={() => {

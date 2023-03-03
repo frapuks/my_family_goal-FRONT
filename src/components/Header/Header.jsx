@@ -7,12 +7,11 @@ import { useSelector } from "react-redux";
 
 function Header() {
 
-  const families = useSelector((state) => state.families.families);
-  console.log(families);
+  const listFamilies = useSelector((state) => state.families.listFamilies);
 
   return (
     <>
-      {families && families[0] ? (
+      {listFamilies && listFamilies[0] ? (
         <AppBar
           position="sticky"
           color="secondary"

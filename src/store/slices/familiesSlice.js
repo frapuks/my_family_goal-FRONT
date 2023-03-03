@@ -3,16 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const familiesSlice = createSlice({
     name: "families",
     initialState: {
-        families: [],
+        listFamilies: [],
         selectFamily: null,
     },
     reducers: {
-        addFamily: (state, action) => {
-            // state.families = [...state.families, payload];
-            state.families.push(action.payload);
+        addFamily: (state, action) => {            
+            state.listFamilies.push(action.payload);
         },        
         setFamilies: (state, action) => {
-            state.families = action.payload;
+            state.listFamilies = action.payload;
         },
         setSelectFamily: (state, action) => {
             state.selectFamily = action.payload;
