@@ -53,14 +53,14 @@ function CarouselAll() {
     getFamily();
 
     return ( 
-        <> 
+        <>
             {isError && <Alert severity="warning">Une erreur est survenue</Alert>}  
             <div className={styles.container}>
                 <CarouselReward/>
                 <CarouselTask/>
                 <CarouselMembres/>
             </div>
-        </>  
+        </>
     )
 }
 

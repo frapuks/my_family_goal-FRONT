@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="929" height="856" viewBox="0 0 929 856">
+  <defs>
+    <clipPath id="clip-Web_1920_1">
+      <rect width="929" height="856"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_1" data-name="Web 1920 – 1" clip-path="url(#clip-Web_1920_1)">
+    <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="171.5" cy="175.5" rx="171.5" ry="175.5" transform="translate(255 177)" fill="#336ff0"/>
+    <ellipse id="Ellipse_4" data-name="Ellipse 4" cx="107" cy="109.5" rx="107" ry="109.5" transform="translate(423 171)" fill="#fcb659"/>
+    <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="94" cy="96" rx="94" ry="96" transform="translate(427 322)" fill="#ff747c"/>
+    <ellipse id="Ellipse_3" data-name="Ellipse 3" cx="137" cy="140" rx="137" ry="140" transform="translate(234 177)" fill="#8246ca"/>
+    <circle id="Ellipse_5" data-name="Ellipse 5" cx="14.5" cy="14.5" r="14.5" transform="translate(179 375)" fill="#915ccd"/>
+    <circle id="Ellipse_6" data-name="Ellipse 6" cx="21.5" cy="21.5" r="21.5" transform="translate(234 507)" fill="#fcbe6a"/>
+    <circle id="Ellipse_7" data-name="Ellipse 7" cx="36" cy="36" r="36" transform="translate(670 296)" fill="#4c7fee"/>
+    <circle id="Ellipse_9" data-name="Ellipse 9" cx="28.5" cy="28.5" r="28.5" transform="translate(436 72)" fill="#ff8489"/>
+    <circle id="Ellipse_8" data-name="Ellipse 8" cx="14.5" cy="14.5" r="14.5" transform="translate(649 404)" fill="#ff8489"/>
+    <text id="My_Family_Goal" data-name="My Family Goal" transform="translate(93 741)" fill="#707070" font-size="130" font-family="CinemaScript, Cinema Script"><tspan x="0" y="0">My Family Goal</tspan></text>
+    <g id="Groupe_1" data-name="Groupe 1" transform="translate(235.993 -24.436)">
+      <g id="Ellipse_10" data-name="Ellipse 10" transform="translate(166.306 217.88)" fill="none" stroke="#fff8e5" stroke-width="10">
+        <ellipse cx="24.097" cy="23.454" rx="24.097" ry="23.454" stroke="none"/>
+        <ellipse cx="24.097" cy="23.454" rx="19.097" ry="18.454" fill="none"/>
+      </g>
+      <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(241.702 234.298)" fill="none" stroke="#fff8e5" stroke-width="10">
+        <ellipse cx="25.83" cy="24.894" rx="25.83" ry="24.894" stroke="none"/>
+        <ellipse cx="25.83" cy="24.894" rx="20.83" ry="19.894" fill="none"/>
+      </g>
+      <g id="Ellipse_12" data-name="Ellipse 12" transform="translate(96.34 282.632)" fill="none" stroke="#fff8e5" stroke-width="10">
+        <ellipse cx="20.544" cy="19.997" rx="20.544" ry="19.997" stroke="none"/>
+        <ellipse cx="20.544" cy="19.997" rx="15.544" ry="14.997" fill="none"/>
+      </g>
+      <path id="Tracé_1" data-name="Tracé 1" d="M2437.444,891.486c-12.215,35.05-36.856,27.748-54.115,29.82s-18.986,13.808-18.986,13.808l-3.8,69.729s-1.7,11.71,9.187,12.082,10.622-12.082,10.622-12.082l1.248-51.487v110.861s.08,8.63,8.577,8.63,9.028-8.63,9.028-8.63l1.858-47.292,1.939,47.292s-.611,8.364,9.214,8.63,9.559-8.63,9.559-8.63V953.355s10.083-9.041,11.949-22.836S2437.444,891.486,2437.444,891.486Z" transform="translate(-2284 -594.777)" fill="none" stroke="#fff8e5" stroke-width="10"/>
+      <path id="Tracé_2" data-name="Tracé 2" d="M2537.259,889.263l6.9,174.19s.8,7.169,8.231,7.435,9.559-7.435,9.559-7.435l8.232-94.8,5.311,93.2s.531,9.294,7.966,9.028,7.435-9.028,7.435-9.028l12.746-175.252" transform="translate(-2383.815 -592.023)" fill="none" stroke="#fff8e5" stroke-width="10"/>
+      <path id="Tracé_3" data-name="Tracé 3" d="M2688.737,876.164c37.379-8.783,33.554-9.069,54.475-9.069s26.288,4.514,29.209,9.069,0,77.761,0,77.761a8.821,8.821,0,0,1-8.763,7.169c-7.7.266-8.5-7.169-8.5-7.169V888.072l-3.452,159.32s-1.593,8.231-8.5,7.7-8.763-7.7-8.763-7.7l-4.779-78.6-4.514,77.536s-1.859,7.435-8.5,7.435-8.232-7.435-8.232-7.435l-3.186-154.01-18.587,3.983" transform="translate(-2468.154 -581.008)" fill="none" stroke="#fff8e5" stroke-width="10"/>
+      <path id="Tracé_4" data-name="Tracé 4" d="M2461.648,838.524s24.417-25.093,54.743-27.881,66.561,16.729,66.561,16.729" transform="translate(-2333.13 -541.815)" fill="none" stroke="#fff8e5" stroke-width="10"/>
+    </g>
+  </g>
+</svg>

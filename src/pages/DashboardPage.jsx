@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import styles from "./DashboardPage.module.scss";
+
 // Import de nos components
 import CarouselAll from "../components/Carousel/CarouselAll";
 
@@ -17,9 +19,9 @@ function DashboardPage() {
     }, []);
 
     return (
-        <>            
-            <CarouselAll />
-        </>
+        <div className={styles.containerDashboard}>
+            <CarouselAll  />
+        </div>
     );
 }
 

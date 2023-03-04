@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import ButtonFamily from "../ButtonFamily/ButtonFamily";
 import { useSelector } from "react-redux";
 
+import styles from "./Header.module.scss";
+
 function Header() {
 
   const listFamilies = useSelector((state) => state.families.listFamilies);
@@ -12,19 +14,9 @@ function Header() {
   return (
     <>
       {listFamilies && listFamilies[0] ? (
-        <AppBar
-          position="sticky"
-          color="secondary"
-          sx={{ borderBottomLeftRadius: 100, borderBottomRightRadius: 100 }}
-        >
-          <Toolbar>
-            <Typography
-              variant="h6"
-              color="white"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            ></Typography>
-            <ButtonFamily />
+        <AppBar className={styles.container}>
+          <Toolbar className={styles.toolBar}>            
+            <ButtonFamily className={styles.button}/>
           </Toolbar>
         </AppBar>
       ) : (
