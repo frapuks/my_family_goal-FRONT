@@ -28,7 +28,7 @@ function SettingsPage() {
 
                 {
                     families.map((family) => (
-                        <li className={styles.li}>
+                        <li key={family.id} className={styles.li}>
                             <Link className={styles.link} to="/familysettings">Famille : {family.name}</Link>
                         </li>
                     ))
