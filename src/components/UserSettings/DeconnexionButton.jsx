@@ -2,7 +2,7 @@ import styles from "./UserSettingsForm.module.scss";
 import { Button } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 import { deleteToken } from "../../store/slices/userSlice";
-import { resetFamily, resetSelectedFamily, setSelectFamily } from "../../store/slices/familiesSlice";
+import { resetFamily } from "../../store/slices/familiesSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,14 +11,11 @@ function DeconnextionButton() {
     const navigate = useNavigate();
 
     const onDeconnexionButton = () => {
-
         dispatch(deleteToken());
         dispatch(resetFamily());
-        dispatch(resetSelectedFamily());
 
         navigate("/");
     };
-
 
     return (
         <div className={styles.formButton}>
