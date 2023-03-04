@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SettingsPage.module.scss";
 import { Link } from "react-router-dom";
-import logo_setting from "/logo_setting.svg";
+
 import { setActivePage } from "../store/slices/navBarSlice";
 
 function SettingsPage() {
@@ -16,29 +16,31 @@ function SettingsPage() {
     }, [dispatch]);
 
     return (
-        <>
-            <ul className={styles.container}>
-                <li className={styles.li}>
-                    <Link className={styles.link} to="/usersettings">
-                        PROFIL
-                    </Link>
-                </li>
+        <div className={styles.container}>
+                <ul className={styles.ul}>
+                    <li className={styles.li}>
+                        <Link className={styles.link} to="/usersettings">
+                            PROFIL
+                        </Link>
+                    </li>
 
-                {
-                    families.map((family) => (
-                        <li key={family.id} className={styles.li}>
-                            <Link className={styles.link} to="/familysettings">Famille : {family.name}</Link>
-                        </li>
-                    ))
-                }
-
-                <li className={styles.li}>
-                    <Link className={styles.link} to="/namefamily">
-                        CREER UNE NOUVELLE FAMILLE
-                    </Link>
-                </li>
-            </ul>
-        </>
+                    {
+                        families.map((family) => (
+                            <li className={styles.li} key={family.id}>
+                                <Link className={styles.link} to="/familysettings">Famille : {family.name}</Link>
+                            </li>
+                        ))
+                    }
+                                
+                </ul>
+                <ul className={styles.ul}>
+                    <li className={styles.liCreate}>
+                        <Link className={styles.link} to="/namefamily">
+                            CREER UNE NOUVELLE FAMILLE
+                        </Link>
+                    </li>
+                </ul>
+            </div>
     );
 }
 export default SettingsPage;

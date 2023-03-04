@@ -22,9 +22,7 @@ nav li {
     border-radius: 50%;    
     vertical-align: middle;
     line-height: 3.5rem;
-    font-size: 1rem;
-    // background-image: url(../../../public/family-bouton-logo.svg) ;
-    // background-repeat: no-repeat;     
+    font-size: 1rem;         
 }
 
 nav li a {
@@ -38,7 +36,7 @@ nav li a {
 
 .active {
     transform: translateY(-45%);    
-    outline: solid 5px #fff8e5;    
+    outline: solid 2px #fff8e5;    
     justify-content: center;
     width: 5rem;
     height: 5rem;
