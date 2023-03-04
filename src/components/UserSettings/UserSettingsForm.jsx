@@ -46,13 +46,12 @@ const UserSettingsForm = () => {
             lastname,
             pseudo,
             email,
-            password,
         };
 
         const response = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-            body: JSON.stringify(newPassword ? { ...payload, newPassword } : payload),
+            body: JSON.stringify(newPassword ? { ...payload,password, newPassword } : payload),
         });
 
         if (response.ok) {

@@ -4,6 +4,7 @@ import styles from "./SettingsPage.module.scss";
 import { Link } from "react-router-dom";
 
 import { setActivePage } from "../store/slices/navBarSlice";
+import { setSelectFamily } from "../store/slices/familiesSlice";
 
 function SettingsPage() {
     const families = useSelector(state => state.families.listFamilies);
@@ -24,23 +25,24 @@ function SettingsPage() {
                         </Link>
                     </li>
 
-                    {
-                        families.map((family) => (
-                            <li className={styles.li} key={family.id}>
-                                <Link className={styles.link} to="/familysettings">Famille : {family.name}</Link>
-                            </li>
-                        ))
-                    }
-                                
-                </ul>
-                <ul className={styles.ul}>
-                    <li className={styles.liCreate}>
-                        <Link className={styles.link} to="/namefamily">
-                            CREER UNE NOUVELLE FAMILLE
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+                {
+                    families.map((family) => (
+                        <li key={family.id} className={styles.li}>
+                            <Link className={styles.link} to="/familysettings" onClick={() => dispatch(setSelectFamily(family))}>
+                                Famille : {family.name}
+                            </Link>
+                        </li>
+                    ))
+                }                
+            </ul>
+            <ul className={styles.ul}>
+                <li className={styles.liCreate}>
+                    <Link className={styles.link} to="/namefamily">
+                        CREER UNE NOUVELLE FAMILLE
+                    </Link>
+                </li>
+            </ul>
+        </div>
     );
 }
 export default SettingsPage;

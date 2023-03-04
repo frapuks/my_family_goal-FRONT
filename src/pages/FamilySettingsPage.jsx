@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
+import FamilySettingsForm from "../components/FamilySettings/FamilySettingsForm";
 
 
 //Import des reducers du store
@@ -14,7 +15,11 @@ function FamilySettingsPage() {
     dispatch(setActivePage('settingsPage'));
   }, [dispatch]);
 
-  return;
+  return(
+    <>
+      <FamilySettingsForm />
+    </>
+  );
 }
 
 export default FamilySettingsPage;
