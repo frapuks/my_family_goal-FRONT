@@ -2,14 +2,14 @@ import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
     palette: {
-        primary: {
+        warning: {
             main: "#f78888",
         },
         secondary: {
             main: "#5da2d5",
         },
 
-        warning: {
+        primary: {
             main: "#F3D250",
         },
         success: {
