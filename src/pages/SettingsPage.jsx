@@ -4,6 +4,7 @@ import styles from "./SettingsPage.module.scss";
 import { Link } from "react-router-dom";
 import logo_setting from "/logo_setting.svg";
 import { setActivePage } from "../store/slices/navBarSlice";
+import { setSelectFamily } from "../store/slices/familiesSlice";
 
 function SettingsPage() {
     const families = useSelector(state => state.families.listFamilies);
@@ -29,7 +30,9 @@ function SettingsPage() {
                 {
                     families.map((family) => (
                         <li key={family.id} className={styles.li}>
-                            <Link className={styles.link} to="/familysettings">Famille : {family.name}</Link>
+                            <Link className={styles.link} to="/familysettings" onClick={() => dispatch(setSelectFamily(family))}>
+                                Famille : {family.name}
+                            </Link>
                         </li>
                     ))
                 }
