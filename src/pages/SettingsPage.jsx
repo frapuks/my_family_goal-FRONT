@@ -16,8 +16,6 @@ function SettingsPage() {
 
     return (
         <>
-            <img className="LogoSetting" src={logo_setting} />
-
             <ul className={styles.container}>
                 <li className={styles.li}>
                     <Link className={styles.link} to="/usersettings">
