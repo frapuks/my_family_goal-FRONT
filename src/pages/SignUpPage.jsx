@@ -7,7 +7,6 @@ import { Btn } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
 
 import logo from "/logo.svg";
-import { BentoRounded } from "@mui/icons-material";
 
 function SignUpPage() {
     return (
@@ -15,7 +14,7 @@ function SignUpPage() {
             <img src={logo} />
 
             <SignUpForm />
-            <BentoRounded text="Login" href="/" color={Colors.Secondary} />
+            <Btn text="Login" href="/" color={Colors.Secondary} />
         </div>
     );
 }
