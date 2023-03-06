@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setToken, setUser } from "../../store/slices/userSlice";
 import { Alert } from "@mui/material";
-import { Button } from "../Common/Button";
+import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 import styles from "./UserSettingsForm.module.scss";
 
@@ -85,7 +85,7 @@ const UserSettingsForm = () => {
                 />
                 <div className={styles.formButton}>
                     <ValidateButton text="Valider les modifications" />
-                    <Button text="Annuler" color={Colors.Warning} href="/dashboard" />
+                    <Btn text="Annuler" color={Colors.Warning} href="/dashboard" />
                 </div>
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </form>

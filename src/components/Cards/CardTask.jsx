@@ -31,7 +31,7 @@ function CardTask({ title, gain, description, isComplete }) {
       </CardContent>
       <CardActions>
         <button className={styles.btnAdd}
-        > Let's GO ! </button>
+        > Let GO ! </button>
       </CardActions>
     </React.Fragment>
     

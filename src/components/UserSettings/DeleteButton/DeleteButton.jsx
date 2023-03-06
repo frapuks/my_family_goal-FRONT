@@ -1,5 +1,5 @@
 import styles from "../UserSettingsForm.module.scss";
-import { Button } from "../../Common/Button";
+import { Btn } from "../../Common/Button";
 import { Colors } from "../../../constants/Colors";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -49,7 +49,7 @@ function DeleteButton() {
 
     return (
         <div className={styles.formButton}>
-            <Button text="Supprimer le compte" color={Colors.Warning} onClick={handleClickOpen} />
+            <Btn text="Supprimer le compte" color={Colors.Warning} onClick={handleClickOpen} />
             <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
 

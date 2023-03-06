@@ -14,7 +14,7 @@ const LinkBehavior = React.forwardRef((props, ref) => {
     return <Link data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
-export const Button = props => {
+export const Btn = props => {
     const icon = getIcon(props.icon);
     const variant = props.type ?? ButtonType.Contained;
     const color = props.color ?? Colors.Primary;
@@ -57,7 +57,7 @@ function getIcon(icon) {
     }
 }
 
-Button.propTypes = {
+Btn.propTypes = {
     color: PropTypes.oneOf(Object.values(Colors)),
     disabled: PropTypes.bool,
     href: PropTypes.string,
