@@ -14,15 +14,12 @@ import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 import { setFamilies } from "../../store/slices/familiesSlice";
 
-import { useNavigate } from "react-router-dom";
-
 // Import des Icones Material UI
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function CarouselReward() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const user = useSelector(state => state.user.user);
   const token = useSelector(state => state.user.token);
