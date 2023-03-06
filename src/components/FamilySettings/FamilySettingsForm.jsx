@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./FamilySettingsForm.module.scss";
 import { Colors } from "../../constants/Colors";
 import { ValidateButton } from "../Common/ValidateButton";
-import { Button } from "../Common/Button";
+import { Btn } from "../Common/Button";
 import { TextField } from "../Common/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "@mui/material";
@@ -14,8 +14,8 @@ const FamilySettingsForm = () => {
     const navigate = useNavigate();
 
     // get intial state
-    const token = useSelector(state => state.user.token);
     const user = useSelector(state => state.user.user);
+    const token = useSelector(state => state.user.token);
     const family = useSelector(state => state.families.selectFamily);
 
     // define local state
@@ -63,7 +63,7 @@ const FamilySettingsForm = () => {
                 <TextField label="Nom" value={name} onChange={setName} />
                 <div className={styles.formButton}>
                     <ValidateButton text="Valider les modifications" />
-                    <Button text="Annuler" color={Colors.Warning} href="/settings" />
+                    <Btn text="Annuler" color={Colors.Warning} href="/settings" />
                 </div>
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </form>

@@ -16,7 +16,7 @@ import styles from "./LoginPage.module.scss";
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 import { Alert } from "@mui/material";
-import { Button } from "../components/Common/Button";
+import { Btn } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
 
 export default function LoginPage() {
@@ -94,7 +94,7 @@ export default function LoginPage() {
                     <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} />
                     <TextField name="password" label="Mot de passe" type="password" required disabled={isLoggingIn} />
                     <ValidateButton disabled={isLoggingIn} />
-                    <Button text="S'inscrire" href="/signup" color={Colors.Secondary} />
+                    <Btn text="S'inscrire" href="/signup" color={Colors.Secondary} />
                 </form>
             </div>
 

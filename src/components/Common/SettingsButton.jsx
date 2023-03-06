@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 
 import { Colors } from "../../constants/Colors";
 import { Icons } from "../../constants/Icons";
-import { Button } from "./Button";
+import { Btn } from "./Button";
 import { ButtonType } from "./ButtonType";
 
 export const SettingsButton = props => (
-    <Button
+    <Btn
         type={ButtonType.Contained}
         text="Settings"
         color={Colors.Secondary}
