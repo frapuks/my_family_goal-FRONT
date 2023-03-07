@@ -5,13 +5,15 @@ import { ValidateButton } from "../Common/ValidateButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setToken, setUser } from "../../store/slices/userSlice";
-import { Alert, getScopedCssBaselineUtilityClass } from "@mui/material";
-import { Button } from "../Common/Button";
+
+import { Alert } from "@mui/material";
+import { Btn } from "../Common/Button";
+
 import { Colors } from "../../constants/Colors";
 import styles from "./UserSettingsForm.module.scss";
-import { CollectionsBookmarkOutlined } from "@mui/icons-material";
+
 import { useEffect } from "react";
-import { useRef } from "react";
+
 
 const UserSettingsForm = () => {
     const dispatch = useDispatch();
@@ -99,9 +101,14 @@ const UserSettingsForm = () => {
                     errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
                 />
                 <div className={styles.formButton}>
+
                     <ValidateButton disabled={!isChanged} text="Valider les modifications" />
 
-                    <Button text="Annuler" color={Colors.Warning} href="/dashboard" />
+                  
+
+                
+                    <Btn text="Annuler" color={Colors.Warning} href="/dashboard" />
+
                 </div>
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </form>

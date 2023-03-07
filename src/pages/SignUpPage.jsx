@@ -3,7 +3,7 @@ import React from "react";
 import SignUpForm from "../components/SignUp/SignUpForm";
 import styles from "./SignUpPage.module.scss";
 
-import { Button } from "../components/Common/Button";
+import { Btn } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
 
 import logo from "/logo.svg";
@@ -14,7 +14,7 @@ function SignUpPage() {
             <img src={logo} />
 
             <SignUpForm />
-            <Button text="Login" href="/" color={Colors.Secondary} />
+            <Btn text="Login" href="/" color={Colors.Secondary} />
         </div>
     );
 }

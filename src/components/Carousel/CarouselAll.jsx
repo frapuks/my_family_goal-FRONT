@@ -48,7 +48,7 @@ function CarouselAll() {
             // Ici on a recu une erreur du serveur
             setIsError(true);
         }        
-    };        
+    };
 
     getFamily();
 

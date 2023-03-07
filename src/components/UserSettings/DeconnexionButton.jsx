@@ -1,5 +1,5 @@
 import styles from "./UserSettingsForm.module.scss";
-import { Button } from "../Common/Button";
+import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 import { deleteToken } from "../../store/slices/userSlice";
 import { resetFamily } from "../../store/slices/familiesSlice";
@@ -19,7 +19,7 @@ function DeconnextionButton() {
 
     return (
         <div className={styles.formButton}>
-            <Button text="Déconnexion" onClick={onDeconnexionButton} color={Colors.Success} />
+            <Btn text="Déconnexion" onClick={onDeconnexionButton} color={Colors.Success} />
         </div>
     );
 }
