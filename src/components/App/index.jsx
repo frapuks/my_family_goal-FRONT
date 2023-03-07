@@ -18,7 +18,6 @@ import FamilySettingsPage from "../../pages/FamilySettingsPage";
 import DashboardPage from "../../pages/DashboardPage";
 import Header from "../Header/Header";
 import Page404 from "./404/Page404";
-import NonExistentRoute from "./404/NonExistentRoute";
 
 function App() {
     const token = useSelector(state => state.user.token);
@@ -54,7 +53,7 @@ function App() {
                     <Route path="/dashboard" element={<DashboardPage />} />
                 </Route>
                 <Route path="/404" element={<Page404 />} />
-                <Route path="*" element={<NonExistentRoute />} />
+                <Route path="*" element={<Page404 />} />
             </Routes>
 
             {token && <NavBar />}
