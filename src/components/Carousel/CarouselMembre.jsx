@@ -20,7 +20,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function CarouselMember() {
   const dispatch = useDispatch();
-
+  // get states
   const user = useSelector(state => state.user.user);
   const token = useSelector(state => state.user.token);
   const family = useSelector(state => state.families.selectFamily || state.families.listFamilies[0]);
@@ -29,6 +29,17 @@ function CarouselMember() {
   const [addCard, setAddCard] = useState(false);
   const [pseudo, setPseudo] = useState("Pseudo");
   const [isError, setIsError] = useState(false);
+  const [resultSearch, setResultSearch] = useState([]);
+  const [userIdSelected, setUserIdSelected] = useState(0);
+
+  // Reset local states
+  const resetLocalStates = () => {
+    setAddCard(false);
+    setPseudo("Pseudo");
+    setIsError(false);
+    setResultSearch([]);
+    setUserIdSelected(0);
+  };
   
   // Handle click on button + to add card
   const handleClickBtnAddCard = () => {
@@ -36,55 +47,66 @@ function CarouselMember() {
   };
 
   // onChange form
-  const onChange = async (event) => {
-    console.log(event);
-    // POST research
-    const responseSearchUser = await fetch(import.meta.env.VITE_API_ROOT + `/search/user`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-        body: JSON.stringify({pseudo}),
-    });
+  const onChange = async (pseudo) => {
+    setPseudo(pseudo);
+    if(pseudo) {
+      // POST research
+      const responseSearchUsers = await fetch(import.meta.env.VITE_API_ROOT + `/search/user`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+          body: JSON.stringify({pseudo}),
+      });
+      const list = await responseSearchUsers.json();
+      setResultSearch(list);
+    } else {
+      setResultSearch([]);
+    }
+  };
 
-    // treatment
-    // if (responseSearchUser.ok ) {
-        
-    // } else {
-        
-    // }
+  // handle pseudo in list
+  const handlePseudo = (event) => {
+    const userId = event.currentTarget.dataset.userid;
+    const selectPseudo = event.currentTarget.textContent;
+    setUserIdSelected(userId);
+    setPseudo(selectPseudo);
   };
   
-
   // on submit form
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsError(false);
+
+    if (userIdSelected === 0) return setIsError(true);
+    const createLink = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${userIdSelected}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
+    });
+
     const responseGetUser = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
-  });
+    });
 
-      // treatment
-      if (responseGetUser.ok) {
-        
-        // get data from responses        
-        const { families } = await responseGetUser.json();
-        
-        // dispatch states
-        dispatch(setFamilies(families));
-        
-        // Close form
-        setAddCard(false);
-      } else {
-        setIsError(true);
-      }
-    };
+    // treatment
+    if (responseGetUser.ok && createLink.ok) {
+      // get data from responses        
+      const { families } = await responseGetUser.json();
+      
+      // dispatch states
+      dispatch(setFamilies(families));
+      
+      // Close form
+      resetLocalStates();
+    } else {
+      setIsError(true);
+    }
+  };
 
-    // on cancel form
-    const handleCancelForm = (event) => {
-      event.preventDefault();
-      setAddCard(false);
-      setPseudo("Pseudo");
-    };
+  // on cancel form
+  const handleCancelForm = (event) => {
+    event.preventDefault();
+    resetLocalStates();
+  };
 
   return (
     <>
@@ -103,6 +125,12 @@ function CarouselMember() {
               <form onSubmit={onSubmit} className={styles.form}>
                 <TextField label="Pseudo" value={pseudo} onChange={onChange} />
 
+                {resultSearch.length > 0 && (
+                  <div>
+                    {resultSearch.map((user) => <div key={user.id} onClick={handlePseudo} data-userid={user.id}>{user.pseudo}</div> )}
+                  </div>  
+                )}
+                
                 <div className={styles.formButton}>
                   <ValidateButton text="Valider" />
                   <Btn
