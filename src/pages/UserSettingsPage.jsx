@@ -20,13 +20,13 @@ function UserSettingsPage() {
     }, [dispatch]);
 
     return (
-        <>
+        <div className={styles.container}>
             <UserSettingsForm />
             <div className={styles.formButton}>
                 <DeconnextionButton />
                 <DeleteButton />
             </div>
-        </>
+        </div>
     );
 }
 

@@ -126,8 +126,8 @@ const FamilySettingsForm = () => {
                             </DialogContentText>
                             <DialogActions>
                                 <ButtonMui onClick={cancelDeleteClick}>Annuler</ButtonMui>
-                                <ButtonMui onClick={confirmdDeleteClick} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
                             </DialogActions>
+                                <ButtonMui onClick={confirmdDeleteClick} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
                         </DialogContent>
                     </Dialog>
                 </div>

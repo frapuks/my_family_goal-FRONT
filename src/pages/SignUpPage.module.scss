@@ -1,7 +1,25 @@
 .container {
     display: flex;
+    flex-direction: column;    
+    height: 100vh;
+    width: 100%;
+    background-image: url("../../src/assets/background-login-plage.jpg");
+    background-size: cover;
+    background-position: 30% 50%;  
+}
+
+.containerLogo{
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+}
+
+.logo {
+    height: 15rem;    
+}
+
+.actionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 }

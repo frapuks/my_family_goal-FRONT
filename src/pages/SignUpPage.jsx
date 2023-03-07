@@ -3,18 +3,17 @@ import React from "react";
 import SignUpForm from "../components/SignUp/SignUpForm";
 import styles from "./SignUpPage.module.scss";
 
-import { Btn } from "../components/Common/Button";
-import { Colors } from "../constants/Colors";
-
-import logo from "/logo.svg";
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 function SignUpPage() {
     return (
         <div className={styles.container}>
-            <img src={logo} />
-
-            <SignUpForm />
-            <Btn text="Login" href="/" color={Colors.Secondary} />
+            <div className={styles.containerLogo}>
+                <img className={styles.logo} src={logo} />                
+            </div>
+            <div className={styles.actionContainer}>
+                <SignUpForm />                
+            </div>
         </div>
     );
 }
