@@ -1,4 +1,6 @@
 import React from "react";
+
+
 import CardTask from "../Cards/CardTask";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,11 +16,14 @@ import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 import { setFamilies } from "../../store/slices/familiesSlice";
 
+
+
 // Import des Icones Material UI
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function CarouselTask() {
+
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user.user);
@@ -124,6 +129,7 @@ function CarouselTask() {
       )}
     </>
   );
+
 }
 
 export default CarouselTask;

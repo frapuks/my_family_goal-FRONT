@@ -62,14 +62,14 @@ export default function LoginPage() {
             const { families, ...userData } = user;
 
             // on envoi au store notre userData ( sans ses familles), pour pouvoir le modifier par la suite ( notament dans les settings ) sans pour autant modifier/ecraser ses familles
-            dispatch(setUser(userData));            
+            dispatch(setUser(userData));
             dispatch(setFamilies(families));
 
-            // on check si le user a deja une famille ou non pour gerer la redirection            
-            if(families === null) {
+            // on check si le user a deja une famille ou non pour gerer la redirection
+            if (families === null) {
                 navigate("/createfamily");
             } else {
-                navigate("/dashboard")
+                navigate("/dashboard");
             }
         } else {
             // Ici on a recu une erreur du serveur
@@ -81,11 +81,10 @@ export default function LoginPage() {
 
     return (
         <div className={styles.container}>
-
             <div className={styles.containerLogo}>
                 <img className={styles.logo} src={logo} />
                 <h1 className={styles.titre}>My Family Goal</h1>
-            </div>            
+            </div>
 
             <div className={styles.actionContainer}>
                 <form onSubmit={onSubmit} className={styles.form}>
@@ -97,7 +96,6 @@ export default function LoginPage() {
                     <Btn text="S'inscrire" href="/signup" color={Colors.Secondary} />
                 </form>
             </div>
-
         </div>
     );
 }
