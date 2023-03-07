@@ -14,6 +14,7 @@ import { selectToken } from "../../store/slices/userSlice";
 import { setTasks } from "../../store/slices/tasksSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
+import { setSelectFamily } from "../../store/slices/familiesSlice";
 
 function CarouselAll() {
 
@@ -43,6 +44,9 @@ function CarouselAll() {
             dispatch(setRewards(rewards));
             dispatch(setTasks(tasks));
             dispatch(setMembers(members));
+            if (!select) {
+                dispatch(setSelectFamily(familyIndex));
+            }
             
         } else {
             // Ici on a recu une erreur du serveur
