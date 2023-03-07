@@ -12,7 +12,7 @@ function Header() {
   const listFamilies = useSelector((state) => state.families.listFamilies);
 
   return (
-    <>
+    <div className={styles.header}>
       {listFamilies && listFamilies[0] ? (
         <AppBar className={styles.container}>
           <Toolbar className={styles.toolBar}>            
@@ -22,7 +22,7 @@ function Header() {
       ) : (
        <></>
       )}
-    </>
+    </div>
   );
 }
 

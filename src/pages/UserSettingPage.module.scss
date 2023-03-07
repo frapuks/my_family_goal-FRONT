@@ -1,5 +1,30 @@
 .formButton {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;    
+    margin-bottom: 4rem;
+    gap: 2rem;
 }
+
+.container {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("../../src/assets/background-login-plage.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+    align-items: center;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .form {
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+  
+  

@@ -10,6 +10,9 @@ import { Alert } from "@mui/material";
 
 import styles from "./SignUpForm.module.scss";
 
+import { Btn } from "../../components/Common/Button";
+import { Colors } from "../../constants/Colors";
+
 const SignUpForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -82,6 +85,7 @@ const SignUpForm = () => {
             />
 
             <ValidateButton text="S'inscrire" />
+            <Btn text="Login" href="/" color={Colors.Secondary} />
             {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
         </form>
     );

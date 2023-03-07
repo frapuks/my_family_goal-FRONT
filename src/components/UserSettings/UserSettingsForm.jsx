@@ -10,6 +10,7 @@ import { Alert } from "@mui/material";
 import { Btn } from "../Common/Button";
 
 import { Colors } from "../../constants/Colors";
+
 import styles from "./UserSettingsForm.module.scss";
 
 import { useEffect } from "react";
@@ -101,14 +102,8 @@ const UserSettingsForm = () => {
                     errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
                 />
                 <div className={styles.formButton}>
-
                     <ValidateButton disabled={!isChanged} text="Valider les modifications" />
-
-                  
-
-                
                     <Btn text="Annuler" color={Colors.Warning} href="/dashboard" />
-
                 </div>
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </form>

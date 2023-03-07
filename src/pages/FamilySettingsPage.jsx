@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch } from 'react-redux';
 import FamilySettingsForm from "../components/FamilySettings/FamilySettingsForm";
 
+import styles from "./FamilySettingsPage.module.scss";
+
 
 //Import des reducers du store
 import { setActivePage } from '../store/slices/navBarSlice';
@@ -16,9 +18,9 @@ function FamilySettingsPage() {
   }, [dispatch]);
 
   return(
-    <>
+    <div className={styles.container}>
       <FamilySettingsForm />
-    </>
+    </div>
   );
 }
 

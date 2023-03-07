@@ -1,9 +1,15 @@
 .containerCreateFamily {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;   
+    flex-direction: column;      
     height: 100%;
     width: 100%;
+    background-image: url("../../src/assets/background-login-plage.jpg");
+    background-size: cover;
+    background-position: 30% 50%; 
+}
+
+.logo {    
+    height: 15rem;    
 }
 
 h1 {
@@ -17,5 +23,4 @@ h1 {
 
 .textWelcomeChildrens{
     background-color: aquamarine;
-
 }
