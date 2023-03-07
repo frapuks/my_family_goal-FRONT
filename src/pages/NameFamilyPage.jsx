@@ -10,9 +10,9 @@ function NameFamilyPage() {
   return (
     <div className={styles.container}>
       <img className={styles.logo} src={logo} />
-      <form className={styles.form}>
-      <NameFamilyForm />
-      </form>
+      <div className={styles.form}>
+        <NameFamilyForm />
+      </div>
     </div>
   );
 }
