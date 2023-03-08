@@ -64,6 +64,6 @@ Btn.propTypes = {
     icon: PropTypes.oneOf(Object.values(Icons)),
     onClick: PropTypes.func,
     isSubmit: PropTypes.bool,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     type: PropTypes.oneOf(Object.values(ButtonType)),
 };
