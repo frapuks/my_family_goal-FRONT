@@ -76,13 +76,13 @@ function CardTask({ title, gain, description, isComplete }) {
             <Btn  text="Supprimer" color={Colors.Warning}/>
             <Btn text="Annuler" color={Colors.Info}/>
             </ButtonGroup>
+
           ) : (
             <div className={styles.buttons}>
             <Button sx={{bgcolor: "", color: "black", boxShadow: 5,}}>GO !</Button>
             <Button onClick={handleEditClick}>
               <BorderColorOutlinedIcon sx={{color:"black"}}/>
             </Button>
-            
             </div>
           )}
         </CardActions>
