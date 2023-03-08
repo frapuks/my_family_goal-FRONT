@@ -131,9 +131,7 @@ function CarouselMember() {
 
   return (
     <>
-      <h2 className={styles.title}>
-        <Diversity1OutlinedIcon />
-        MEMBRES
+      <h2 className={styles.title}><Diversity1OutlinedIcon/> MEMBRES
         <Button onClick={handleClickBtnAddCard}>
           <AddCircleOutlineIcon sx={{ color: "green" }} />
         </Button>
@@ -145,7 +143,7 @@ function CarouselMember() {
             <div className={styles.containerCardTask}>
               <form onSubmit={onSubmit} className={styles.form}>
                 <TextField label="Pseudo" value={pseudo} onChange={onChange} />
-
+                
                 {resultSearch.length > 0 && (
                   <div>
                     {resultSearch.map((user) => (
@@ -179,7 +177,7 @@ function CarouselMember() {
           </Card>
         </Box>
       ) : (
-        <Carousel sx={{ minWidth: "30%", maxHeight: "30%" }} autoPlay={false}>
+        <Carousel  autoPlay={false}>
           {memberData.map((data) => (
             <CardMembre key={data.id} {...data} />
           ))}

@@ -89,9 +89,9 @@ function CarouselReward() {
       </h2>
       
       {addCard ? (
-        <Box>
+        <Box >
           <Card variant="outlined">
-            <div className={styles.containerCardReward}>
+            <div >
               <form onSubmit={onSubmit} className={styles.form}>
                 <TextField label="Title" value={title} onChange={setTitle} />
                 <TextField label="Price" value={price} onChange={setPrice} />
@@ -115,7 +115,7 @@ function CarouselReward() {
           </Card>
         </Box>
       ) : (
-        <Carousel autoPlay={false}>
+        <Carousel  autoPlay={false}>
           {rewardData.map((data) => <CardReward key={data.id} {...data} />)}
         </Carousel>
       )}

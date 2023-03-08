@@ -154,6 +154,7 @@ function CardTask({ title, gain, description, isComplete, id }) {
             </React.Fragment>
           )}
         </CardContent>
+
       </React.Fragment>
     </div>
   );
