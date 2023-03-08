@@ -24,9 +24,10 @@ function CarouselAll() {
 
     const [isError, setIsError] = useState(false);
     const token = useSelector(selectToken);
-    let select = useSelector(state => state.families.selectFamily);
-    let listFamilies = useSelector(state => state.families.listFamilies);
-    const familyId = select?.id || listFamilies[0].id;
+    const select = useSelector(state => state.families.selectFamily);
+    const listFamilies = useSelector(state => state.families.listFamilies);
+    const familyIndex = listFamilies[0];
+    const familyId = select?.id || familyIndex.id;
 
     async function getFamily () {
         const response = await fetch(import.meta.env.VITE_API_ROOT + `/family/${familyId}`, {
