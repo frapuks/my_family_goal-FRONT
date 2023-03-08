@@ -16,18 +16,18 @@ import { Colors } from "../../constants/Colors";
 const SignUpForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [passwordConfirm, setPasswordConfirm] = useState();
+    const [passwordConfirm, setPasswordConfirm] = useState("");
     const [isError, setIsError] = useState(false);
     const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
 
+    const [lastname, setLastname] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [pseudo, setPseudo] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const onSubmit = async e => {
         e.preventDefault();
-        const data = new FormData(e.currentTarget);
-        const lastname = data.get("lastname");
-        const firstname = data.get("firstname");
-        const pseudo = data.get("pseudo");
-        const email = data.get("email");
-        const password = data.get("password");
 
         setIsConfirmPasswordValid(true);
 
@@ -58,11 +58,8 @@ const SignUpForm = () => {
             dispatch(setToken(token));
 
             dispatch(setUser(user));
-            
 
-            
             navigate("/createfamily");
-
         } else {
             setIsError(true);
         }
@@ -70,11 +67,11 @@ const SignUpForm = () => {
 
     return (
         <form onSubmit={onSubmit} className={styles.container}>
-            <TextField label="Nom" name="lastname" required />
-            <TextField label="Prénom" name="firstname" required />
-            <TextField label="Pseudo" name="pseudo" required />
-            <TextField label="Email" name="email" required type="email" />
-            <TextField label="Mot de passe" name="password" required type="password" />
+            <TextField label="Nom" value={lastname} onChange={setLastname} required />
+            <TextField label="Prénom" value={firstname} onChange={setFirstname} required />
+            <TextField label="Pseudo" value={pseudo} onChange={setPseudo} required />
+            <TextField label="Email" value={email} onChange={setEmail} required type="email" />
+            <TextField label="Mot de passe" value={password} onChange={setPassword} required type="password" />
             <TextField
                 label="Confirmation du mot de passe"
                 required

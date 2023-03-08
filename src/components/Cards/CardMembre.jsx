@@ -11,18 +11,26 @@ import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 
 function CardMembre({ firstname, lastname, pseudo, isParent, credit }) {
   const card = (
+
     <div className={styles.containerCardMembre}>
       <React.Fragment>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {firstname} {lastname}
+
           </Typography>
           <Typography variant="h5" component="div">
             {pseudo}
           </Typography>
-          <Typography variant="body2" sx={{ color: "red" }}>
-            {credit}
-          </Typography>
+
+          {isParent ? (
+            <Typography variant="body2" sx={{color: "white"}}>Parent</Typography>
+            ) : (
+              <>
+                <Typography variant="body2" sx={{color: "black"}}>Enfant</Typography>
+                <Typography variant="body2" sx={{color: "red"}}>{credit}</Typography>
+              </>
+          )}
 
           <CardActions>
             <div className={styles.buttons}>
@@ -31,6 +39,7 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit }) {
               </Button>
             </div>
           </CardActions>
+
         </CardContent>
       </React.Fragment>
     </div>

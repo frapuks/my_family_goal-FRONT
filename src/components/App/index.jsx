@@ -9,7 +9,6 @@ import NavBar from "../NavBar/NavBar";
 
 import ProtectedRoute from "../Routes/ProtectedRoute";
 
-import NonExistentRoute from "./NonExistentRoute";
 import SettingsPage from "../../pages/SettingsPage";
 import SignUpPage from "../../pages/SignUpPage";
 import CreateFamilyPage from "../../pages/CreateFamilyPage";
@@ -18,6 +17,7 @@ import UserSettingsPage from "../../pages/UserSettingsPage";
 import FamilySettingsPage from "../../pages/FamilySettingsPage";
 import DashboardPage from "../../pages/DashboardPage";
 import Header from "../Header/Header";
+import Page404 from "./404/Page404";
 
 function App() {
     const token = useSelector(state => state.user.token);
@@ -52,8 +52,8 @@ function App() {
                 <Route path="/dashboard" element={<ProtectedRoute />}>
                     <Route path="/dashboard" element={<DashboardPage />} />
                 </Route>
-
-                <Route path="*" element={<NonExistentRoute />} />
+                <Route path="/404" element={<Page404 />} />
+                <Route path="*" element={<Page404 />} />
             </Routes>
 
             {token && <NavBar />}
