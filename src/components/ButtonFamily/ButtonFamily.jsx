@@ -87,9 +87,10 @@ function ButtonFamily() {
                 disableElevation
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon />}
-                sx={{ mr: "auto", borderRadius: 4 }}
+                sx={{borderRadius: 4, borderColor: "white", }}
                 color="info"
             >
+                
                 {/* Affichage de la famille active */}
 
                 {selectFamily ? selectFamily.name : listFamilies[0]?.name}
