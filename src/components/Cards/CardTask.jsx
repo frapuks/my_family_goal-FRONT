@@ -70,7 +70,6 @@ function CardTask({ title, gain, description, isComplete, id }) {
       // get data from responses
       const family = await getFamily.json();
       const tasks = family.tasks || [];
-      console.log(tasks);
 
       // dispatch states
       dispatch(setTasks(tasks));
