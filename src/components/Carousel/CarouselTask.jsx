@@ -22,10 +22,6 @@ import { setFamilies } from "../../store/slices/familiesSlice";
 
 import styles from "./Carousel.module.scss";
 
-
-
-
-
 function CarouselTask() {
 
   const dispatch = useDispatch();
@@ -51,10 +47,7 @@ function CarouselTask() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsError(false);
-    const gainNumber = parseInt(gain);
-
-
-    
+    const gainNumber = parseInt(gain);    
 
     // POST new reward
     const responsePostTask = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/task`, {
@@ -101,9 +94,6 @@ function CarouselTask() {
       setGain(gain);
       setIsEdit(true);
     };
-
-
-
 
   return (
     <>
