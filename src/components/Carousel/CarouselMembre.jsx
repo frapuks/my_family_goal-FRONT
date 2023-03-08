@@ -15,15 +15,17 @@ import { Colors } from "../../constants/Colors";
 import { setFamilies } from "../../store/slices/familiesSlice";
 
 // Import des Icones Material UI
-import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
+import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function CarouselMember() {
   const dispatch = useDispatch();
   // get states
-  const user = useSelector(state => state.user.user);
-  const token = useSelector(state => state.user.token);
-  const family = useSelector(state => state.families.selectFamily || state.families.listFamilies[0]);
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
+  const family = useSelector(
+    (state) => state.families.selectFamily || state.families.listFamilies[0]
+  );
   const memberData = useSelector((state) => state.members.listMembers);
   // define local state
   const [addCard, setAddCard] = useState(false);
@@ -40,7 +42,7 @@ function CarouselMember() {
     setResultSearch([]);
     setUserIdSelected(0);
   };
-  
+
   // Handle click on button + to add card
   const handleClickBtnAddCard = () => {
     setAddCard(!addCard);
@@ -49,13 +51,19 @@ function CarouselMember() {
   // onChange form
   const onChange = async (pseudo) => {
     setPseudo(pseudo);
-    if(pseudo) {
+    if (pseudo) {
       // POST research
-      const responseSearchUsers = await fetch(import.meta.env.VITE_API_ROOT + `/search/user`, {
+      const responseSearchUsers = await fetch(
+        import.meta.env.VITE_API_ROOT + `/search/user`,
+        {
           method: "POST",
-          headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-          body: JSON.stringify({pseudo}),
-      });
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ pseudo }),
+        }
+      );
       const list = await responseSearchUsers.json();
       setResultSearch(list);
     } else {
@@ -70,31 +78,44 @@ function CarouselMember() {
     setUserIdSelected(userId);
     setPseudo(selectPseudo);
   };
-  
+
   // on submit form
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsError(false);
 
     if (userIdSelected === 0) return setIsError(true);
-    const createLink = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${userIdSelected}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
-    });
+    const createLink = await fetch(
+      import.meta.env.VITE_API_ROOT +
+        `/family/${family.id}/user/${userIdSelected}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-    const responseGetUser = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
-    });
+    const responseGetUser = await fetch(
+      import.meta.env.VITE_API_ROOT + `/user/${user.id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     // treatment
     if (responseGetUser.ok && createLink.ok) {
-      // get data from responses        
+      // get data from responses
       const { families } = await responseGetUser.json();
-      
+
       // dispatch states
       dispatch(setFamilies(families));
-      
+
       // Close form
       resetLocalStates();
     } else {
@@ -111,13 +132,13 @@ function CarouselMember() {
   return (
     <>
       <h2 className={styles.title}>
-        <MilitaryTechOutlinedIcon />
+        <Diversity1OutlinedIcon />
         MEMBRES
         <Button onClick={handleClickBtnAddCard}>
           <AddCircleOutlineIcon sx={{ color: "green" }} />
         </Button>
       </h2>
-      
+
       {addCard ? (
         <Box>
           <Card variant="outlined">
@@ -127,10 +148,18 @@ function CarouselMember() {
 
                 {resultSearch.length > 0 && (
                   <div>
-                    {resultSearch.map((user) => <div key={user.id} onClick={handlePseudo} data-userid={user.id}>{user.pseudo}</div> )}
-                  </div>  
+                    {resultSearch.map((user) => (
+                      <div
+                        key={user.id}
+                        onClick={handlePseudo}
+                        data-userid={user.id}
+                      >
+                        {user.pseudo}
+                      </div>
+                    ))}
+                  </div>
                 )}
-                
+
                 <div className={styles.formButton}>
                   <ValidateButton text="Valider" />
                   <Btn
@@ -150,8 +179,10 @@ function CarouselMember() {
           </Card>
         </Box>
       ) : (
-        <Carousel autoPlay={false}>
-          {memberData.map((data) => <CardMembre key={data.id} {...data} />)}
+        <Carousel sx={{ minWidth: "30%", maxHeight: "30%" }} autoPlay={false}>
+          {memberData.map((data) => (
+            <CardMembre key={data.id} {...data} />
+          ))}
         </Carousel>
       )}
     </>

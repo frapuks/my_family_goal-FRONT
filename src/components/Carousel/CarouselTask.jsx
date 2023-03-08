@@ -1,26 +1,30 @@
 import React from "react";
-
-
-import CardTask from "../Cards/CardTask";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Carousel.module.scss";
+
+import CardTask from "../Cards/CardTask";
+
 import Carousel from "react-material-ui-carousel";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import { Alert } from "@mui/material";
-import { Button } from "@mui/material";
+import { Alert,Button } from "@mui/material";
+
+
+// Import des Icones Material UI
+import RocketLaunchOutlinedIcon from '@mui/icons-material/RocketLaunchOutlined';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
 import { ValidateButton } from "../Common/ValidateButton";
 import { TextField } from "../Common/TextField";
 import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
 import { setFamilies } from "../../store/slices/familiesSlice";
 
+import styles from "./Carousel.module.scss";
 
 
-// Import des Icones Material UI
-import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
+
 
 function CarouselTask() {
 
@@ -36,6 +40,7 @@ function CarouselTask() {
   const [description, setDescription] = useState("");
   const [gain, setGain] = useState("0");
   const [isError, setIsError] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   
   // Handle click on button + to add card
   const handleClickBtnAddCard = () => {
@@ -47,6 +52,9 @@ function CarouselTask() {
     event.preventDefault();
     setIsError(false);
     const gainNumber = parseInt(gain);
+
+
+    
 
     // POST new reward
     const responsePostTask = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/task`, {
@@ -81,14 +89,26 @@ function CarouselTask() {
       event.preventDefault();
       setAddCard(false);
       setTitle("Title");
-      setDescription("Descirption");
+      setDescription("Description");
       setGain("0");
     };
+
+    // on modify card
+    const handleEdit = (event) => {
+      event.preventDefault();
+      setTitle(title);
+      setDescription(description);
+      setGain(gain);
+      setIsEdit(true);
+    };
+
+
+
 
   return (
     <>
       <h2 className={styles.title}>
-        <MilitaryTechOutlinedIcon />
+        <RocketLaunchOutlinedIcon />
         OBJECTIFS
         <Button onClick={handleClickBtnAddCard}>
           <AddCircleOutlineIcon sx={{ color: "green" }} />
@@ -106,11 +126,7 @@ function CarouselTask() {
 
                 <div className={styles.formButton}>
                   <ValidateButton text="Valider" />
-                  <Btn
-                    text="Annuler"
-                    color={Colors.Warning}
-                    onClick={handleCancelForm}
-                  />
+                  <Btn  text="Annuler" color={Colors.Warning} onClick={handleCancelForm}/>
                 </div>
 
                 {isError && (
@@ -123,7 +139,7 @@ function CarouselTask() {
           </Card>
         </Box>
       ) : (
-        <Carousel autoPlay={false}>
+        <Carousel sx={({ minWidth: "30%" , maxHeight: "30%"})} autoPlay={false}>
           {taskData.map((data) => <CardTask key={data.id} {...data} />)}
         </Carousel>
       )}

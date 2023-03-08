@@ -8,3 +8,13 @@
     background-color: #5da2d5;
     justify-content: center;
 }
+
+
+.active {
+    transform: translateY(-45%);    
+    outline: solid 2px #fff8e5;    
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;    
+}
