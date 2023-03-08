@@ -6,6 +6,7 @@ import styles from "./NavBar.module.scss";
 
 function NavBar() {
     const activePage = useSelector(state => state.navBar.activePage);
+    const listFamilies = useSelector((state) => state.families.listFamilies);
 
     return (
         <nav className={styles.containerNavBar}>
@@ -14,7 +15,7 @@ function NavBar() {
                     <Link to="/settings">SETTING</Link>
                 </li>
                 <li className={activePage === "dashBoardPage" ? styles.active : ""}>
-                    <Link to="/dashboard">FAMILLE</Link>
+                    <Link to={listFamilies && listFamilies[0] ? "/dashboard" : "/createfamily"}>FAMILLE</Link>
                 </li>
                 <li className={activePage === "userSettingsPage" ? styles.active : ""}>
                     <Link to={`/usersettings`}>PROFIL</Link>

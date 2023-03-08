@@ -15,16 +15,18 @@ import { setTasks } from "../../store/slices/tasksSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 import { setSelectFamily } from "../../store/slices/familiesSlice";
+import { useNavigate } from "react-router-dom";
 
 function CarouselAll() {
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
     const [isError, setIsError] = useState(false);
     const token = useSelector(selectToken);
     let select = useSelector(state => state.families.selectFamily);
-    let familyIndex = useSelector(state => state.families.listFamilies[0]);
-    const familyId = select?.id || familyIndex.id
+    let listFamilies = useSelector(state => state.families.listFamilies);
+    const familyId = select?.id || listFamilies[0].id;
 
     async function getFamily () {
         const response = await fetch(import.meta.env.VITE_API_ROOT + `/family/${familyId}`, {
