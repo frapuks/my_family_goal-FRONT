@@ -82,7 +82,7 @@ export default function LoginPage() {
     return (
         <div className={styles.container}>
             <div className={styles.containerLogo}>
-                <img className={styles.logo} src={logo} />
+                <img className={styles.logo} src={logo} alt="logo The family Goal" />
                 <h1 className={styles.titre}>My Family Goal</h1>
             </div>
 
