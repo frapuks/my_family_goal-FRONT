@@ -17,7 +17,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 const FamilySettingsForm = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
 
     // get intial state
     const user = useSelector(state => state.user.user);
