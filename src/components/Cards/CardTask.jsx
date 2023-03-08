@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, ButtonGroup } from "@mui/material";
 
 import Typography from "@mui/material/Typography";
 
@@ -45,7 +45,7 @@ function CardTask({ title, gain, description, isComplete }) {
               />
               <TextField
                 type="text"
-                value={editedDescription}
+                value={editedDescription || ""}
                 onChange={(e) => setEditedDescription(e.target.value)}
               />
               <TextField
@@ -71,11 +71,11 @@ function CardTask({ title, gain, description, isComplete }) {
         </CardContent>
         <CardActions>
           {isEditing ? (
-            <Button onClick={handleSaveClick} sx={{ml: 6}} >
+            <ButtonGroup onClick={handleSaveClick}>
             <ValidateButton text= "Enregistrer"/>
             <Btn  text="Supprimer" color={Colors.Warning}/>
             <Btn text="Annuler" color={Colors.Info}/>
-            </Button>
+            </ButtonGroup>
           ) : (
             <div className={styles.buttons}>
             <Button sx={{bgcolor: "", color: "black", boxShadow: 5,}}>GO !</Button>
