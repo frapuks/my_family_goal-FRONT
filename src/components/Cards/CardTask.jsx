@@ -141,16 +141,19 @@ function CardTask({ title, gain, description, isComplete, id }) {
                         <React.Fragment>
                             <form action="" onSubmit={handleSubmit}>
                                 <TextField
+                                    label=""
                                     type="text"
                                     value={editedTitle}
                                     onChange={e => setEditedTitle(e.target.value)}
                                 />
                                 <TextField
+                                    label=""
                                     type="text"
                                     value={editedDescription || ""}
                                     onChange={e => setEditedDescription(e.target.value)}
                                 />
                                 <TextField
+                                    label=""
                                     type="text"
                                     value={editedGain}
                                     onChange={e => setEditedGain(e.target.value)}

@@ -139,7 +139,7 @@ function CarouselMember() {
 
       {addCard ? (
         <Box>
-          <Card variant="outlined"  sx={{bgcolor: "#ed62ed", height: 100}}>
+          <Card variant="outlined"  sx={{bgcolor: "#ed62ed"}}>
             <div className={styles.containerCardTask}>
               <form onSubmit={onSubmit} className={styles.form}>
                 <TextField value={pseudo} onChange={onChange} />
