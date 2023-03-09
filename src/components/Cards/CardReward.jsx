@@ -136,6 +136,44 @@ function CardReward({ title, price, isPurchase, id }) {
         setIsError(true);
     }
   };
+
+  const validateEdit = async (event) => {
+    event.preventDefault();
+    setIsError(false);
+
+    // UPDATE
+    const updateReward = await fetch(import.meta.env.VITE_API_ROOT + `/reward/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+      body: JSON.stringify({
+        "title" : editedTitle,
+        "price" : editedPrice,
+        "isPurchase" : isPurchase
+      })
+    });
+
+    // Get family
+    const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
+    });
+    
+    // treatment
+    if (updateReward.ok && getFamily.ok) {
+      
+      // get data from responses
+      const family = await getFamily.json();
+      const rewards = family.rewards;
+
+      // dispatch states
+      dispatch(setRewards(rewards));
+
+      // close form
+      setIsEditing(false);
+    } else {
+        setIsError(true);
+    }
+  }
     
 
   const card = (
@@ -158,7 +196,7 @@ function CardReward({ title, price, isPurchase, id }) {
                 onChange={(e) => setEditedPrice(e.target.value)}
               />
               <ButtonGroup>
-                <ValidateButton text= "Enregistrer"/>
+                <ValidateButton onClick={validateEdit} text= "Enregistrer"/>
                 <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
                 <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
               </ButtonGroup>

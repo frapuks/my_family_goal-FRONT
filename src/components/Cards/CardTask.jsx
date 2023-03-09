@@ -133,6 +133,45 @@ function CardTask({ title, gain, description, isComplete, id }) {
         }
     };
 
+    const validateEdit = async (event) => {
+        event.preventDefault();
+        setIsError(false);
+    
+        // UPDATE
+        const updateTask = await fetch(import.meta.env.VITE_API_ROOT + `/task/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+          body: JSON.stringify({
+            "title" : editedTitle,
+            "description" : editedDescription,
+            "gain" : editedGain,
+            "isComplete" : isComplete
+          })
+        });
+    
+        // Get family
+        const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
+        });
+        
+        // treatment
+        if (updateTask.ok && getFamily.ok) {
+          
+          // get data from responses
+          const family = await getFamily.json();
+          const tasks = family.tasks;
+    
+          // dispatch states
+          dispatch(setTasks(tasks));
+    
+          // close form
+          setIsEditing(false);
+        } else {
+            setIsError(true);
+        }
+      }
+
     const card = (
         <div className={styles.containerCardTask}>
             <React.Fragment>
@@ -159,7 +198,7 @@ function CardTask({ title, gain, description, isComplete, id }) {
                                     onChange={e => setEditedGain(e.target.value)}
                                 />
                                 <ButtonGroup>
-                                    <ValidateButton text="Enregistrer" />
+                                    <ValidateButton onClick={validateEdit} text="Enregistrer" />
                                     <Btn text="Supprimer" color={Colors.Warning} onClick={handleDelete} />
                                     <Btn text="Annuler" color={Colors.Info} onClick={handleCancel} />
                                 </ButtonGroup>
