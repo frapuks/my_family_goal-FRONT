@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 import { Button, TextField, ButtonGroup } from "@mui/material";
 
 import Typography from "@mui/material/Typography";
@@ -196,21 +197,23 @@ function CardTask({ title, gain, description, isComplete, id }) {
                                 <MonetizationOnOutlinedIcon />
                                 {gain}
                             </Button>
-                            <div className={styles.buttons}>
-                                {isComplete ? (
-                                    <TaskAltIcon></TaskAltIcon>
-                                ) : (
-                                    <Button
-                                        onClick={handleValidateClick}
-                                        sx={{ bgcolor: "", color: "black", boxShadow: 5 }}
-                                    >
-                                        Valider la tâche !
-                                    </Button>
-                                )}
-                                <Button onClick={handleEditClick}>
-                                    <BorderColorOutlinedIcon sx={{ color: "black" }} />
-                                </Button>
-                            </div>
+                            <CardActions>
+                              <div className={styles.buttons}>
+                                  {isComplete ? (
+                                      <TaskAltIcon></TaskAltIcon>
+                                  ) : (
+                                      <Button
+                                          onClick={handleValidateClick}
+                                          sx={{ bgcolor: "", color: "black", boxShadow: 5 }}
+                                      >
+                                          Valider la tâche !
+                                      </Button>
+                                  )}
+                                  <Button onClick={handleEditClick}>
+                                      <BorderColorOutlinedIcon sx={{ color: "black" }} />
+                                  </Button>
+                              </div>
+                            </CardActions>
                         </React.Fragment>
                     )}
                 </CardContent>

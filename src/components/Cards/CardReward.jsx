@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 import { Button, TextField, ButtonGroup} from "@mui/material";
 import { Alert } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -179,10 +180,13 @@ function CardReward({ title, price, isPurchase, id }) {
             <Typography variant="h5" component="div">
               {title}
             </Typography>
+
+            
             <Button sx={{color: "red", fontSize:20, border:3, borderRadius:7,}}>
               <MonetizationOnOutlinedIcon />
               {price}
             </Button>
+            <CardActions>
             <div className={styles.buttons}>
               {isPurchase ? (
                 <TaskAltIcon></TaskAltIcon>
@@ -207,6 +211,7 @@ function CardReward({ title, price, isPurchase, id }) {
               </Dialog>
 
             </div>
+            </CardActions>
           </React.Fragment>
         )}
       </CardContent>
