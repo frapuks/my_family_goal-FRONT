@@ -21,6 +21,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import ButtonMui from "@mui/material/Button";
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 import { selectToken } from "../../store/slices/userSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
@@ -183,7 +184,11 @@ function CardReward({ title, price, isPurchase, id }) {
               {price}
             </Button>
             <div className={styles.buttons}>
-              <Button onClick={buyReward} sx={{bgcolor: "gold", color: "black", boxShadow: 5,}}><PaymentOutlinedIcon/>DEPENSER !</Button>
+              {isPurchase ? (
+                <TaskAltIcon></TaskAltIcon>
+              ) : (
+                <Button onClick={buyReward} sx={{bgcolor: "gold", color: "black", boxShadow: 5,}}><PaymentOutlinedIcon/>DEPENSER !</Button>
+              )}
               <Button onClick={handleEditClick}>
                 <BorderColorOutlinedIcon sx={{color:"black"}}/>
               </Button>
