@@ -142,7 +142,7 @@ function CarouselMember() {
           <Card variant="outlined"  sx={{bgcolor: "#ed62ed"}}>
             <div className={styles.containerCardTask}>
               <form onSubmit={onSubmit} className={styles.form}>
-                <TextField value={pseudo} onChange={onChange} />
+                <TextField label="" value={pseudo} onChange={onChange} />
                 
                 {resultSearch.length > 0 && (
                   <div>

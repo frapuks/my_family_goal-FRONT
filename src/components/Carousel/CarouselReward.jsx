@@ -93,8 +93,8 @@ function CarouselReward() {
           <Card variant="outlined" sx={{bgcolor: "#dbc84e"}}>
             <div >
               <form onSubmit={onSubmit} className={styles.form}>
-                <TextField value={title} onChange={setTitle} />
-                <TextField value={price} onChange={setPrice} />
+                <TextField label="" value={title} onChange={setTitle} />
+                <TextField label="" value={price} onChange={setPrice} />
 
                 <div className={styles.formButton}>
                   <ValidateButton text="Valider" />
