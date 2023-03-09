@@ -17,7 +17,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 const FamilySettingsForm = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
 
     // get intial state
     const user = useSelector(state => state.user.user);
@@ -25,7 +25,7 @@ const FamilySettingsForm = () => {
     const family = useSelector(state => state.families.selectFamily);
 
     // define local state
-    const [name, setName] = useState(family.name);
+    const [name, setName] = useState(family?.name || "");
     const [isError, setIsError] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -97,8 +97,13 @@ const FamilySettingsForm = () => {
             const { families } = await responseGetUser.json();
 
             // dispatch states
-            dispatch(setFamilies(families));
-            dispatch(setSelectFamily(families[0]));
+            if (families) {
+                dispatch(setFamilies(families));
+                dispatch(setSelectFamily(families[0]));
+            } else {
+                dispatch(setFamilies([]));
+                dispatch(setSelectFamily(null));
+            }
             
             // Close modal & redirect
             setOpen(false);

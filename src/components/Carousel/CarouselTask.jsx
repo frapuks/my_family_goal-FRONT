@@ -42,7 +42,7 @@ function CarouselTask() {
         setAddCard(!addCard);
     };
 
-    // on submit form
+    // on submit task validation form
     const onSubmit = async event => {
         event.preventDefault();
         setIsError(false);

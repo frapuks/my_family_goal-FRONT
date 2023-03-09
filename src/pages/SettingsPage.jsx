@@ -7,7 +7,7 @@ import { setActivePage } from "../store/slices/navBarSlice";
 import { setSelectFamily } from "../store/slices/familiesSlice";
 
 function SettingsPage() {
-  const families = useSelector((state) => state.families.listFamilies);
+  const families = useSelector((state) => state.families.listFamilies || []);
   const dispatch = useDispatch();
 
   // [dispatch] servira à modifier le state uniquement au changement de valeur, et non a chaque nouveau rendu d'une même page par exemple
