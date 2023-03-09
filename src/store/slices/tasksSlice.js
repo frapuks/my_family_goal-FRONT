@@ -44,9 +44,10 @@ const tasksSlice = createSlice({
             }
         },
         completeTask: (state, action) => {
-            const task = state.listTasks.find(task => task.id === action.payload.id);
+            const task = state.listTasks.find(task => task.id === action.payload);
             if (task) {
                 task.isComplete = true;
+                console.log("ma task", task);
             }
         },
     },
