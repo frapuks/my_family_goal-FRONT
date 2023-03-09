@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectToken } from "../store/slices/userSlice";
 
@@ -10,6 +10,7 @@ import { Colors } from "../constants/Colors";
 import styles from "./CreateFamilyPage.module.scss";
 
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import { setActivePage } from "../store/slices/navBarSlice";
 
 function CreateFamily() {
   const token = useSelector(selectToken);
@@ -17,6 +18,12 @@ function CreateFamily() {
   const pseudo = user.pseudo;  
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+
+  useEffect(() => {
+    dispatch(setActivePage("dashBoardPage"));
+  }, [dispatch]);
 
   const checkToken = () => {
     if (token) {
