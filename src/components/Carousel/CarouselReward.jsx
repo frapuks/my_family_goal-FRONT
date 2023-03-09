@@ -89,12 +89,12 @@ function CarouselReward() {
       </h2>
       
       {addCard ? (
-        <Box >
-          <Card variant="outlined">
+        <React.Fragment>
+          <Card variant="outlined" sx={{bgcolor: "#dbc84e", height: 100}}>
             <div >
               <form onSubmit={onSubmit} className={styles.form}>
-                <TextField label="Title" value={title} onChange={setTitle} />
-                <TextField label="Price" value={price} onChange={setPrice} />
+                <TextField value={title} onChange={setTitle} />
+                <TextField value={price} onChange={setPrice} />
 
                 <div className={styles.formButton}>
                   <ValidateButton text="Valider" />
@@ -112,8 +112,11 @@ function CarouselReward() {
                 )}
               </form>
             </div>
+          
           </Card>
-        </Box>
+          </React.Fragment>
+          
+
       ) : (
         <Carousel  autoPlay={false}>
           {rewardData.map((data) => <CardReward key={data.id} {...data} />)}
