@@ -108,9 +108,9 @@ function CarouselTask() {
                     <Card variant="outlined" sx={{bgcolor: "#00b3ff"}}>
                         <div className={styles.containerCardTask}>
                             <form onSubmit={onSubmit} className={styles.form}>
-                                <TextField value={title} onChange={setTitle} />
-                                <TextField value={description} onChange={setDescription} />
-                                <TextField value={gain} onChange={setGain} />
+                                <TextField label="" value={title} onChange={setTitle} />
+                                <TextField label="" value={description} onChange={setDescription} />
+                                <TextField label="" value={gain} onChange={setGain} />
 
                                 <div className={styles.formButton}>
                                     <ValidateButton text="Valider" />
