@@ -15,16 +15,8 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 import { Colors } from "../../constants/Colors";
 import { Btn } from "../Common/Button";
 import { ValidateButton } from "../Common/ValidateButton";
-import { useDispatch, useSelector } from "react-redux";
 import SelectUserValidatingTask from "./SelectUserValidatingTask";
 
-import Typography from "@mui/material/Typography";
-import styles from "./Card.module.scss";
-import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import { Colors } from "../../constants/Colors";
-import { Btn } from "../Common/Button";
-import { ValidateButton } from "../Common/ValidateButton";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -32,8 +24,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import ButtonMui from "@mui/material/Button";
 import { setTasks } from "../../store/slices/tasksSlice";
-
-import { selectToken } from "../../store/slices/userSlice";
 
 import { completeTask } from "../../store/slices/tasksSlice";
 import { setCredit } from "../../store/slices/membersSlice";
