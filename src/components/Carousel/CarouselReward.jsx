@@ -90,7 +90,7 @@ function CarouselReward() {
       
       {addCard ? (
         <React.Fragment>
-          <Card variant="outlined" sx={{bgcolor: "#dbc84e", height: 100}}>
+          <Card variant="outlined" sx={{bgcolor: "#dbc84e"}}>
             <div >
               <form onSubmit={onSubmit} className={styles.form}>
                 <TextField value={title} onChange={setTitle} />

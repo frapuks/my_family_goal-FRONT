@@ -19,6 +19,7 @@ import { useEffect } from "react";
 const UserSettingsForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const listFamilies = useSelector((state) => state.families.listFamilies);
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [isError, setIsError] = useState(false);
     const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
@@ -79,7 +80,7 @@ const UserSettingsForm = () => {
             dispatch(setUser(user));
             console.log("mon nouveau token", token);
             console.log("mon nouveau user", user);
-            navigate("/dashboard");
+            {listFamilies && listFamilies[0] ? navigate("/dashboard") : navigate("/createfamily")};
         } else {
             setIsError(true);
         }

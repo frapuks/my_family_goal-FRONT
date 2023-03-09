@@ -131,7 +131,7 @@ function CardReward({ title, price, isPurchase, id }) {
       dispatch(setMembers(members));
 
       // close modale
-      setOpenModale(false);
+      setOpenBuyModale(false);
     } else {
         setIsError(true);
     }
@@ -146,11 +146,13 @@ function CardReward({ title, price, isPurchase, id }) {
           <React.Fragment>
             <form action="" >
               <TextField
+                label=""
                 type="text"
                 value={editedTitle}
                 onChange={(e) => setEditedTitle(e.target.value)}
               />
               <TextField
+                label=""
                 type="text"
                 value={editedPrice}
                 onChange={(e) => setEditedPrice(e.target.value)}

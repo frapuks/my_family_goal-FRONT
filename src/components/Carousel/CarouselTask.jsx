@@ -105,7 +105,7 @@ function CarouselTask() {
 
             {addCard ? (
                 <Box>
-                    <Card variant="outlined" sx={{bgcolor: "#00b3ff", height: 100}}>
+                    <Card variant="outlined" sx={{bgcolor: "#00b3ff"}}>
                         <div className={styles.containerCardTask}>
                             <form onSubmit={onSubmit} className={styles.form}>
                                 <TextField value={title} onChange={setTitle} />
