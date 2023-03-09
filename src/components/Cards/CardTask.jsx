@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 import { Button, TextField, ButtonGroup } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import styles from "./Card.module.scss";
@@ -144,16 +145,17 @@ function CardTask({ title, gain, description, isComplete, id }) {
                 <MonetizationOnOutlinedIcon />
                 {gain}
               </Button>
+              <CardActions>
               <div className={styles.buttons}>
                 <Button sx={{bgcolor: "", color: "black", boxShadow: 5,}}>GO !</Button>
                 <Button onClick={handleEditClick}>
                   <BorderColorOutlinedIcon sx={{color:"black"}}/>
                 </Button>
               </div>
+              </CardActions>
             </React.Fragment>
           )}
         </CardContent>
-
       </React.Fragment>
     </div>
   );
