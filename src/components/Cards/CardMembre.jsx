@@ -1,59 +1,73 @@
-import * as React from "react";
+import React from "react";
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
-
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Typography from "@mui/material/Typography";
-import { Button, TextField, ButtonGroup, Select, InputLabel, MenuItem, Alert} from "@mui/material";
+import { useState } from "react";
 import styles from "./Card.module.scss";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+// Material UI
+import { Alert, Box, Button, ButtonGroup, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import ButtonMui from "@mui/material/Button";
+// Components
 import { ValidateButton } from "../Common/ValidateButton";
 import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
-
+// Slices
 import { selectToken } from "../../store/slices/userSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 
-import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 
-function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
+function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
+  // UTILS
   const dispatch = useDispatch();
-
+  // STATES
   const family = useSelector(state => state.families.selectFamily);
-  const isParentRole = family.isParent;
   const token = useSelector(selectToken); 
+  const [isEditing, setIsEditing] = useState(false);
+  const [openModale, setOpenModale] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [selectIsParent, setSelectIsParent] = useState(isParent);
+  // VARIABLES
+  const isParentRole = family.isParent;
+  
+  // METHODS
 
-  const [isEditing, setIsEditing] = React.useState(false);
-  const [openModale, setOpenModale] = React.useState(false);
-  const [isError, setIsError] = React.useState(false);
-  const [selectIsParent, setSelectIsParent] = React.useState(isParent);
-
+  // Open form
   const handleEditClick = () => {
     setIsEditing(true);
   };
+  
+    // Close form
+    const handleCancel = () => {
+      setIsEditing(false);
+    };
 
+  // Open modal
   const handleDelete = () => {
     setOpenModale(true);
   };
 
+  // Close modale
+  const cancelDelete = () => {
+    setOpenModale(false);
+  };
+
+  // Handle select role on dropdown
+  const handleChangeRole = (event) => {
+    setSelectIsParent(event.target.value);
+  };
+
+  // Handle click confirm delete
   const confirmDelete = async (event) => {
     event.preventDefault();
     setIsError(false);
 
-    // DELETE
+    // API => DELETE
     const isDelete = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
     });
 
-    // Get family
+    // API => GET family
     const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
@@ -64,7 +78,6 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
       // get data from responses
       const family = await getFamily.json();
       const members = family.members || [];
-      console.log(members);
 
       // dispatch states
       dispatch(setMembers(members));
@@ -76,33 +89,20 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
         setIsError(true);
     }
   };
-
-  const cancelDelete = () => {
-    setOpenModale(false);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-  };
-
-  const handleChangeRole = (event) => {
-    setSelectIsParent(event.target.value);
-  };
   
+  // Submit form to change role of member
   const handleSubmitChangeRole = async (event) => {
     event.preventDefault();
     setIsError(false);
 
-    // UPDATE
+    // API => UPDATE
     const updateMember = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-      body: JSON.stringify({
-        "isParent" : selectIsParent
-      })
+      body: JSON.stringify({"isParent" : selectIsParent})
     });
 
-    // Get family
+    // API => Get family
     const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
@@ -110,7 +110,6 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
     
     // treatment
     if (updateMember.ok && getFamily.ok) {
-      
       // get data from responses
       const family = await getFamily.json();
       const members = family.members;
@@ -124,87 +123,103 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
         setIsError(true);
     }
   };
-  
-  const card = (
-    <div className={styles.containerCardMembre}>
-      <React.Fragment>
-        <CardContent>
-          {isEditing ? (
-            <React.Fragment>
-              <form action="" onSubmit={handleSubmitChangeRole}>
-                <InputLabel id="role">Role</InputLabel>
-                <Select
-                  labelId="role"
-                  id="isParent"
-                  value={selectIsParent}
-                  label="isParent"
-                  onChange={handleChangeRole}
-                >
-                  <MenuItem value={true}>Parent</MenuItem>
-                  <MenuItem value={false}>Enfant</MenuItem>
-                </Select>
-                <ButtonGroup>
-                  <ValidateButton text= "Enregistrer"/>
-                  <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
-                  <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
-                </ButtonGroup>
-                <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                  <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-                  <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                          Etes-vous sure de vouloir supprimer ce membre?
-                      </DialogContentText>
-                      <DialogActions>
-                          <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
-                      </DialogActions>
-                          <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
-                  </DialogContent>
-                </Dialog>
-                {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-              </form>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                {firstname} {lastname}
-    
-              </Typography>
-              <Typography variant="h5" component="div">
-                {pseudo}
-              </Typography>
-    
-              {isParent ? (
-                <Typography variant="body2" sx={{color: "white"}}>Parent</Typography>
-                ) : (
-                  <>
-                    <Typography variant="body2" sx={{color: "black"}}>Enfant</Typography>
-                    <Typography variant="body2" sx={{color: "red"}}>{credit}</Typography>
-                  </>
-              )}
-              <CardActions>
-                <div className={styles.buttons}>
-                  {isParentRole && 
-                  <Button onClick={handleEditClick}>
-                    <BorderColorOutlinedIcon sx={{ color: "black" }}/>
-                  </Button>
-                  }
-                </div>
-                
-              </CardActions>
-            </React.Fragment>
-          )}
 
+  // CONTENT
 
-        </CardContent>
-      </React.Fragment>
-    </div>
+  const modaleContent = (
+    <>
+    <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
+    <DialogContent>
+      <DialogContentText id="alert-dialog-description">
+        Etes-vous sure de vouloir supprimer ce membre?
+      </DialogContentText>
+      <DialogActions>
+        <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
+      </DialogActions>
+        <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
+    </DialogContent>
+    </>
+  );
+
+  const cardContent = (
+    <React.Fragment>
+      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        {firstname} {lastname}
+      </Typography>
+
+      <Typography variant="h5" component="div">
+        {pseudo}
+      </Typography>
+
+      <Typography variant="body2" sx={{color: "white"}}>
+        {isParent ? "Parent" : "Enfant"}
+      </Typography>
+
+      {!isParent &&
+        <Typography variant="body2" sx={{color: "red"}}>{credit}</Typography>
+      }
+
+      <CardActions>
+        <div className={styles.buttons}>
+          {isParentRole && 
+            <Button onClick={handleEditClick}>
+              <BorderColorOutlinedIcon sx={{ color: "black" }}/>
+            </Button>
+          }
+        </div>
+      </CardActions>
+    </React.Fragment>
+  );
+
+  const formEditContent = (
+    <React.Fragment>
+      <form action="" onSubmit={handleSubmitChangeRole}>
+        <InputLabel id="role">Role</InputLabel>
+        <Select
+          labelId="role"
+          id="isParent"
+          value={selectIsParent}
+          label="isParent"
+          onChange={handleChangeRole}
+        >
+          <MenuItem value={true}>Parent</MenuItem>
+          <MenuItem value={false}>Enfant</MenuItem>
+        </Select>
+        <ButtonGroup>
+          <ValidateButton text= "Enregistrer"/>
+          <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
+          <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
+        </ButtonGroup>
+        <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+          {modaleContent}
+        </Dialog>
+        {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+      </form>
+    </React.Fragment>
   );
 
   return (
     <Box>
-      <Card variant="outlined">{card}</Card>
+      <Card variant="outlined">
+        <div className={styles.containerCardMembre}>
+          <React.Fragment>
+            <CardContent>
+              {isEditing ? formEditContent : cardContent}
+            </CardContent>
+          </React.Fragment>
+        </div>
+      </Card>
     </Box>
   );
 }
+
+CardMembre.propTypes = {
+  firstname: PropTypes.string,
+  lastname: PropTypes.string,
+  pseudo: PropTypes.string,
+  isParent: PropTypes.bool,
+  credit: PropTypes.number,
+  id: PropTypes.number,
+};
 
 export default CardMembre;

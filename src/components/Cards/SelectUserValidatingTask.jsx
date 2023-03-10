@@ -1,28 +1,22 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
+import React from "react";
 import { useSelector } from "react-redux";
+import PropTypes from 'prop-types';
+// Material UI
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
+//const ITEM_HEIGHT = 48;
+//const ITEM_PADDING_TOP = 8;
+// const MenuProps = {
+//     PaperProps: {
+//         style: {
+//             maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+//             width: 250,
+//         },
+//     },
+// };
 
-export default function SelectUserValidatingTask({ personId, setPersonId }) {
+function SelectUserValidatingTask({ personId, setPersonId }) {
     const members = useSelector(state => state.members.listMembers);
-
-    const theme = useTheme();
 
     const handleChange = e => {
         setPersonId(e.target.value);
@@ -38,7 +32,7 @@ export default function SelectUserValidatingTask({ personId, setPersonId }) {
                     id="demo-multiple-name"
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
+                    // MenuProps={MenuProps}
                     value={personId ?? ""}
                 >
                     {members
@@ -53,3 +47,11 @@ export default function SelectUserValidatingTask({ personId, setPersonId }) {
         </div>
     );
 }
+
+SelectUserValidatingTask.propTypes = {
+    personId: PropTypes.string,
+    setPersonId: PropTypes.string,
+};
+
+
+export default SelectUserValidatingTask;

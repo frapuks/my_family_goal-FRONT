@@ -1,67 +1,86 @@
-import * as React from "react";
+import React from "react";
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import { Button, TextField, ButtonGroup} from "@mui/material";
-import { Alert } from "@mui/material";
-import Typography from "@mui/material/Typography";
-
+import { useState } from "react";
+import styles from "./Card.module.scss"
+// Material UI
+import { Alert,Box ,Button, ButtonGroup, Card,CardContent ,CardActions ,Dialog,DialogActions ,DialogContent ,DialogContentText  ,DialogTitle , TextField,Typography } from "@mui/material";
+import ButtonMui from "@mui/material/Button";
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+// Components
 import { ValidateButton } from "../Common/ValidateButton";
 import { Colors } from "../../constants/Colors";
 import { Btn } from "../Common/Button";
-import styles from "./Card.module.scss"
-
-import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import ButtonMui from "@mui/material/Button";
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-
+// Slices
 import { selectToken } from "../../store/slices/userSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 
-function CardReward({ title, price, isPurchase, id }) {
-  const dispatch = useDispatch();
 
+function CardReward({ title, price, isPurchase, id }) {
+  // UTILS
+  const dispatch = useDispatch();
+  // STATES
   const family = useSelector(state => state.families.selectFamily);
-  const isParent = family.isParent;
   const user = useSelector((state) => state.user.user);
   const token = useSelector(selectToken);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedPrice, setEditedPrice] = useState(price);
+  const [openModale, setOpenModale] = useState(false);
+  const [openBuyModale, setOpenBuyModale] = useState(false);
+  const [isError, setIsError] = useState(false);
+  // VARIABLES
+  const isParent = family.isParent;
 
-  const [isEditing, setIsEditing] = React.useState(false);
-  const [editedTitle, setEditedTitle] = React.useState(title);
-  const [editedPrice, setEditedPrice] = React.useState(price);
-  const [openModale, setOpenModale] = React.useState(false);
-  const [openBuyModale, setOpenBuyModale] = React.useState(false);
-  const [isError, setIsError] = React.useState(false);
+  // METHODS
 
+  // Open form Edit
   const handleEditClick = () => {
     setIsEditing(true);
   };
+  
+  // Close form Edit
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
 
+  // Open modale
   const handleDelete = () => {
     setOpenModale(true);
   };
 
+  // Close modale
+  const cancelDelete = () => {
+    setOpenModale(false);
+  };
+  
+  // Open modale to confirm to buy
+  const buyReward = (event) => {
+    event.preventDefault();
+    setOpenBuyModale(true);
+  };
+
+  // Close Modale Buy
+  const cancelBuy = () => {
+    setOpenBuyModale(false);
+  };
+
+  // Handle click confirm delete
   const confirmDelete = async (event) => {
     event.preventDefault();
     setIsError(false);
 
-    // DELETE
+    // API => DELETE
     const isDelete = await fetch(import.meta.env.VITE_API_ROOT + `/reward/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
     });
 
-    // Get family
+    // API => GET family
     const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
@@ -83,26 +102,8 @@ function CardReward({ title, price, isPurchase, id }) {
         setIsError(true);
     }
   };
-
-  const cancelDelete = () => {
-    setOpenModale(false);
-  };
   
-  const cancelBuy = () => {
-    setOpenBuyModale(false);
-  }
-
-  const handleCancel = () => {
-    setIsEditing(false);
-  };
-
-  const buyReward = (event) => {
-    event.preventDefault();
-    setOpenBuyModale(true);
-
-  }
-
-  // fonction d'achat d'une récompense
+  // Confirm buy
   const confirmBuy = async (event) => {
     event.preventDefault();
     setIsError(false);
@@ -113,7 +114,7 @@ function CardReward({ title, price, isPurchase, id }) {
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
     });
 
-    // Get family
+    // API => GET family
     const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
@@ -121,7 +122,6 @@ function CardReward({ title, price, isPurchase, id }) {
     
     // treatment
     if (isBuy.ok && getFamily.ok) {
-      
       // get data from responses
       const family = await getFamily.json();
       const rewards = family.rewards;
@@ -138,11 +138,12 @@ function CardReward({ title, price, isPurchase, id }) {
     }
   };
 
+  // Submit form to edit
   const validateEdit = async (event) => {
     event.preventDefault();
     setIsError(false);
 
-    // UPDATE
+    // API => UPDATE
     const updateReward = await fetch(import.meta.env.VITE_API_ROOT + `/reward/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
@@ -153,7 +154,7 @@ function CardReward({ title, price, isPurchase, id }) {
       })
     });
 
-    // Get family
+    // API => GET family
     const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
@@ -161,7 +162,6 @@ function CardReward({ title, price, isPurchase, id }) {
     
     // treatment
     if (updateReward.ok && getFamily.ok) {
-      
       // get data from responses
       const family = await getFamily.json();
       const rewards = family.rewards;
@@ -174,99 +174,118 @@ function CardReward({ title, price, isPurchase, id }) {
     } else {
         setIsError(true);
     }
-  }
-    
+  };
 
-  const card = (
-    <div className={styles.containerCardReward}>
+  // CONTENT
+
+  const modaleContent = (
+    <>
+    <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
+    <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+            Etes-vous sure de vouloir supprimer cette récompense?
+        </DialogContentText>
+        <DialogActions>
+            <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
+        </DialogActions>
+            <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
+    </DialogContent>
+    </>
+  );
+
+  const modalBuyContent = (
+    <>
+    <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
+    <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+            Etes-vous sure de vouloir acheter cette récompense?
+        </DialogContentText>
+        <DialogActions>
+            <ButtonMui onClick={cancelBuy}>Annuler</ButtonMui>
+        </DialogActions>
+            <ButtonMui onClick={confirmBuy} color={Colors.Secondary} autoFocus>Valider</ButtonMui>
+    </DialogContent>
+    </>
+  );
+
+  const cardContent = (
     <React.Fragment>
-      <CardContent>
-        {isEditing ? (
-          <React.Fragment>
-            <form action="" >
-              <TextField
-                label=""
-                type="text"
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-              />
-              <TextField
-                label=""
-                type="text"
-                value={editedPrice}
-                onChange={(e) => setEditedPrice(e.target.value)}
-              />
-              <ButtonGroup>
-                <ValidateButton onClick={validateEdit} text= "Enregistrer"/>
-                <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
-                <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
-              </ButtonGroup>
-              <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                  <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-                  <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                          Etes-vous sure de vouloir supprimer cette récompense?
-                      </DialogContentText>
-                      <DialogActions>
-                          <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
-                      </DialogActions>
-                          <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
-                  </DialogContent>
-              </Dialog>
-              {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-            </form>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Typography variant="h5" component="div">
-              {title}
-            </Typography>
+      <Typography variant="h5" component="div">
+        {title}
+      </Typography>
 
-            
-            <Button sx={{color: "red", fontSize:20, border:3, borderRadius:7,}}>
-              <MonetizationOnOutlinedIcon />
-              {price}
+      <Button sx={{color: "red", fontSize:20, border:3, borderRadius:7,}}>
+        <MonetizationOnOutlinedIcon />
+        {price}
+      </Button>
+
+      <CardActions>
+        <div className={styles.buttons}>
+          {isPurchase && <TaskAltIcon></TaskAltIcon> }
+          {!isPurchase && !isParent &&
+            <Button onClick={buyReward} sx={{bgcolor: "gold", color: "black", boxShadow: 5,}}><PaymentOutlinedIcon/>DEPENSER !</Button>
+          }
+          {isParent && 
+            <Button onClick={handleEditClick}>
+              <BorderColorOutlinedIcon sx={{color:"black"}}/>
             </Button>
-            <CardActions>
-            <div className={styles.buttons}>
-              {isPurchase &&
-                <TaskAltIcon></TaskAltIcon> }
-              {!isPurchase && !isParent &&
-                <Button onClick={buyReward} sx={{bgcolor: "gold", color: "black", boxShadow: 5,}}><PaymentOutlinedIcon/>DEPENSER !</Button>
-              }
-              {isParent && 
-              <Button onClick={handleEditClick}>
-                <BorderColorOutlinedIcon sx={{color:"black"}}/>
-              </Button>
-              }
-
-              <Dialog open={openBuyModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                  <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-                  <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                          Etes-vous sure de vouloir acheter cette récompense?
-                      </DialogContentText>
-                      <DialogActions>
-                          <ButtonMui onClick={cancelBuy}>Annuler</ButtonMui>
-                      </DialogActions>
-                          <ButtonMui onClick={confirmBuy} color={Colors.Secondary} autoFocus>Valider</ButtonMui>
-                  </DialogContent>
-              </Dialog>
-
-            </div>
-            </CardActions>
-          </React.Fragment>
-        )}
-      </CardContent>
+          }
+          <Dialog open={openBuyModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+              {modalBuyContent}
+          </Dialog>
+        </div>
+      </CardActions>
     </React.Fragment>
-  </div>
+  );
+
+  const formEditContent = (
+    <React.Fragment>
+      <form action="" >
+        <TextField
+          label=""
+          type="text"
+          value={editedTitle}
+          onChange={(e) => setEditedTitle(e.target.value)}
+        />
+        <TextField
+          label=""
+          type="text"
+          value={editedPrice}
+          onChange={(e) => setEditedPrice(e.target.value)}
+        />
+        <ButtonGroup>
+          <ValidateButton onClick={validateEdit} text= "Enregistrer"/>
+          <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
+          <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
+        </ButtonGroup>
+        <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+            {modaleContent}
+        </Dialog>
+        {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+      </form>
+    </React.Fragment>
   );
 
   return (
     <Box sx={({ minWidth: "30%" , maxHeight: "30%"})}>
-      <Card variant="outlined">{card}</Card>
+      <Card variant="outlined">
+        <div className={styles.containerCardReward}>
+          <React.Fragment>
+            <CardContent>
+              {isEditing ? formEditContent : cardContent}
+            </CardContent>
+          </React.Fragment>
+        </div>
+      </Card>
     </Box>
   );
 }
+
+CardReward.propTypes = {
+  title: PropTypes.string,
+  price: PropTypes.number,
+  isPurchase: PropTypes.bool,
+  id: PropTypes.number,
+};
 
 export default CardReward;

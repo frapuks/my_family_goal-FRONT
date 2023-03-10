@@ -11,9 +11,9 @@ function Page404() {
                 <h2>Il y a un problème</h2>
             </div>
             <img className={style.img} src={logo404} alt="Logo page 404" />
-
-            <Btn className={style.btn} color={Colors.Primary} href="/" text="Retour à la page d'acceuil"></Btn>
+            <Btn className={style.btn} color={Colors.Primary} href="/" text="Retour à la page d'accueil"></Btn>
         </div>
     );
 }
+
 export default Page404;

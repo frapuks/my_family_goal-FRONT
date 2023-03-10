@@ -1,14 +1,13 @@
 import React from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-// import de nos components
-
-import LoginPage from "../../pages/LoginPage";
+// Components
 import NavBar from "../NavBar/NavBar";
-
 import ProtectedRoute from "../Routes/ProtectedRoute";
-
+import Header from "../Header/Header";
+import Page404 from "./404/Page404";
+// Pages
+import LoginPage from "../../pages/LoginPage";
 import SettingsPage from "../../pages/SettingsPage";
 import SignUpPage from "../../pages/SignUpPage";
 import CreateFamilyPage from "../../pages/CreateFamilyPage";
@@ -16,8 +15,6 @@ import NameFamilyPage from "../../pages/NameFamilyPage";
 import UserSettingsPage from "../../pages/UserSettingsPage";
 import FamilySettingsPage from "../../pages/FamilySettingsPage";
 import DashboardPage from "../../pages/DashboardPage";
-import Header from "../Header/Header";
-import Page404 from "./404/Page404";
 
 function App() {
     const token = useSelector(state => state.user.token);
@@ -28,10 +25,12 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<LoginPage />} />
+                
+                <Route path="/signup" element={<SignUpPage />} />
+
                 <Route path="/settings" element={<ProtectedRoute />}>
                     <Route path="/settings" element={<SettingsPage />} />
                 </Route>
-                <Route path="/signup" element={<SignUpPage />} />
 
                 <Route path="/usersettings" element={<ProtectedRoute />}>
                     <Route path="/usersettings" element={<UserSettingsPage />} />
@@ -52,7 +51,9 @@ function App() {
                 <Route path="/dashboard" element={<ProtectedRoute />}>
                     <Route path="/dashboard" element={<DashboardPage />} />
                 </Route>
+
                 <Route path="/404" element={<Page404 />} />
+
                 <Route path="*" element={<Page404 />} />
             </Routes>
 
