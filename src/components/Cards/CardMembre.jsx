@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-import { Button, TextField, ButtonGroup} from "@mui/material";
+import { Button, TextField, ButtonGroup, Select, InputLabel, MenuItem, Alert} from "@mui/material";
 import styles from "./Card.module.scss";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -32,6 +32,7 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
   const [isEditing, setIsEditing] = React.useState(false);
   const [openModale, setOpenModale] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
+  const [selectIsParent, setSelectIsParent] = React.useState(isParent);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -82,6 +83,46 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
   const handleCancel = () => {
     setIsEditing(false);
   };
+
+  const handleChangeRole = (event) => {
+    setSelectIsParent(event.target.value);
+  };
+  
+  const handleSubmitChangeRole = async (event) => {
+    event.preventDefault();
+    setIsError(false);
+
+    // UPDATE
+    const updateMember = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+      body: JSON.stringify({
+        "isParent" : selectIsParent
+      })
+    });
+
+    // Get family
+    const getFamily = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` }
+    });
+    
+    // treatment
+    if (updateMember.ok && getFamily.ok) {
+      
+      // get data from responses
+      const family = await getFamily.json();
+      const members = family.members;
+
+      // dispatch states
+      dispatch(setMembers(members));
+
+      // close form
+      setIsEditing(false);
+    } else {
+        setIsError(true);
+    }
+  };
   
   const card = (
     <div className={styles.containerCardMembre}>
@@ -89,8 +130,18 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
         <CardContent>
           {isEditing ? (
             <React.Fragment>
-              <form action="">
-                <div>{isParent ? "Parent" : "Enfant"}</div>
+              <form action="" onSubmit={handleSubmitChangeRole}>
+                <InputLabel id="role">Role</InputLabel>
+                <Select
+                  labelId="role"
+                  id="isParent"
+                  value={selectIsParent}
+                  label="isParent"
+                  onChange={handleChangeRole}
+                >
+                  <MenuItem value={true}>Parent</MenuItem>
+                  <MenuItem value={false}>Enfant</MenuItem>
+                </Select>
                 <ButtonGroup>
                   <ValidateButton text= "Enregistrer"/>
                   <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
