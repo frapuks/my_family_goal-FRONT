@@ -26,6 +26,7 @@ function CarouselMember() {
   const family = useSelector(
     (state) => state.families.selectFamily || state.families.listFamilies[0]
   );
+  const isParent = family.isParent;
   const memberData = useSelector((state) => state.members.listMembers);
   // define local state
   const [addCard, setAddCard] = useState(false);
@@ -132,9 +133,11 @@ function CarouselMember() {
   return (
     <>
       <h2 className={styles.title}><Diversity1OutlinedIcon/> MEMBRES
+        {isParent && 
         <Button onClick={handleClickBtnAddCard}>
           <AddCircleOutlineIcon sx={{ color: "green" }} />
         </Button>
+        }
       </h2>
 
       {addCard ? (

@@ -24,6 +24,7 @@ function CarouselReward() {
   const user = useSelector(state => state.user.user);
   const token = useSelector(state => state.user.token);
   const family = useSelector(state => state.families.selectFamily || state.families.listFamilies[0]);
+  const isParent = family.isParent;
   const rewardData = useSelector((state) => state.rewards.listRewards);
   // define local state
   const [addCard, setAddCard] = useState(false);
@@ -83,9 +84,11 @@ function CarouselReward() {
       <h2 className={styles.title}>
         <MilitaryTechOutlinedIcon />
         RECOMPENSES
+        {isParent && 
         <Button onClick={handleClickBtnAddCard}>
           <AddCircleOutlineIcon sx={{ color: "green" }} />
         </Button>
+        }
       </h2>
       
       {addCard ? (

@@ -27,6 +27,7 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
   const dispatch = useDispatch();
 
   const family = useSelector(state => state.families.selectFamily);
+  const isParentRole = family.isParent;
   const token = useSelector(selectToken); 
 
   const [isEditing, setIsEditing] = React.useState(false);
@@ -182,10 +183,13 @@ function CardMembre({ firstname, lastname, pseudo, isParent, credit, id }) {
               )}
               <CardActions>
                 <div className={styles.buttons}>
+                  {isParentRole && 
                   <Button onClick={handleEditClick}>
                     <BorderColorOutlinedIcon sx={{ color: "black" }}/>
                   </Button>
+                  }
                 </div>
+                
               </CardActions>
             </React.Fragment>
           )}
