@@ -1,41 +1,36 @@
 import React from "react";
-import CardMembre from "../Cards/CardMembre";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Carousel.module.scss";
+import CardMembre from "../Cards/CardMembre";
+// Material UI
+import { Alert,Box,Button,Card } from "@mui/material";
+import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Carousel from "react-material-ui-carousel";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import { Alert } from "@mui/material";
-import { Button } from "@mui/material";
+// Components
 import { ValidateButton } from "../Common/ValidateButton";
 import { TextField } from "../Common/TextField";
 import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
+// SLICES
 import { setFamilies } from "../../store/slices/familiesSlice";
 
-// Import des Icones Material UI
-import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function CarouselMember() {
+  // UTILS
   const dispatch = useDispatch();
-  // get states
+  // STATES
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
-  const family = useSelector(
-    (state) => state.families.selectFamily || state.families.listFamilies[0]
-  );
-  const isParent = family.isParent;
+  const family = useSelector((state) => state.families.selectFamily || state.families.listFamilies[0]);
   const memberData = useSelector((state) => state.members.listMembers);
-  // define local state
   const [addCard, setAddCard] = useState(false);
   const [pseudo, setPseudo] = useState("Pseudo");
   const [isError, setIsError] = useState(false);
   const [resultSearch, setResultSearch] = useState([]);
   const [userIdSelected, setUserIdSelected] = useState(0);
-
-  // Reset local states
+  // RESET STATES
   const resetLocalStates = () => {
     setAddCard(false);
     setPseudo("Pseudo");
@@ -43,6 +38,8 @@ function CarouselMember() {
     setResultSearch([]);
     setUserIdSelected(0);
   };
+  // VARIABLES
+  const isParent = family.isParent;
 
   // Handle click on button + to add card
   const handleClickBtnAddCard = () => {

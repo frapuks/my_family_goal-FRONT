@@ -21,7 +21,6 @@ nav li {
   background-color: #5da2d5;
   border-radius: 50%;
   vertical-align: middle;
-  line-height: 3.5rem;
   font-size: 1rem;
 }
 
@@ -36,11 +35,10 @@ nav li a {
   z-index: 1;
 }
 
-// // class CSS appliqué au clic au bouton
-
+// class CSS appliqué au clic au bouton
 .active {
   transform: translateY(-45%);
-  outline: solid 1px #fff8e5;
+  // outline: solid 1px #fff8e5;
   justify-content: center;
   width: 5rem;
   height: 5rem;

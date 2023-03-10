@@ -23,11 +23,9 @@ function DashboardPage() {
   return (
     <>
       <div className={styles.bg}></div>
-      <div className={styles.bg2}></div>
-      <div className={styles.bg3}></div>
+      <div className={styles.bg}></div>
       <div className={styles.bg}></div>
       <div className={styles.bg2}></div>
-      <div className={styles.bg3}></div>
 
       <div className={styles.containerDashboard}>
         <CarouselAll />

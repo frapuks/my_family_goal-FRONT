@@ -1,18 +1,15 @@
-import * as React from "react";
+import React from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// Material UI
 import { styled, alpha } from "@mui/material/styles";
-
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
+import { Menu, MenuItem, Button } from "@mui/material";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
+// Slices
 import { setSelectFamily } from "../../store/slices/familiesSlice";
 
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const StyledMenu = styled(props => (
     <Menu
@@ -52,30 +49,35 @@ const StyledMenu = styled(props => (
 }));
 
 function ButtonFamily() {
+    // UTILS
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // STATES
+    const listFamilies = useSelector(state => state.families.listFamilies);
+    const selectFamily = useSelector(state => state.families.selectFamily);
+    const [anchorEl, setAnchorEl] = useState(null);
+    // VARIABLES
     const open = Boolean(anchorEl);
+
+    // METHODS
+
+    // open menu dropdown
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
     };
 
-    // function au click qui referme le menu déroulant
+    // close menu dropdown
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    // function au click qui change le state de la selectFamily
+    // handle select family
     const selectNameFamily = family => {
         dispatch(setSelectFamily(family));
         navigate("/dashboard");
-        console.log("ON NAVIGATE");
     };
 
-    const listFamilies = useSelector(state => state.families.listFamilies);
-    const selectFamily = useSelector(state => state.families.selectFamily);
-
+    // RETURN
     return (
         <div>
             <Button
@@ -90,21 +92,16 @@ function ButtonFamily() {
                 sx={{borderRadius: 4, borderColor: "white", }}
                 color="info"
             >
-                
-                {/* Affichage de la famille active */}
-
                 {selectFamily ? selectFamily.name : listFamilies[0]?.name}
             </Button>
             <StyledMenu
                 id="demo-customized-menu"
-                MenuListProps={{
-                    "aria-labelledby": "demo-customized-button",
-                }}
+                MenuListProps={{"aria-labelledby": "demo-customized-button"}}
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
             >
-                {listFamilies ? (
+                {
                     listFamilies.map(family => (
                         <MenuItem
                             key={family.name}
@@ -118,9 +115,7 @@ function ButtonFamily() {
                             {family.name}
                         </MenuItem>
                     ))
-                ) : (
-                    <AddHomeOutlinedIcon />
-                )}
+                }
             </StyledMenu>
         </div>
     );
