@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
-
-import { Colors } from "../../constants/Colors";
-import { Icons } from "../../constants/Icons";
+// Components
 import { Btn } from "./Button";
+import { Icons } from "../../constants/Icons";
+import { Colors } from "../../constants/Colors";
 import { ButtonType } from "./ButtonType";
 
-export const SettingsButton = props => (
+
+const SettingsButton = props => (
     <Btn
         type={ButtonType.Contained}
         text="Settings"
@@ -18,3 +19,5 @@ export const SettingsButton = props => (
 SettingsButton.propTypes = {
     onClick: PropTypes.func.isRequired,
 };
+
+export default SettingsButton;

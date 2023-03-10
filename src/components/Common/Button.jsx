@@ -1,20 +1,46 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+// Material UI
 import MUIButton from "@mui/material/Button";
 import { AddCircle, CheckCircle, Delete, Info, Settings } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-
+// Components
 import { Icons } from "../../constants/Icons";
-import { ButtonType } from "./ButtonType";
 import { Colors } from "../../constants/Colors";
+import { ButtonType } from "./ButtonType";
 
+
+// UTILS
 const LinkBehavior = React.forwardRef((props, ref) => {
     const { href, ...other } = props;
     // Map href (MUI) -> to (react-router)
     return <Link data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
-export const Btn = props => {
+const getIcon = (icon) => {
+    switch (icon) {
+        case Icons.Check:
+            return <CheckCircle />;
+
+        case Icons.Delete:
+            return <Delete />;
+
+        case Icons.Gear:
+            return <Settings />;
+
+        case Icons.Info:
+            return <Info />;
+
+        case Icons.Plus:
+            return <AddCircle />;
+
+        default:
+            return undefined;
+    }
+};
+
+// Component
+const Btn = props => {
     const icon = getIcon(props.icon);
     const variant = props.type ?? ButtonType.Contained;
     const color = props.color ?? Colors.Primary;
@@ -35,28 +61,6 @@ export const Btn = props => {
     );
 };
 
-function getIcon(icon) {
-    switch (icon) {
-        case Icons.Check:
-            return <CheckCircle />;
-
-        case Icons.Delete:
-            return <Delete />;
-
-        case Icons.Gear:
-            return <Settings />;
-
-        case Icons.Info:
-            return <Info />;
-
-        case Icons.Plus:
-            return <AddCircle />;
-
-        default:
-            return undefined;
-    }
-}
-
 Btn.propTypes = {
     color: PropTypes.oneOf(Object.values(Colors)),
     disabled: PropTypes.bool,
@@ -67,3 +71,5 @@ Btn.propTypes = {
     text: PropTypes.string,
     type: PropTypes.oneOf(Object.values(ButtonType)),
 };
+
+export default Btn;

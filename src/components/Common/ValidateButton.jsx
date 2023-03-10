@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
-
-import { Colors } from "../../constants/Colors";
+// Components
 import { Btn } from "./Button";
+import { Colors } from "../../constants/Colors";
 import { ButtonType } from "./ButtonType";
 
-export const ValidateButton = (props) => (
+
+const ValidateButton = (props) => (
   <Btn
     text={props.text ?? "Valider"}
     type={ButtonType.Contained}
@@ -20,3 +21,5 @@ ValidateButton.propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string,
 };
+
+export default ValidateButton;

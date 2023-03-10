@@ -1,20 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Carousel.module.scss";
-import CardMembre from "../Cards/CardMembre";
 // Material UI
-import { Alert,Box,Button,Card } from "@mui/material";
-import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Carousel from "react-material-ui-carousel";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
+import { Alert, Box, Button, Card } from "@mui/material";
 // Components
-import { ValidateButton } from "../Common/ValidateButton";
-import { TextField } from "../Common/TextField";
 import { Btn } from "../Common/Button";
+import CardMembre from "../Cards/CardMembre";
 import { Colors } from "../../constants/Colors";
-// SLICES
+import { TextField } from "../Common/TextField";
+import { ValidateButton } from "../Common/ValidateButton";
+// slices
 import { setFamilies } from "../../store/slices/familiesSlice";
+// Styles
+import styles from "./Carousel.module.scss";
 
 
 function CarouselMember() {
@@ -41,6 +42,8 @@ function CarouselMember() {
   // VARIABLES
   const isParent = family.isParent;
 
+  // METHODS
+
   // Handle click on button + to add card
   const handleClickBtnAddCard = () => {
     setAddCard(!addCard);
@@ -49,16 +52,12 @@ function CarouselMember() {
   // onChange form
   const onChange = async (pseudo) => {
     setPseudo(pseudo);
+
     if (pseudo) {
-      // POST research
-      const responseSearchUsers = await fetch(
-        import.meta.env.VITE_API_ROOT + `/search/user`,
-        {
+      // API => POST research
+      const responseSearchUsers = await fetch(import.meta.env.VITE_API_ROOT + `/search/user`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
-          },
+          headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
           body: JSON.stringify({ pseudo }),
         }
       );
@@ -69,10 +68,12 @@ function CarouselMember() {
     }
   };
 
-  // handle pseudo in list
+  // handle pseudo in list to complete input
   const handlePseudo = (event) => {
+    // Get data
     const userId = event.currentTarget.dataset.userid;
     const selectPseudo = event.currentTarget.textContent;
+    // Set states
     setUserIdSelected(userId);
     setPseudo(selectPseudo);
   };
@@ -81,28 +82,19 @@ function CarouselMember() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsError(false);
-
     if (userIdSelected === 0) return setIsError(true);
-    const createLink = await fetch(
-      import.meta.env.VITE_API_ROOT +
-        `/family/${family.id}/user/${userIdSelected}`,
-      {
+    
+    // API => POST
+    const createLink = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${userIdSelected}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
+        headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
       }
     );
 
-    const responseGetUser = await fetch(
-      import.meta.env.VITE_API_ROOT + `/user/${user.id}`,
-      {
+    // API => GET
+    const responseGetUser = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
+        headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
       }
     );
 
@@ -127,60 +119,52 @@ function CarouselMember() {
     resetLocalStates();
   };
 
+  // CONTENT
+  const addCardFormContent = (
+    <Box>
+      <Card variant="outlined"  sx={{bgcolor: "#ed62ed"}}>
+        <div className={styles.containerCardTask}>
+          <form onSubmit={onSubmit} className={styles.form}>
+            <TextField label="" value={pseudo} onChange={onChange} />
+            
+            {resultSearch.length > 0 && (
+              <div>
+                {resultSearch.map((user) => (
+                  <div key={user.id} onClick={handlePseudo} data-userid={user.id}>
+                    {user.pseudo}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className={styles.formButton}>
+              <ValidateButton text="Valider" />
+              <Btn text="Annuler" color={Colors.Warning} onClick={handleCancelForm}/>
+            </div>
+
+            {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+          </form>
+        </div>
+      </Card>
+    </Box>
+  );
+
+
   return (
     <>
-      <h2 className={styles.title}><Diversity1OutlinedIcon/> MEMBRES
+      <h2 className={styles.title}>
+        <Diversity1OutlinedIcon/>
+        MEMBRES
         {isParent && 
-        <Button onClick={handleClickBtnAddCard}>
-          <AddCircleOutlineIcon sx={{ color: "green" }} />
-        </Button>
+          <Button onClick={handleClickBtnAddCard}>
+            <AddCircleOutlineIcon sx={{ color: "green" }} />
+          </Button>
         }
       </h2>
 
-      {addCard ? (
-        <Box>
-          <Card variant="outlined"  sx={{bgcolor: "#ed62ed"}}>
-            <div className={styles.containerCardTask}>
-              <form onSubmit={onSubmit} className={styles.form}>
-                <TextField label="" value={pseudo} onChange={onChange} />
-                
-                {resultSearch.length > 0 && (
-                  <div>
-                    {resultSearch.map((user) => (
-                      <div
-                        key={user.id}
-                        onClick={handlePseudo}
-                        data-userid={user.id}
-                      >
-                        {user.pseudo}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className={styles.formButton}>
-                  <ValidateButton text="Valider" />
-                  <Btn
-                    text="Annuler"
-                    color={Colors.Warning}
-                    onClick={handleCancelForm}
-                  />
-                </div>
-
-                {isError && (
-                  <Alert severity="warning">
-                    Une erreur est survenue. Veuillez réessayer plus tard.
-                  </Alert>
-                )}
-              </form>
-            </div>
-          </Card>
-        </Box>
-      ) : (
+      {addCard ? addCardFormContent : (
         <Carousel  autoPlay={false}>
-          {memberData.map((data) => (
-            <CardMembre key={data.id} {...data} />
-          ))}
+          {memberData.map((data) => <CardMembre key={data.id} {...data} />)}
         </Carousel>
       )}
     </>

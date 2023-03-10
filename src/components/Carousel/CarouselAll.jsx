@@ -1,19 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Carousel.module.scss"
 // Import Components
-import CarouselMembres from "./CarouselMembre";
 import CarouselTask from "./CarouselTask";
 import CarouselReward from "./CarouselReward";
+import CarouselMembres from "./CarouselMembre";
 // Material UI
 import { Alert } from "@mui/material";
 // Slices
-import { selectToken } from "../../store/slices/userSlice";
 import { setTasks } from "../../store/slices/tasksSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
+import { selectToken } from "../../store/slices/userSlice";
 import { setSelectFamily } from "../../store/slices/familiesSlice";
+// Styles
+import styles from "./Carousel.module.scss"
 
 
 function CarouselAll() {

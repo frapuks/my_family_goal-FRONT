@@ -1,23 +1,24 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import styles from "./Card.module.scss";
+import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import { Alert,Box,Button,ButtonGroup,Card,CardContent,CardActions,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,TextField,Typography } from "@mui/material";
 import ButtonMui from "@mui/material/Button";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import { Alert,Box,Button,ButtonGroup,Card,CardContent,CardActions,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,TextField,Typography } from "@mui/material";
 // Components
 import { Btn } from "../Common/Button";
-import { ValidateButton } from "../Common/ValidateButton";
 import { Colors } from "../../constants/Colors";
+import { ValidateButton } from "../Common/ValidateButton";
 import SelectUserValidatingTask from "./SelectUserValidatingTask";
 // Slices
-import { completeTask } from "../../store/slices/tasksSlice";
-import { setCredit } from "../../store/slices/membersSlice";
 import { setTasks } from "../../store/slices/tasksSlice";
+import { setCredit } from "../../store/slices/membersSlice";
+import { completeTask } from "../../store/slices/tasksSlice";
+// Styles
+import styles from "./Card.module.scss";
 
 
 function CardTask({ title, gain, description, isComplete, id }) {
