@@ -27,6 +27,7 @@ function CarouselTask() {
     const user = useSelector(state => state.user.user);
     const token = useSelector(state => state.user.token);
     const family = useSelector(state => state.families.selectFamily || state.families.listFamilies[0]);
+    const isParent = family.isParent;
     const taskData = useSelector(state => state.tasks.listTasks);
 
     // define local state
@@ -98,9 +99,11 @@ function CarouselTask() {
             <h2 className={styles.title}>
                 <RocketLaunchOutlinedIcon />
                 OBJECTIFS
+                {isParent &&
                 <Button onClick={handleClickBtnAddCard}>
                     <AddCircleOutlineIcon sx={{ color: "green" }} />
                 </Button>
+                }
             </h2>
 
             {addCard ? (

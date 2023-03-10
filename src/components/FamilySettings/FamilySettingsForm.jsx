@@ -23,6 +23,7 @@ const FamilySettingsForm = () => {
     const user = useSelector(state => state.user.user);
     const token = useSelector(state => state.user.token);
     const family = useSelector(state => state.families.selectFamily);
+    const isParent = family.isParent;
 
     // define local state
     const [name, setName] = useState(family?.name || "");
@@ -118,11 +119,15 @@ const FamilySettingsForm = () => {
             <form onSubmit={onSubmit} className={styles.form}>
                 <TextField label="Nom" value={name} onChange={setName} />
                 <div className={styles.formButton}>
+                    {isParent && 
                     <ValidateButton text="Valider les modifications" />
+                    }
                     <Btn text="Annuler" color={Colors.Warning} href="/settings" />
                 </div>
                 <div className={styles.formButton}>
-                    <Btn text="Supprimer la famille" color={Colors.Error} onClick={handleClickOpen} />
+                    {isParent && 
+                        <Btn text="Supprimer la famille" color={Colors.Error} onClick={handleClickOpen} />
+                    }
                     <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                         <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
                         <DialogContent>

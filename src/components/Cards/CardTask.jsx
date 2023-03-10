@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import { Button, TextField, ButtonGroup } from "@mui/material";
+import { Button, TextField, ButtonGroup, Alert } from "@mui/material";
 
 import Typography from "@mui/material/Typography";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
@@ -31,6 +31,7 @@ import { setCredit } from "../../store/slices/membersSlice";
 
 function CardTask({ title, gain, description, isComplete, id }) {
     const family = useSelector(state => state.families.selectFamily);
+    const isParent = family.isParent;
 
     const [isEditing, setIsEditing] = React.useState(false);
     const [editedTitle, setEditedTitle] = React.useState(title);
@@ -241,19 +242,20 @@ function CardTask({ title, gain, description, isComplete, id }) {
                             </Button>
                             <CardActions>
                               <div className={styles.buttons}>
-                                  {isComplete ? (
-                                      <TaskAltIcon></TaskAltIcon>
-                                  ) : (
-                                      <Button
+                                    {isComplete && <TaskAltIcon></TaskAltIcon>}
+                                    {!isComplete && isParent &&
+                                        <Button
                                           onClick={handleValidateClick}
                                           sx={{ bgcolor: "", color: "black", boxShadow: 5 }}
-                                      >
+                                        >
                                           Valider la tâche !
-                                      </Button>
-                                  )}
-                                  <Button onClick={handleEditClick}>
-                                      <BorderColorOutlinedIcon sx={{ color: "black" }} />
-                                  </Button>
+                                        </Button>
+                                    }
+                                    {isParent && 
+                                        <Button onClick={handleEditClick}>
+                                            <BorderColorOutlinedIcon sx={{ color: "black" }} />
+                                        </Button>
+                                    }
                               </div>
                             </CardActions>
                         </React.Fragment>

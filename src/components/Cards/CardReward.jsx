@@ -32,6 +32,7 @@ function CardReward({ title, price, isPurchase, id }) {
   const dispatch = useDispatch();
 
   const family = useSelector(state => state.families.selectFamily);
+  const isParent = family.isParent;
   const user = useSelector((state) => state.user.user);
   const token = useSelector(selectToken);
 
@@ -228,14 +229,16 @@ function CardReward({ title, price, isPurchase, id }) {
             </Button>
             <CardActions>
             <div className={styles.buttons}>
-              {isPurchase ? (
-                <TaskAltIcon></TaskAltIcon>
-              ) : (
+              {isPurchase &&
+                <TaskAltIcon></TaskAltIcon> }
+              {!isPurchase && !isParent &&
                 <Button onClick={buyReward} sx={{bgcolor: "gold", color: "black", boxShadow: 5,}}><PaymentOutlinedIcon/>DEPENSER !</Button>
-              )}
+              }
+              {isParent && 
               <Button onClick={handleEditClick}>
                 <BorderColorOutlinedIcon sx={{color:"black"}}/>
               </Button>
+              }
 
               <Dialog open={openBuyModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                   <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
