@@ -1,83 +1,69 @@
-import React from "react";
-
-import { useState } from "react";
-
-import { ValidateButton } from "../components/Common/ValidateButton";
-import { TextField } from "../components/Common/TextField";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { setToken, setUser } from "../store/slices/userSlice";
-import { setFamilies } from "../store/slices/familiesSlice";
-
 import { useNavigate } from "react-router-dom";
-
-import styles from "./LoginPage.module.scss";
-
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
-
+// Material UI
 import { Alert } from "@mui/material";
+// Components
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 import { Btn } from "../components/Common/Button";
 import { Colors } from "../constants/Colors";
+import { TextField } from "../components/Common/TextField";
+import { ValidateButton } from "../components/Common/ValidateButton";
+// Slices
+import { setFamilies } from "../store/slices/familiesSlice";
+import { setToken, setUser } from "../store/slices/userSlice";
+// Styles
+import styles from "./LoginPage.module.scss";
 
-export default function LoginPage() {
+
+function LoginPage() {
+    // UTILS
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    // STATES
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [isError, setIsError] = useState(false);
 
+    // METHODS
+
+    // Submit form to login
     const onSubmit = async e => {
         e.preventDefault();
-
-        // On récupère les champs du formulaire
-        const data = new FormData(e.currentTarget);
-
-        // On destructure data pour extraire email et password
-        const email = data.get("email");
-        const password = data.get("password");
-
-        // On valide les données si besoin ici
         setIsLoggingIn(true);
         setIsError(false);
 
-        // On envoie la requête
+        // get data from login form
+        const data = new FormData(e.currentTarget);
+        const email = data.get("email");
+        const password = data.get("password");
+
+        // API => POST login
         const response = await fetch(import.meta.env.VITE_API_ROOT + "/signin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
+            body: JSON.stringify({email, password,}),
         });
 
-        // On traite la réponse
+        // treatment
         if (response.ok) {
-            // Ici on a recu un code HTTP valide
+            // get data from response
             const { token, user } = await response.json();
-
-            // on envoi au store notre token
-            dispatch(setToken(token));
-
-            // on destructure le user pour separer les infos du user et les infos de ses familles
             const { families, ...userData } = user;
 
-            // on envoi au store notre userData ( sans ses familles), pour pouvoir le modifier par la suite ( notament dans les settings ) sans pour autant modifier/ecraser ses familles
+            // dispatch states
+            dispatch(setToken(token));
             dispatch(setUser(userData));
             dispatch(setFamilies(families));
 
-            // on check si le user a deja une famille ou non pour gerer la redirection
-            if (families === null) {
-                navigate("/createfamily");
-            } else {
-                navigate("/dashboard");
-            }
+            // redirect if user has family
+            families === null ? navigate("/createfamily") : navigate("/dashboard");
         } else {
-            // Ici on a recu une erreur du serveur
             setIsError(true);
         }
 
         setIsLoggingIn(false);
     };
+
 
     return (
         <div className={styles.container}>
@@ -99,3 +85,5 @@ export default function LoginPage() {
         </div>
     );
 }
+
+export default LoginPage;

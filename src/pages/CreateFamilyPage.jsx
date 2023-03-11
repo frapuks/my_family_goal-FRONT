@@ -1,35 +1,39 @@
 import React, { useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectToken } from "../store/slices/userSlice";
-
-import { ValidateButton } from "../components/Common/ValidateButton";
+import { useDispatch, useSelector } from "react-redux";
+// Components
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 import { Colors } from "../constants/Colors";
-
+import { ValidateButton } from "../components/Common/ValidateButton";
+// Slices
+import { selectToken } from "../store/slices/userSlice";
+import { setActivePage } from "../store/slices/navBarSlice";
+// Styles
 import styles from "./CreateFamilyPage.module.scss";
 
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
-import { setActivePage } from "../store/slices/navBarSlice";
-import { style } from "@mui/system";
 
 function CreateFamily() {
-    const token = useSelector(selectToken);
-    const user = useSelector(state => state.user.user);
-    const pseudo = user.pseudo;
-
+    // UTILS
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    // STATES
+    const token = useSelector(selectToken);
+    const user = useSelector(state => state.user.user);
+    // VARIABLES
+    const pseudo = user.pseudo;
 
+    // USEEFFECT
     useEffect(() => {
         dispatch(setActivePage("dashBoardPage"));
     }, [dispatch]);
 
+    // METHODS
+
+    // Check valid token
     const checkToken = () => {
-        if (token) {
-            navigate("/namefamily");
-        }
+        if (token) navigate("/namefamily");
     };
+
 
     return (
         <div className={styles.containerCreateFamily}>

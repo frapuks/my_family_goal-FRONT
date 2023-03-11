@@ -49,9 +49,7 @@ function CarouselAll() {
             dispatch(setRewards(rewards));
             dispatch(setTasks(tasks));
             dispatch(setMembers(members));
-            if (!select) {
-                dispatch(setSelectFamily(familyIndex));
-            }
+            if (!select) dispatch(setSelectFamily(familyIndex));
         } else {
             setIsError(true);
         }        

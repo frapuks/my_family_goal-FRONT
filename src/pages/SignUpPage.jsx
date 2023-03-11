@@ -1,9 +1,10 @@
 import React from "react";
-
+// Components
 import SignUpForm from "../components/SignUp/SignUpForm";
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
+// Styles
 import styles from "./SignUpPage.module.scss";
 
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 function SignUpPage() {
     return (

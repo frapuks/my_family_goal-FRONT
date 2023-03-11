@@ -22,4 +22,4 @@ ValidateButton.propTypes = {
   text: PropTypes.string,
 };
 
-export default ValidateButton;
+export {ValidateButton};

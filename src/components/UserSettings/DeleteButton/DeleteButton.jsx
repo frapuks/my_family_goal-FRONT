@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
 import ButtonMui from "@mui/material/Button";
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material/Dialog";
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 // Components
 import { Btn } from "../../Common/Button";
 import { Colors } from "../../../constants/Colors";
@@ -63,7 +63,7 @@ function DeleteButton() {
                 <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Etes-vous sure de vouloir supprimer ce compte?
+                        Etes-vous sur de vouloir supprimer ce compte?
                     </DialogContentText>
                     <DialogActions>
                         <ButtonMui onClick={cancelDeleteClick}>Annuler</ButtonMui>

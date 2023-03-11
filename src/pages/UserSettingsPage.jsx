@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import DeconnextionButton from "../components/UserSettings/DeconnexionButton";
+// Components
 import DeleteButton from "../components/UserSettings/DeleteButton/DeleteButton";
 import UserSettingsForm from "../components/UserSettings/UserSettingsForm";
+import DeconnextionButton from "../components/UserSettings/DeconnexionButton";
+// Slices
+import { setActivePage } from "../store/slices/navBarSlice";
+// Styles
 import styles from "./UserSettingPage.module.scss";
 
-// Import de nos components
-
-//Import des reducers du store
-import { setActivePage } from "../store/slices/navBarSlice";
 
 function UserSettingsPage() {
+    // UTILS
     const dispatch = useDispatch();
 
-    // [dispatch] servira à modifier le state uniquement au changement de valeur, et non a chaque nouveau rendu d'une même page par exemple
-
-    React.useEffect(() => {
+    // USEEFECT
+    useEffect(() => {
         dispatch(setActivePage("userSettingsPage"));
     }, [dispatch]);
+
 
     return (
         <div className={styles.container}>

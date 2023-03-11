@@ -121,7 +121,7 @@ const FamilySettingsForm = () => {
         <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
         <DialogContent>
             <DialogContentText id="alert-dialog-description">
-                Etes-vous sure de vouloir supprimer cette famille?
+                Etes-vous sur de vouloir supprimer cette famille?
             </DialogContentText>
             <DialogActions>
                 <ButtonMui onClick={cancelDeleteClick}>Annuler</ButtonMui>

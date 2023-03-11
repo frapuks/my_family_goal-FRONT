@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 // Material UI
-import { AppBar, Toolbar, ButtonFamily  } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
+import ButtonFamily from "../ButtonFamily/ButtonFamily"
 // Styles
 import styles from "./Header.module.scss";
 

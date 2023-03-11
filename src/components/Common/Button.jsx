@@ -72,4 +72,4 @@ Btn.propTypes = {
     type: PropTypes.oneOf(Object.values(ButtonType)),
 };
 
-export default Btn;
+export { Btn };

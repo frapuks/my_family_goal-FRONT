@@ -34,4 +34,4 @@ TextField.propTypes = {
     value: PropTypes.string,
 };
 
-export default TextField;
+export {TextField};

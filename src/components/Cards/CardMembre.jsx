@@ -1,3 +1,7 @@
+// Material UI
+// Components
+// Slices
+// Styles
 import React from "react";
 import PropTypes from 'prop-types';
 import { useState } from "react";
@@ -132,7 +136,7 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
     <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-        Etes-vous sure de vouloir supprimer ce membre?
+        Etes-vous sur de vouloir supprimer ce membre?
       </DialogContentText>
       <DialogActions>
         <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>

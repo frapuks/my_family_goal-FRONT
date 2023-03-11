@@ -215,7 +215,7 @@ function CardTask({ title, gain, description, isComplete, id }) {
         <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
         <DialogContent>
             <DialogContentText id="alert-dialog-description">
-                Etes-vous sure de vouloir supprimer cet objectif?
+                Etes-vous sur de vouloir supprimer cet objectif?
             </DialogContentText>
             <DialogActions>
                 <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>

@@ -184,7 +184,7 @@ function CardReward({ title, price, isPurchase, id }) {
     <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
     <DialogContent>
         <DialogContentText id="alert-dialog-description">
-            Etes-vous sure de vouloir supprimer cette récompense?
+            Etes-vous sur de vouloir supprimer cette récompense?
         </DialogContentText>
         <DialogActions>
             <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
@@ -199,7 +199,7 @@ function CardReward({ title, price, isPurchase, id }) {
     <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
     <DialogContent>
         <DialogContentText id="alert-dialog-description">
-            Etes-vous sure de vouloir acheter cette récompense?
+            Etes-vous sur de vouloir acheter cette récompense?
         </DialogContentText>
         <DialogActions>
             <ButtonMui onClick={cancelBuy}>Annuler</ButtonMui>
