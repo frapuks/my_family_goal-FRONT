@@ -27,6 +27,9 @@ function SettingsPage() {
         <li className={styles.li}>
           <Link className={styles.link} to="/usersettings">PROFIL</Link>
         </li>
+      </ul>
+      
+      <ul className={styles.ul}>
         {families.map((family) => (
           <li key={family.id} className={styles.li}>
             <Link className={styles.link} to="/familysettings" onClick={() => dispatch(setSelectFamily(family))}>
@@ -36,7 +39,7 @@ function SettingsPage() {
         ))}
       </ul>
 
-      <ul className={styles.ulCreate}>
+      <ul className={styles.ul}>
         <li className={styles.liCreate}>
           <Link className={styles.link} to="/namefamily">CREER UNE NOUVELLE FAMILLE</Link>
         </li>
