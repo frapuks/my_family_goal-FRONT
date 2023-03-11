@@ -35,7 +35,7 @@ function CardReward({ title, price, isPurchase, id }) {
   const [openBuyModale, setOpenBuyModale] = useState(false);
   const [isError, setIsError] = useState(false);
   // VARIABLES
-  const isParent = family.isParent;
+  const isParent = family?.isParent;
 
   // METHODS
 

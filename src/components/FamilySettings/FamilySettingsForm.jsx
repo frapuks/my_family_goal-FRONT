@@ -27,7 +27,7 @@ const FamilySettingsForm = () => {
     const [isError, setIsError] = useState(false);
     const [open, setOpen] = useState(false);
     // VARIABLES
-    const isParent = family.isParent;
+    const isParent = family?.isParent;
 
     // METHODS
 
@@ -62,12 +62,18 @@ const FamilySettingsForm = () => {
         // treatment
         if (responsePatchFamily.ok && responseGetUser.ok) {
             // get data from responses
-            const family = await responsePatchFamily.json();
             const { families } = await responseGetUser.json();
+            const family = await responsePatchFamily.json();
+            const selectFamily = {
+                id : family.id,
+                name : family.name,
+                isParent : true,
+                credit : 0
+            }
 
             // dispatch states
             dispatch(setFamilies(families));
-            dispatch(setSelectFamily(family));
+            dispatch(setSelectFamily(selectFamily));
 
             // redirect
             navigate("/settings");

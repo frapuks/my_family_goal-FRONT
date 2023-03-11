@@ -36,7 +36,7 @@ function CardTask({ title, gain, description, isComplete, id }) {
     const [isError, setIsError] = useState(false);
     const [openListMembers, setOpenListMembers] = useState(false);
     // VARIABLES
-    const isParent = family.isParent;
+    const isParent = family?.isParent;
 
     // METHODS
 

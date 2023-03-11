@@ -32,7 +32,7 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
   const [isError, setIsError] = useState(false);
   const [selectIsParent, setSelectIsParent] = useState(isParent);
   // VARIABLES
-  const isParentRole = family.isParent;
+  const isParentRole = family?.isParent;
   
   // METHODS
 
