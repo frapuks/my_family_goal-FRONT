@@ -190,11 +190,13 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
           <MenuItem value={true}>Parent</MenuItem>
           <MenuItem value={false}>Enfant</MenuItem>
         </Select>
-        <ButtonGroup>
-          <ValidateButton text= "Enregistrer"/>
-          <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
-          <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
-        </ButtonGroup>
+        <CardActions>
+          <ButtonGroup>
+            <ValidateButton text= "Enregistrer"/>
+            <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
+            <Btn  text="Supprimer" color={Colors.Error} onClick={handleDelete}/>
+          </ButtonGroup>
+        </CardActions>
         <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
           {modaleContent}
         </Dialog>
@@ -205,7 +207,7 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
 
   return (
     <Box>
-      <Card variant="outlined">
+      <Card variant="outlined" sx={{ borderRadius: 2 }}>
         <div className={styles.containerCardMembre}>
           <React.Fragment>
             <CardContent>

@@ -2,7 +2,8 @@
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 5vh;
   background-image: url("../../src/assets/background-login-plage.jpg");
   background-size: cover;
   height: 100vh;

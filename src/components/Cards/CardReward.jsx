@@ -254,11 +254,13 @@ function CardReward({ title, price, isPurchase, id }) {
           value={editedPrice}
           onChange={(e) => setEditedPrice(e.target.value)}
         />
-        <ButtonGroup>
-          <ValidateButton onClick={validateEdit} text= "Enregistrer"/>
-          <Btn  text="Supprimer" color={Colors.Warning} onClick={handleDelete}/>
-          <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
-        </ButtonGroup>
+        <CardActions>
+          <ButtonGroup>
+            <ValidateButton onClick={validateEdit} text= "Enregistrer"/>
+            <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
+            <Btn  text="Supprimer" color={Colors.Error} onClick={handleDelete}/>
+          </ButtonGroup>
+        </CardActions>
         <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             {modaleContent}
         </Dialog>
@@ -269,7 +271,7 @@ function CardReward({ title, price, isPurchase, id }) {
 
   return (
     <Box sx={({ minWidth: "30%" , maxHeight: "30%"})}>
-      <Card variant="outlined">
+      <Card variant="outlined" sx={{ borderRadius: 2 }}>
         <div className={styles.containerCardReward}>
           <React.Fragment>
             <CardContent>
