@@ -1,10 +1,10 @@
 import React from "react";
-
+// Components
 import NameFamilyForm from "../components/NameFamily/NameFamilyForm";
-
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
+// Styles
 import styles from "./NameFamilyPage.module.scss";
 
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 function NameFamilyPage() {
   return (

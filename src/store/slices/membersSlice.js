@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    listMembers: [],
+};
+
 const membersSlice = createSlice({
     name: "members",
-    initialState: {
-        listMembers: [],
-    },
+    initialState,
     reducers: {
         setMembers: (state, action) => {
             state.listMembers = action.payload;
@@ -19,5 +21,4 @@ const membersSlice = createSlice({
 });
 
 export const { setMembers, setCredit } = membersSlice.actions;
-
 export default membersSlice.reducer;

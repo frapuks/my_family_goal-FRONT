@@ -1,41 +1,39 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// Material UI
+import { Alert } from "@mui/material";
+// Components
+import { Btn } from "../Common/Button";
+import { Colors } from "../../constants/Colors";
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// Slices
 import { setToken, setUser } from "../../store/slices/userSlice";
-
-import { Alert } from "@mui/material";
-import { Btn } from "../Common/Button";
-
-import { Colors } from "../../constants/Colors";
-
+// Styles
 import styles from "./UserSettingsForm.module.scss";
-
-import { useEffect } from "react";
 
 
 const UserSettingsForm = () => {
+    // UTILS
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    // STATES
     const listFamilies = useSelector((state) => state.families.listFamilies);
+    const token = useSelector(state => state.user.token);
+    const user = useSelector(state => state.user.user);
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [isError, setIsError] = useState(false);
     const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
-
-    const token = useSelector(state => state.user.token);
-    const user = useSelector(state => state.user.user);
-
     const [lastname, setLastName] = useState(user.lastname);
     const [firstname, setFirstName] = useState(user.firstname);
     const [pseudo, setPseudo] = useState(user.pseudo);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
-
     const [isChanged, setIsChanged] = useState(false);
 
+    // USEEFFECT
     useEffect(() => {
         const canUpdate =
             lastname !== user.lastname ||
@@ -47,17 +45,18 @@ const UserSettingsForm = () => {
         setIsChanged(canUpdate);
     }, [lastname, firstname, pseudo, email, password, newPassword, passwordConfirm]);
 
+    // METHODS
+
+    // Submit form
     const onSubmit = async e => {
         e.preventDefault();
-
         setIsConfirmPasswordValid(true);
+        setIsError(false);
 
         if (newPassword && newPassword !== passwordConfirm) {
             setIsConfirmPasswordValid(false);
             return;
         }
-
-        setIsError(false);
 
         const payload = {
             firstname,
@@ -66,20 +65,23 @@ const UserSettingsForm = () => {
             email,
         };
 
+        // API => PATCH user
         const response = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
             body: JSON.stringify(newPassword ? { ...payload, password, newPassword } : payload),
         });
 
+        // treatment
         if (response.ok) {
+            // get data
             const { token, user } = await response.json();
-            console.log("votre formulaire a été modifié");
-
+            
+            // reset states
             dispatch(setToken(token));
             dispatch(setUser(user));
-            console.log("mon nouveau token", token);
-            console.log("mon nouveau user", user);
+            
+            // redirect
             {listFamilies && listFamilies[0] ? navigate("/dashboard") : navigate("/createfamily")};
         } else {
             setIsError(true);

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  listRewards: [],
+};
 
 const rewardsSlice = createSlice({
   name: 'rewards',
-  initialState: {
-    listRewards: [],
-  },
+  initialState,
   reducers: {
     setRewards: (state, action) => {
       state.listRewards = action.payload;
@@ -14,5 +15,4 @@ const rewardsSlice = createSlice({
 });
   
 export const { setRewards } = rewardsSlice.actions;
-
 export default rewardsSlice.reducer;

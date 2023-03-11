@@ -1,23 +1,24 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import styles from "./Card.module.scss"
+import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import { Alert,Box ,Button, ButtonGroup, Card,CardContent ,CardActions ,Dialog,DialogActions ,DialogContent ,DialogContentText  ,DialogTitle , TextField,Typography } from "@mui/material";
 import ButtonMui from "@mui/material/Button";
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { Alert,Box ,Button, ButtonGroup, Card,CardContent ,CardActions ,Dialog,DialogActions ,DialogContent ,DialogContentText  ,DialogTitle , TextField,Typography } from "@mui/material";
 // Components
-import { ValidateButton } from "../Common/ValidateButton";
-import { Colors } from "../../constants/Colors";
 import { Btn } from "../Common/Button";
+import { Colors } from "../../constants/Colors";
+import { ValidateButton } from "../Common/ValidateButton";
 // Slices
-import { selectToken } from "../../store/slices/userSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
+import { selectToken } from "../../store/slices/userSlice";
+// Styles
+import styles from "./Card.module.scss"
 
 
 function CardReward({ title, price, isPurchase, id }) {
@@ -183,7 +184,7 @@ function CardReward({ title, price, isPurchase, id }) {
     <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
     <DialogContent>
         <DialogContentText id="alert-dialog-description">
-            Etes-vous sure de vouloir supprimer cette récompense?
+            Etes-vous sur de vouloir supprimer cette récompense?
         </DialogContentText>
         <DialogActions>
             <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
@@ -198,7 +199,7 @@ function CardReward({ title, price, isPurchase, id }) {
     <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
     <DialogContent>
         <DialogContentText id="alert-dialog-description">
-            Etes-vous sure de vouloir acheter cette récompense?
+            Etes-vous sur de vouloir acheter cette récompense?
         </DialogContentText>
         <DialogActions>
             <ButtonMui onClick={cancelBuy}>Annuler</ButtonMui>

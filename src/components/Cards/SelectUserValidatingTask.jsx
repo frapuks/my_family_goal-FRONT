@@ -49,8 +49,8 @@ function SelectUserValidatingTask({ personId, setPersonId }) {
 }
 
 SelectUserValidatingTask.propTypes = {
-    personId: PropTypes.string,
-    setPersonId: PropTypes.string,
+    personId: PropTypes.number,
+    setPersonId: PropTypes.func,
 };
 
 

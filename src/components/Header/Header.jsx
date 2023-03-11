@@ -1,28 +1,23 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import ButtonFamily from "../ButtonFamily/ButtonFamily";
+import React from "react";
 import { useSelector } from "react-redux";
-
-import logo from "../../assets/logo-fond-transparent-sans-police.svg";
+// Material UI
+import { AppBar, Toolbar } from "@mui/material";
+import ButtonFamily from "../ButtonFamily/ButtonFamily"
+// Styles
 import styles from "./Header.module.scss";
 
 function Header() {
-
+  // STATES
   const listFamilies = useSelector((state) => state.families.listFamilies);
 
   return (
-    
     <div className={styles.header}>
-      
-      {listFamilies && listFamilies[0] ? (
+      {listFamilies && listFamilies[0] && (
         <AppBar className={styles.container}>
           <Toolbar className={styles.toolBar}>     
             <ButtonFamily className={styles.active}/>
           </Toolbar>
         </AppBar>
-      ) : (
-       <></>
       )}
     </div>
   );

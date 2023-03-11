@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import MUITextField from "@mui/material/TextField";
 
-export const TextField = props => {
+
+const TextField = props => {
     const onChangeInternal = e => props.onChange?.(e.currentTarget.value);
 
     return (
@@ -32,3 +33,5 @@ TextField.propTypes = {
     type: PropTypes.string,
     value: PropTypes.string,
 };
+
+export {TextField};
