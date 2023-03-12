@@ -44,7 +44,7 @@ const NameFamilyForm = () => {
             const { id, name } = await response.json();
             
             // dispatch states
-            dispatch(addFamily({ id, name }));
+            dispatch(addFamily({ id, name, isParent : true, credit : 0 }));
 
             // redirect
             navigate("/dashboard");
