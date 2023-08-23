@@ -1,6 +1,6 @@
 //~ Import Module
 import { Route } from "react-router-dom";
-import { LoginPage, SignUpPage, UserSettingsPage, CreateFamilyPage, NameFamilyPage, FamilySettingsPage, DashboardPage } from "../Pages";
+import { LoginPage, SignUpPage, UserSettingsPage, CreateFamilyPage, NameFamilyPage, FamilySettingsPage, DashboardPage, SettingsPage } from "../Pages";
 
 const Router = [
   // { id: 1, mainPath: "*", mainElement: <Page404 /> },
@@ -11,6 +11,7 @@ const Router = [
   { id: 6, mainPath: "/namefamily", mainElement: <NameFamilyPage /> },
   { id: 7, mainPath: "/familysettings", mainElement: <FamilySettingsPage /> },
   { id: 8, mainPath: "/dashboard", mainElement: <DashboardPage /> },
+  { id: 9, mainPath: "/settings", mainElement: <SettingsPage /> },
 ];
 
 const mainRoutes = Router.map(({ id, mainPath, mainElement }) => <Route key={id} path={mainPath} element={mainElement} />);
