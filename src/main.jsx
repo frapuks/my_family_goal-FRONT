@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 // Material UI
 import { ThemeProvider } from "@mui/material";
 // Components
-import App from "./components/App";
+import App from "./App/App";
 // Slices
 import { store } from "./store/store";
 // Styles

@@ -12,7 +12,7 @@ import { setActivePage } from "../store/slices/navBarSlice";
 import styles from "./CreateFamilyPage.module.scss";
 
 
-function CreateFamily() {
+function CreateFamilyPage() {
     // UTILS
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -57,4 +57,4 @@ function CreateFamily() {
     );
 }
 
-export default CreateFamily;
+export default CreateFamilyPage;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // Material UI
-import { Alert } from "@mui/material";
+import { Alert, Box, Button, Container, IconButton, InputAdornment, Stack, Typography } from "@mui/material";
 // Components
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 import { Btn } from "../components/Common/Button";
@@ -12,8 +12,7 @@ import { ValidateButton } from "../components/Common/ValidateButton";
 // Slices
 import { setFamilies } from "../store/slices/familiesSlice";
 import { setToken, setUser } from "../store/slices/userSlice";
-// Styles
-import styles from "./LoginPage.module.scss";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 
 function LoginPage() {
@@ -66,23 +65,21 @@ function LoginPage() {
 
 
     return (
-        <div className={styles.container}>
-            <div className={styles.containerLogo}>
-                <img className={styles.logo} src={logo} alt="logo The family Goal" />
-                <h1 className={styles.titre}>My Family Goal</h1>
-            </div>
+        <Container>
+            <Stack>
+                <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
 
-            <div className={styles.actionContainer}>
-                <form onSubmit={onSubmit} className={styles.form}>
-                    {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}
-
-                    <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} />
-                    <TextField name="password" label="Mot de passe" type="password" required disabled={isLoggingIn} />
-                    <ValidateButton disabled={isLoggingIn} />
-                    <Btn text="S'inscrire" href="/signup" color={Colors.Secondary} />
-                </form>
-            </div>
-        </div>
+                <Box component="form" onSubmit={onSubmit} >
+                    <Stack spacing={1}>
+                        <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} value="joueur2@gmail.com"/>
+                        <TextField name="password" label="Mot de passe" type='password' required disabled={isLoggingIn} value="joueur2"/>
+                        <Button type="submit" variant="contained">Se connecter</Button>
+                        <Button href="/signup">S'inscrire</Button>
+                        {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}
+                    </Stack>
+                </Box>
+            </Stack>
+        </Container>
     );
 }
 
