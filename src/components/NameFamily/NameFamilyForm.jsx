@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import { Alert } from "@mui/material";
+import { Alert, Box, Button, Stack } from "@mui/material";
 // Components
 import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
@@ -54,11 +54,13 @@ const NameFamilyForm = () => {
     };
 
     return (
-        <form onSubmit={onSubmit} className={styles.container}>
-            <TextField label="Nom de votre Famille" name="name" required />
-            <ValidateButton text="Valider" />
-            {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-        </form>
+        <Box component="form" onSubmit={onSubmit}>
+            <Stack spacing={1}>
+                <TextField label="Nom de votre Famille" name="name" required />
+                <Button variant="contained">Valider</Button>
+                {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+            </Stack>
+        </Box>
     );
 };
 

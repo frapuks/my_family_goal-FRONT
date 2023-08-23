@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 // Slices
 import { setActivePage } from "../store/slices/navBarSlice";
 import { setSelectFamily } from "../store/slices/familiesSlice";
-import { Button, Container, Fab, Stack } from "@mui/material";
+import { Box, Button, Container, Fab, Stack } from "@mui/material";
 import { Add } from "@mui/icons-material";
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 
 function SettingsPage() {
@@ -32,6 +33,7 @@ function SettingsPage() {
 
   return (
     <Container>
+      <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
       <Stack spacing={1}>
         {families[0] && families.map((family) => (
           // <li key={family.id}>

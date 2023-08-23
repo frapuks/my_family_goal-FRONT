@@ -2,18 +2,15 @@ import React from "react";
 // Components
 import NameFamilyForm from "../components/NameFamily/NameFamilyForm";
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
-// Styles
-import styles from "./NameFamilyPage.module.scss";
+import { Box, Container } from "@mui/material";
 
 
 function NameFamilyPage() {
   return (
-    <div>
-      <img src={logo} />
-      <div>
-        <NameFamilyForm />
-      </div>
-    </div>
+    <Container>
+      <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
+      <NameFamilyForm />
+    </Container>
   );
 }
 
