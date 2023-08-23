@@ -2,11 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import { Alert } from "@mui/material";
+import { Alert, Box, Button, Stack, TextField } from "@mui/material";
 // Components
 import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
-import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 // Slices
 import { setToken, setUser } from "../../store/slices/userSlice";
@@ -89,28 +88,20 @@ const UserSettingsForm = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <form onSubmit={onSubmit} className={styles.form}>
+        <Box component="form" onSubmit={onSubmit}>
+            <Stack spacing={1}>
                 <TextField label="Nom" value={lastname} onChange={setLastName} />
                 <TextField label="Prénom" value={firstname} onChange={setFirstName} />
                 <TextField label="Pseudo" value={pseudo} onChange={setPseudo} />
                 <TextField label="Email" value={email} onChange={setEmail} type="email" />
                 <TextField label="Mot de passe actuel" value={password} onChange={setPassword} type="password" />
                 <TextField label="Nouveau mot de passe" value={newPassword} onChange={setNewPassword} type="password" />
-                <TextField
-                    label="Confirmation du nouveau mot de passe "
-                    value={passwordConfirm}
-                    onChange={setPasswordConfirm}
-                    type="password"
-                    errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
-                />
-                <div className={styles.formButton}>
-                    <ValidateButton disabled={!isChanged} text="Valider les modifications" />
-                    <Btn text="Annuler" color={Colors.Warning} href="/dashboard" />
-                </div>
+                <TextField label="Confirmation du nouveau mot de passe " value={passwordConfirm} onChange={setPasswordConfirm} type="password" />
+                <Button disabled={!isChanged} variant="contained">Valider les modifications</Button>
+                
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-            </form>
-        </div>
+            </Stack>
+        </Box>
     );
 };
 

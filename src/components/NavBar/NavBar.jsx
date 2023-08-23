@@ -45,7 +45,7 @@ function NavBar() {
         //         </li>
         //     </ul>
         // </nav>
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1 }} elevation={3}>
             <BottomNavigation value={value} onChange={onChange}>
                 <BottomNavigationAction label="Réglages" icon={<Settings />} />
                 <BottomNavigationAction label="Familles" icon={<FamilyRestroom />} />
