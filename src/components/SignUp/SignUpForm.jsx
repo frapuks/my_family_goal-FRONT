@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // Material UI
-import { Alert } from "@mui/material";
+import { Alert, Box, Button, Stack } from "@mui/material";
 // Components
 import { Btn } from "../../components/Common/Button";
 import { Colors } from "../../constants/Colors";
@@ -11,8 +11,6 @@ import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 // Slices
 import { setToken, setUser } from "../../store/slices/userSlice";
-// Styles
-import styles from "./SignUpForm.module.scss";
 
 
 const SignUpForm = () => {
@@ -67,25 +65,27 @@ const SignUpForm = () => {
     };
 
     return (
-        <form onSubmit={onSubmit} className={styles.container}>
-            <TextField label="Nom" value={lastname} onChange={setLastname} required />
-            <TextField label="Prénom" value={firstname} onChange={setFirstname} required />
-            <TextField label="Pseudo" value={pseudo} onChange={setPseudo} required />
-            <TextField label="Email" value={email} onChange={setEmail} required type="email" />
-            <TextField label="Mot de passe" value={password} onChange={setPassword} required type="password" />
-            <TextField
-                label="Confirmation du mot de passe"
-                required
-                value={passwordConfirm}
-                onChange={setPasswordConfirm}
-                type="password"
-                errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
-            />
+        <Box component="form" onSubmit={onSubmit} >
+            <Stack spacing={1}>
+                <TextField label="Nom" value={lastname} onChange={setLastname} required />
+                <TextField label="Prénom" value={firstname} onChange={setFirstname} required />
+                <TextField label="Pseudo" value={pseudo} onChange={setPseudo} required />
+                <TextField label="Email" value={email} onChange={setEmail} required type="email" />
+                <TextField label="Mot de passe" value={password} onChange={setPassword} required type="password" />
+                <TextField
+                    label="Confirmation du mot de passe"
+                    required
+                    value={passwordConfirm}
+                    onChange={setPasswordConfirm}
+                    type="password"
+                    errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
+                />
 
-            <ValidateButton text="S'inscrire" />
-            <Btn text="Login" href="/" color={Colors.Secondary} />
-            {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-        </form>
+                <Button type="submit" variant="contained">S'inscrire</Button>
+                <Button text="Login" href="/">Retour</Button>
+                {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+            </Stack>
+        </Box>
     );
 };
 

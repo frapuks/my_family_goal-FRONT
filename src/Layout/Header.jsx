@@ -18,7 +18,6 @@ const Header = () => {
     <AppBar component="header" position="static">
       <Toolbar>
         <Typography variant="h6" component="div" onClick={handleClickTitle}>My Family Goal</Typography>
-        {/* <Button variant="filled" href="/">My Family Goal</Button> */}
       </Toolbar>
     </AppBar>
   );

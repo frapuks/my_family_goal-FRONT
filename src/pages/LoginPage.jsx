@@ -66,19 +66,17 @@ function LoginPage() {
 
     return (
         <Container>
-            <Stack>
-                <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
+            <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
 
-                <Box component="form" onSubmit={onSubmit} >
-                    <Stack spacing={1}>
-                        <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} value="joueur2@gmail.com"/>
-                        <TextField name="password" label="Mot de passe" type='password' required disabled={isLoggingIn} value="joueur2"/>
-                        <Button type="submit" variant="contained">Se connecter</Button>
-                        <Button href="/signup">S'inscrire</Button>
-                        {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}
-                    </Stack>
-                </Box>
-            </Stack>
+            <Box component="form" onSubmit={onSubmit} >
+                <Stack spacing={1}>
+                    <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} value="joueur2@gmail.com"/>
+                    <TextField name="password" label="Mot de passe" type='password' required disabled={isLoggingIn} value="joueur2"/>
+                    <Button type="submit" variant="contained">Se connecter</Button>
+                    <Button href="/signup">S'inscrire</Button>
+                    {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}
+                </Stack>
+            </Box>
         </Container>
     );
 }
