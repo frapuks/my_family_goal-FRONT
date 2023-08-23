@@ -8,9 +8,9 @@ import styles from "./NameFamilyPage.module.scss";
 
 function NameFamilyPage() {
   return (
-    <div className={styles.container}>
-      <img className={styles.logo} src={logo} />
-      <div className={styles.form}>
+    <div>
+      <img src={logo} />
+      <div>
         <NameFamilyForm />
       </div>
     </div>

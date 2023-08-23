@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Slices
 import { setActivePage } from "../store/slices/navBarSlice";
 import { setSelectFamily } from "../store/slices/familiesSlice";
-// Styles
-import styles from "./SettingsPage.module.scss";
+import { Button, Container, Fab, Stack } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 
 function SettingsPage() {
   // UTILS
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // STATES
   const families = useSelector((state) => state.families.listFamilies || []);
 
@@ -19,33 +20,33 @@ function SettingsPage() {
     dispatch(setActivePage("settingsPage"));
   }, [dispatch]);
 
+  const handleCreateFamily = () => {
+    navigate("/namefamily");
+  }
+
+  const handleFamily = (family) => {
+    dispatch(setSelectFamily(family))
+    navigate("/familysettings");
+  }
+
 
   return (
-    <div className={styles.container}>
-
-      <ul className={styles.ul}>
-        <li className={styles.li}>
-          <Link className={styles.link} to="/usersettings">PROFIL</Link>
-        </li>
-      </ul>
-      
-      {families[0] && <ul className={styles.ul}>
-        {families.map((family) => (
-          <li key={family.id} className={styles.li}>
-            <Link className={styles.link} to="/familysettings" onClick={() => dispatch(setSelectFamily(family))}>
-              Famille : {family.name}
-            </Link>
-          </li>
-        ))}
-      </ul> }
-
-      <ul className={styles.ul}>
-        <li className={styles.liCreate}>
-          <Link className={styles.link} to="/namefamily">CREER UNE NOUVELLE FAMILLE</Link>
-        </li>
-      </ul>
-
-    </div>
+    <Container>
+      <Stack spacing={1}>
+        {families[0] && families.map((family) => (
+          // <li key={family.id}>
+          //   <Link to="/familysettings" onClick={() => dispatch(setSelectFamily(family))}>
+          //     Famille : {family.name}
+          //   </Link>
+          // </li>
+          <Button variant="contained" onClick={() => handleFamily(family)}>{family.name}</Button>
+          ))}
+      </Stack>
+      <Fab variant="extended" color="primary" onClick={handleCreateFamily} sx={{position: 'absolute', bottom: 70, right: 16}}>
+          <Add sx={{ mr: 1 }}/>
+          famille
+      </Fab>
+    </Container>
   );
 }
 export default SettingsPage;
