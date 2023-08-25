@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-material-ui-carousel";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
-import { Alert, Box, Button, Card } from "@mui/material";
+import { Alert, Box, Button, Card, Typography } from "@mui/material";
 // Components
 import { Btn } from "../Common/Button";
 import CardMembre from "../Cards/CardMembre";
@@ -14,8 +14,7 @@ import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 // slices
 import { setFamilies } from "../../store/slices/familiesSlice";
-// Styles
-import styles from "./Carousel.module.scss";
+import { AddCircleOutline, AddCircleOutlined, Diversity1Outlined } from "@mui/icons-material";
 
 
 function CarouselMember() {
@@ -121,10 +120,9 @@ function CarouselMember() {
 
   // CONTENT
   const addCardFormContent = (
-    <Box>
       <Card variant="outlined"  sx={{bgcolor: "#ed62ed"}}>
-        <div className={styles.containerCardTask}>
-          <form onSubmit={onSubmit} className={styles.form}>
+        <div>
+          <form onSubmit={onSubmit}>
             <TextField label="" value={pseudo} onChange={onChange} />
             
             {resultSearch.length > 0 && (
@@ -137,7 +135,7 @@ function CarouselMember() {
               </div>
             )}
 
-            <div className={styles.formButton}>
+            <div>
               <ValidateButton text="Valider" />
               <Btn text="Annuler" color={Colors.Warning} onClick={handleCancelForm}/>
             </div>
@@ -146,21 +144,16 @@ function CarouselMember() {
           </form>
         </div>
       </Card>
-    </Box>
   );
 
 
   return (
     <>
-      <h2 className={styles.title}>
-        <Diversity1OutlinedIcon/>
+      <Typography variant="h4">
+        <Diversity1Outlined sx={{mr:1}}/>
         MEMBRES
-        {isParent && 
-          <Button onClick={handleClickBtnAddCard}>
-            <AddCircleOutlineIcon sx={{ color: "green" }} />
-          </Button>
-        }
-      </h2>
+        {isParent && <Button onClick={handleClickBtnAddCard}><AddCircleOutline color="success" /></Button>}
+      </Typography>
 
       {addCard ? addCardFormContent : (
         <Carousel  autoPlay={false}>

@@ -6,6 +6,7 @@ import CarouselAll from "../components/Carousel/CarouselAll";
 import { setActivePage } from "../store/slices/navBarSlice";
 // Styles
 import styles from "./DashboardPage.module.scss";
+import { Container } from "@mui/material";
 
 
 function DashboardPage() {
@@ -19,9 +20,9 @@ function DashboardPage() {
 
 
   return (
-      <div className={styles.containerDashboard}>
+      <Container>
         <CarouselAll />
-      </div>
+      </Container>
   );
 
 }

@@ -84,7 +84,7 @@ function CarouselReward() {
 
   // CONTENT
   const addCardFormContent = (
-    <React.Fragment>
+    <>
       <Card variant="outlined" sx={{bgcolor: "#dbc84e"}}>
         <div>
           <form onSubmit={onSubmit} className={styles.form}>
@@ -100,7 +100,7 @@ function CarouselReward() {
           </form>
         </div>
       </Card>
-    </React.Fragment>
+    </>
   );
 
   return (

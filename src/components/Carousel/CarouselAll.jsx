@@ -13,8 +13,6 @@ import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 import { selectToken } from "../../store/slices/userSlice";
 import { setSelectFamily } from "../../store/slices/familiesSlice";
-// Styles
-import styles from "./Carousel.module.scss"
 
 
 function CarouselAll() {
@@ -59,12 +57,10 @@ function CarouselAll() {
 
     return ( 
         <>
-            {isError && <Alert severity="warning">Une erreur est survenue</Alert>}  
-            <div className={styles.container}>
-                <CarouselReward/>
-                <CarouselTask/>
-                <CarouselMembres/>
-            </div>
+            {isError && <Alert severity="warning">Une erreur est survenue</Alert>}
+            <CarouselReward/>
+            <CarouselTask/>
+            <CarouselMembres/>
         </>
     )
 }
