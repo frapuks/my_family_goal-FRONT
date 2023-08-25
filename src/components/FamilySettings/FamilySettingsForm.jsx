@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import { Alert, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Alert, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
 import ButtonMui from "@mui/material/Button";
 // Components
 import { Colors } from "../../constants/Colors";
@@ -121,39 +121,26 @@ const FamilySettingsForm = () => {
         }
     };
 
-    // CONTENT
-    const modaleContent = (
-        <>
-        <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-        <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-                Etes-vous sur de vouloir supprimer cette famille?
-            </DialogContentText>
-            <DialogActions>
-                <ButtonMui onClick={cancelDeleteClick}>Annuler</ButtonMui>
-            </DialogActions>
-                <ButtonMui onClick={confirmdDeleteClick} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
-        </DialogContent>
-        </>
-    );
-
     return (
-        <div className={styles.container}>
-            <form onSubmit={onSubmit} className={styles.form}>
-                <TextField label="Nom" value={name} onChange={setName} />
-                <div className={styles.formButton}>
-                    {isParent && <ValidateButton text="Valider les modifications" />}
-                    <Btn text="Annuler" color={Colors.Warning} href="/settings" />
-                </div>
-                <div className={styles.formButton}>
-                    {isParent && <Btn text="Supprimer la famille" color={Colors.Error} onClick={handleClickOpen} />}
-                    <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                        {modaleContent}
-                    </Dialog>
-                </div>
+        <Box component="form" onSubmit={onSubmit}>
+            <Stack spacing={1}>
+                <TextField label="Nom de la famille" value={name} onChange={setName} />
+                {isParent && <ValidateButton text="Valider les modifications" />}
+                <Button variant="outlined" href="/settings">Annuler</Button>
+                {isParent && <Btn text="Supprimer la famille" color="error" onClick={handleClickOpen} />}
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-            </form>
-        </div>
+            </Stack>
+            <Dialog open={open}>
+                <DialogTitle>ATTENTION</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>Etes-vous sur de vouloir supprimer cette famille?</DialogContentText>
+                    <DialogActions>
+                        <Button onClick={cancelDeleteClick}>Annuler</Button>
+                        <Button variant="contained" onClick={confirmdDeleteClick} color="error">Supprimer</Button>
+                    </DialogActions>
+                </DialogContent>
+            </Dialog>
+        </Box>
     )
 }
 
