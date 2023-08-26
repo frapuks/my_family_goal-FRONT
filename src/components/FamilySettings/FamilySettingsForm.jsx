@@ -126,7 +126,7 @@ const FamilySettingsForm = () => {
             <Stack spacing={1}>
                 <TextField label="Nom de la famille" value={name} onChange={setName} />
                 {isParent && <ValidateButton text="Valider les modifications" />}
-                <Button variant="outlined" href="/settings">Annuler</Button>
+                <Button variant="outlined" onClick={() => {navigate("/settings");}}>Annuler</Button>
                 {isParent && <Btn text="Supprimer la famille" color="error" onClick={handleClickOpen} />}
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </Stack>
