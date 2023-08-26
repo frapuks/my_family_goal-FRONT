@@ -138,8 +138,8 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
         <Stack>
           <Typography variant="h5" textAlign="center">{pseudo}</Typography>
           <Typography variant="overline">{firstname} {lastname}</Typography>
-          <Typography variant="caption">Role : {isParent ? "Parent" : "Enfant"}</Typography>
-          {!isParent && <Typography variant="body2">Crédit : {credit}</Typography>}
+          <Typography variant="body2">Role : {isParent ? "Parent" : "Enfant"}</Typography>
+          <Typography variant="body2">Crédit : {credit}</Typography>
         </Stack>
       </CardContent>
 

@@ -5,12 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-material-ui-carousel";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
-import { Alert, Box, Button, Card, Typography } from "@mui/material";
+import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, MenuItem, Select, TextField, Typography } from "@mui/material";
 // Components
 import { Btn } from "../Common/Button";
 import CardMembre from "../Cards/CardMembre";
 import { Colors } from "../../constants/Colors";
-import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 // slices
 import { setFamilies } from "../../store/slices/familiesSlice";
@@ -26,14 +25,14 @@ function CarouselMember() {
   const family = useSelector((state) => state.families.selectFamily || state.families.listFamilies[0]);
   const memberData = useSelector((state) => state.members.listMembers);
   const [addCard, setAddCard] = useState(false);
-  const [pseudo, setPseudo] = useState("Pseudo");
+  const [pseudo, setPseudo] = useState("");
   const [isError, setIsError] = useState(false);
   const [resultSearch, setResultSearch] = useState([]);
   const [userIdSelected, setUserIdSelected] = useState(0);
   // RESET STATES
   const resetLocalStates = () => {
     setAddCard(false);
-    setPseudo("Pseudo");
+    setPseudo("");
     setIsError(false);
     setResultSearch([]);
     setUserIdSelected(0);
@@ -49,7 +48,9 @@ function CarouselMember() {
   };
 
   // onChange form
-  const onChange = async (pseudo) => {
+  const onChange = async (event) => {
+    setIsError(false);
+    const pseudo = event.target.value;
     setPseudo(pseudo);
 
     if (pseudo) {
@@ -62,8 +63,6 @@ function CarouselMember() {
       );
       const list = await responseSearchUsers.json();
       setResultSearch(list);
-    } else {
-      setResultSearch([]);
     }
   };
 
@@ -80,11 +79,14 @@ function CarouselMember() {
   // on submit form
   const onSubmit = async (event) => {
     event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    console.log(form.get('pseudo'));
+    const userSelected = resultSearch.find((user) => user.pseudo == form.get('pseudo'));
     setIsError(false);
-    if (userIdSelected === 0) return setIsError(true);
+    if (!userSelected) return setIsError(true);
     
     // API => POST
-    const createLink = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${userIdSelected}`, {
+    const createLink = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${userSelected.id}`, {
         method: "POST",
         headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
       }
@@ -120,29 +122,22 @@ function CarouselMember() {
 
   // CONTENT
   const addCardFormContent = (
-      <Card variant="outlined"  sx={{bgcolor: "#ed62ed"}}>
-        <div>
-          <form onSubmit={onSubmit}>
-            <TextField label="" value={pseudo} onChange={onChange} />
-            
-            {resultSearch.length > 0 && (
-              <div>
-                {resultSearch.map((user) => (
-                  <div key={user.id} onClick={handlePseudo} data-userid={user.id}>
-                    {user.pseudo}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <div>
-              <ValidateButton text="Valider" />
-              <Btn text="Annuler" color={Colors.Warning} onClick={handleCancelForm}/>
-            </div>
-
+      <Card variant="outlined">
+        <Box component="form" onSubmit={onSubmit}>
+          <CardContent>
+            <Autocomplete renderInput={(params) => <TextField {...params} label="Pseudo" name="pseudo"/>} options={resultSearch.map((user) => user.pseudo)} onInputChange={onChange}/>
+            {/* <TextField select fullWidth label="Pseudo" defaultValue={pseudo} onChange={onChange}>
+              {resultSearch.length > 0 && resultSearch.map((user) => (
+                <MenuItem key={user.id} onClick={handlePseudo} data-userid={user.id}>{user.pseudo}</MenuItem>
+              ))}
+            </TextField> */}
             {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-          </form>
-        </div>
+          </CardContent>
+          <CardActions>
+            <Button type="submit" variant="contained">Valider</Button>
+            <Button variant="outlined" onClick={handleCancelForm}>Annuler</Button>
+          </CardActions>
+        </Box>
       </Card>
   );
 

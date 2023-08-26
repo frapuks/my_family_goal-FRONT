@@ -6,7 +6,7 @@ import CarouselTask from "./CarouselTask";
 import CarouselReward from "./CarouselReward";
 import CarouselMembres from "./CarouselMembre";
 // Material UI
-import { Alert } from "@mui/material";
+import { Alert, TextField } from "@mui/material";
 // Slices
 import { setTasks } from "../../store/slices/tasksSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
