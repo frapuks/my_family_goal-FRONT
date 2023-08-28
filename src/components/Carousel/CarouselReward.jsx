@@ -4,18 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import Carousel from "react-material-ui-carousel";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { Alert, Button, Card } from "@mui/material";
+import { Alert, Box, Button, Card, CardActions, CardContent, TextField, Stack, Typography } from "@mui/material";
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 // Components
 import { Btn } from "../Common/Button";
 import CardReward from "../Cards/CardReward";
 import { Colors } from "../../constants/Colors";
-import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
-// Styles
-import styles from "./Carousel.module.scss";
+import { AddCircleOutline, MilitaryTechOutlined } from "@mui/icons-material";
 
 
 function CarouselReward() {
@@ -44,13 +42,16 @@ function CarouselReward() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsError(false);
-    const priceNumber = parseInt(price);
+    const form = new FormData(event.currentTarget);
+    const title = form.get('title');
+    const price = form.get('price');
+    // const priceNumber = parseInt(price);
 
     // API => POST new reward
     const responsePostReward = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/reward`, {
         method: "POST",
         headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-        body: JSON.stringify({title, price : priceNumber}),
+        body: JSON.stringify({title, price}),
     });
 
     // API => GET user
@@ -84,39 +85,33 @@ function CarouselReward() {
 
   // CONTENT
   const addCardFormContent = (
-    <>
-      <Card variant="outlined" sx={{bgcolor: "#dbc84e"}}>
-        <div>
-          <form onSubmit={onSubmit} className={styles.form}>
-            <TextField label="" value={title} onChange={setTitle} />
-            <TextField label="" value={price} onChange={setPrice} />
-
-            <div className={styles.formButton}>
-              <ValidateButton text="Valider" />
-              <Btn text="Annuler" color={Colors.Warning} onClick={handleCancelForm}/>
-            </div>
-
-            {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-          </form>
-        </div>
-      </Card>
-    </>
+    <Card variant="outlined">
+      <Box component="form" onSubmit={onSubmit}>
+        <CardContent>
+          <Stack spacing={1}>
+            <TextField label="Nom de la récompense" name="title" required/>
+            <TextField type="number" label="Prix" name="price" required/>
+          </Stack>
+          {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+        </CardContent>
+        <CardActions>
+          <Button type="submit" variant="contained">Valider</Button>
+          <Button variant="outlined" onClick={handleCancelForm}>Annuler</Button>
+        </CardActions>
+      </Box>
+    </Card>
   );
 
   return (
     <>
-      <h2 className={styles.title}>
-        <MilitaryTechOutlinedIcon />
+      <Typography variant="h4">
+        <MilitaryTechOutlined />
         RECOMPENSES
-        {isParent && 
-          <Button onClick={handleClickBtnAddCard}>
-            <AddCircleOutlineIcon sx={{ color: "green" }} />
-          </Button>
-        }
-      </h2>
+        {isParent && <Button onClick={handleClickBtnAddCard}><AddCircleOutline color="success" /></Button>}
+      </Typography>
       
       {addCard ? addCardFormContent : (
-        <Carousel  autoPlay={false}>
+        <Carousel  autoPlay={false} height="35vh">
           {rewardData.map((data) => <CardReward key={data.id} {...data} />)}
         </Carousel>
       )}

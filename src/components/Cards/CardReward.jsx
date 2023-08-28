@@ -8,7 +8,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import { Alert,Box ,Button, ButtonGroup, Card,CardContent ,CardActions ,Dialog,DialogActions ,DialogContent ,DialogContentText  ,DialogTitle , TextField,Typography } from "@mui/material";
+import { Alert,Box ,Button, ButtonGroup, Card,CardContent ,CardActions ,Dialog,DialogActions ,DialogContent ,DialogContentText  ,DialogTitle , TextField,Typography, Stack } from "@mui/material";
 // Components
 import { Btn } from "../Common/Button";
 import { Colors } from "../../constants/Colors";
@@ -19,6 +19,7 @@ import { setMembers } from "../../store/slices/membersSlice";
 import { selectToken } from "../../store/slices/userSlice";
 // Styles
 import styles from "./Card.module.scss"
+import { TaskAlt } from "@mui/icons-material";
 
 
 function CardReward({ title, price, isPurchase, id }) {
@@ -31,7 +32,7 @@ function CardReward({ title, price, isPurchase, id }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
-  const [openModale, setOpenModale] = useState(false);
+  const [openDeleteModale, setOpenDeleteModale] = useState(false);
   const [openBuyModale, setOpenBuyModale] = useState(false);
   const [isError, setIsError] = useState(false);
   // VARIABLES
@@ -51,12 +52,12 @@ function CardReward({ title, price, isPurchase, id }) {
 
   // Open modale
   const handleDelete = () => {
-    setOpenModale(true);
+    setOpenDeleteModale(true);
   };
 
   // Close modale
   const cancelDelete = () => {
-    setOpenModale(false);
+    setOpenDeleteModale(false);
   };
   
   // Open modale to confirm to buy
@@ -97,7 +98,7 @@ function CardReward({ title, price, isPurchase, id }) {
       dispatch(setRewards(rewards));
 
       // close modale & editing
-      setOpenModale(false);
+      setOpenDeleteModale(false);
       setIsEditing(false);      
     } else {
         setIsError(true);
@@ -179,108 +180,65 @@ function CardReward({ title, price, isPurchase, id }) {
 
   // CONTENT
 
-  const modaleContent = (
-    <>
-    <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-    <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-            Etes-vous sur de vouloir supprimer cette récompense?
-        </DialogContentText>
-        <DialogActions>
-            <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
-        </DialogActions>
-            <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>Supprimer</ButtonMui>
-    </DialogContent>
-    </>
-  );
-
-  const modalBuyContent = (
-    <>
-    <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-    <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-            Etes-vous sur de vouloir acheter cette récompense?
-        </DialogContentText>
-        <DialogActions>
-            <ButtonMui onClick={cancelBuy}>Annuler</ButtonMui>
-        </DialogActions>
-            <ButtonMui onClick={confirmBuy} color={Colors.Secondary} autoFocus>Valider</ButtonMui>
-    </DialogContent>
-    </>
-  );
-
   const cardContent = (
-    <React.Fragment>
-      <Typography variant="h5" component="div">
-        {title}
-      </Typography>
-
-      <Button sx={{color: "red", fontSize:20, border:3, borderRadius:7,}}>
-        <MonetizationOnOutlinedIcon />
-        {price}
-      </Button>
-
+    <>
+      <CardContent>
+        <Typography variant="h5" textAlign="center">{title}</Typography>
+      </CardContent>
       <CardActions>
-        <div className={styles.buttons}>
-          {isPurchase && <TaskAltIcon></TaskAltIcon> }
-          {!isPurchase && !isParent &&
-            <Button onClick={buyReward} sx={{bgcolor: "gold", color: "black", boxShadow: 5,}}><PaymentOutlinedIcon/>DEPENSER !</Button>
-          }
-          {isParent && 
-            <Button onClick={handleEditClick}>
-              <BorderColorOutlinedIcon sx={{color:"black"}}/>
-            </Button>
-          }
-          <Dialog open={openBuyModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-              {modalBuyContent}
-          </Dialog>
-        </div>
+        <Button variant="contained" onClick={buyReward} disabled={isPurchase || isParent}>{isPurchase ? <TaskAlt/> : `${price} crédits`}</Button>
+        {isParent && <Button onClick={handleEditClick}>Modifier</Button>}
       </CardActions>
-    </React.Fragment>
+    </>
   );
 
   const formEditContent = (
-    <React.Fragment>
-      <form action="" >
-        <TextField
-          label=""
-          type="text"
-          value={editedTitle}
-          onChange={(e) => setEditedTitle(e.target.value)}
-        />
-        <TextField
-          label=""
-          type="text"
-          value={editedPrice}
-          onChange={(e) => setEditedPrice(e.target.value)}
-        />
+    <>
+      <Box component="form" onSubmit={validateEdit}>
+        <CardContent>
+          <Stack spacing={1}>
+            <TextField size="small" label="Nom de l'objectif" name="title" defaultValue={title} required/>
+            <TextField size="small" type="number" label="Prix" name="price" defaultValue={price} required/>
+          </Stack>
+          {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+        </CardContent>
         <CardActions>
-          <ButtonGroup>
-            <ValidateButton onClick={validateEdit} text= "Enregistrer"/>
-            <Btn text="Annuler" color={Colors.Info} onClick={handleCancel}/>
-            <Btn  text="Supprimer" color={Colors.Error} onClick={handleDelete}/>
-          </ButtonGroup>
+          <Button type="submit" variant="contained">Valider</Button>
+          <Button variant="outlined" onClick={handleCancel}>Annuler</Button>
+          <Button variant="contained" color="error" onClick={handleDelete}>Supprimer</Button>
         </CardActions>
-        <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-            {modaleContent}
-        </Dialog>
-        {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-      </form>
-    </React.Fragment>
+      </Box>
+    </>
   );
 
   return (
-    <Box sx={({ minWidth: "30%" , maxHeight: "30%"})}>
-      <Card variant="outlined" sx={{ borderRadius: 2 }}>
-        <div className={styles.containerCardReward}>
-          <React.Fragment>
-            <CardContent>
-              {isEditing ? formEditContent : cardContent}
-            </CardContent>
-          </React.Fragment>
-        </div>
+    <>
+      <Card variant="outlined">
+        {isEditing ? formEditContent : cardContent}
       </Card>
-    </Box>
+
+      <Dialog open={openBuyModale}>
+        <DialogTitle>ACHAT</DialogTitle>
+        <DialogContent>
+          <DialogContentText> Etes-vous sur de vouloir acheter cette récompense?</DialogContentText>
+          <DialogActions>
+            <Button variant="outlined" onClick={cancelBuy}>Annuler</Button>
+            <Button variant="contained" onClick={confirmBuy}>Supprimer</Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={openDeleteModale}>
+        <DialogTitle>ATTENTION</DialogTitle>
+        <DialogContent>
+          <DialogContentText> Etes-vous sur de vouloir supprimer cette récompense?</DialogContentText>
+          <DialogActions>
+            <Button variant="outlined" onClick={cancelDelete}>Annuler</Button>
+            <Button variant="contained" onClick={confirmDelete} color="error">Supprimer</Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 

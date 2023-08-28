@@ -186,7 +186,7 @@ function CardTask({ title, gain, description, isComplete, id }) {
                 <Typography variant="caption">{description}</Typography>
             </CardContent>
             <CardActions>
-                <Button variant="contained" onClick={handleValidateClick} disabled={isComplete || !isParent}>{gain} crédits</Button>
+                <Button variant="contained" onClick={handleValidateClick} disabled={isComplete || !isParent}>{isComplete ? <TaskAlt/> : `${gain} crédits`}</Button>
                 {isParent && <Button onClick={handleEditClick}>Modifier</Button>}
             </CardActions>
         </>
