@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert, Box, Button, Card, CardActions, CardContent, TextField, Stack, Typography } from "@mui/material";
 // Components
 import Carousel from "react-material-ui-carousel";
-import { CardReward } from "../";
+import { CardReward } from "..";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
 import { AddCircleOutline, MilitaryTechOutlined } from "@mui/icons-material";
 
 
-function CarouselReward() {
+function ListCardsRewards() {
   // UTILS
   const dispatch = useDispatch();
   // STATES
@@ -25,7 +25,7 @@ function CarouselReward() {
   const [isError, setIsError] = useState(false);
   // VARIABLES
   const isParent = family.isParent;
-  
+
   // METHODS
 
   // Handle click on button + to add card
@@ -44,9 +44,9 @@ function CarouselReward() {
 
     // API => POST new reward
     const responsePostReward = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/reward`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-        body: JSON.stringify({title, price}),
+      method: "POST",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+      body: JSON.stringify({ title, price }),
     });
 
     // API => GET user
@@ -59,10 +59,10 @@ function CarouselReward() {
     if (responsePostReward.ok && responseGetUser.ok) {
       // get data from responses        
       const { families } = await responseGetUser.json();
-      
+
       // dispatch states
       dispatch(setFamilies(families));
-      
+
       // Close form
       setAddCard(false);
     } else {
@@ -84,8 +84,8 @@ function CarouselReward() {
       <Box component="form" onSubmit={onSubmit}>
         <CardContent>
           <Stack spacing={1}>
-            <TextField label="Nom de la récompense" name="title" required/>
-            <TextField type="number" label="Prix" name="price" required/>
+            <TextField label="Nom de la récompense" name="title" required />
+            <TextField type="number" label="Prix" name="price" required />
           </Stack>
           {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
         </CardContent>
@@ -98,20 +98,18 @@ function CarouselReward() {
   );
 
   return (
-    <>
-      <Typography variant="h4">
-        <MilitaryTechOutlined />
-        RECOMPENSES
-        {isParent && <Button onClick={handleClickBtnAddCard}><AddCircleOutline color="success" /></Button>}
-      </Typography>
-      
+    <Stack spacing={1}>
       {addCard ? addCardFormContent : (
-        <Carousel  autoPlay={false} height="35vh">
-          {rewardData.map((data) => <CardReward key={data.id} {...data} />)}
-        </Carousel>
+        rewardData.map((data) => <CardReward key={data.id} {...data} />)
       )}
-    </>
+      {isParent &&
+        <Button onClick={handleClickBtnAddCard}>
+          <AddCircleOutline color="success" sx={{ mr: 1 }} />
+          Ajouter une récompense
+        </Button>
+      }
+    </Stack>
   );
 }
 
-export default CarouselReward;
+export default ListCardsRewards;

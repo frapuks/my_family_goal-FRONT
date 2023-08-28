@@ -2,16 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, Stack, TextField, Typography } from "@mui/material";
 import { AddCircleOutline, Diversity1Outlined } from "@mui/icons-material";
 // Components
 import Carousel from "react-material-ui-carousel";
-import { CardMembre } from "../";
+import { CardMembre } from "..";
 // slices
 import { setFamilies } from "../../store/slices/familiesSlice";
 
 
-function CarouselMember() {
+function ListCardsMembers() {
   // UTILS
   const dispatch = useDispatch();
   // STATES
@@ -51,10 +51,10 @@ function CarouselMember() {
     if (pseudo) {
       // API => POST research
       const responseSearchUsers = await fetch(import.meta.env.VITE_API_ROOT + `/search/user`, {
-          method: "POST",
-          headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
-          body: JSON.stringify({ pseudo }),
-        }
+        method: "POST",
+        headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+        body: JSON.stringify({ pseudo }),
+      }
       );
       const list = await responseSearchUsers.json();
       setResultSearch(list);
@@ -78,19 +78,19 @@ function CarouselMember() {
     const userSelected = resultSearch.find((user) => user.pseudo == form.get('pseudo'));
     setIsError(false);
     if (!userSelected) return setIsError(true);
-    
+
     // API => POST
     const createLink = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/user/${userSelected.id}`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
-      }
+      method: "POST",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+    }
     );
 
     // API => GET
     const responseGetUser = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
-        method: "GET",
-        headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`},
-      }
+      method: "GET",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+    }
     );
 
     // treatment
@@ -116,36 +116,34 @@ function CarouselMember() {
 
   // CONTENT
   const addCardFormContent = (
-      <Card variant="outlined">
-        <Box component="form" onSubmit={onSubmit}>
-          <CardContent>
-            <Autocomplete renderInput={(params) => <TextField {...params} label="Pseudo" name="pseudo"/>} options={resultSearch.map((user) => user.pseudo)} onInputChange={onChange}/>
-            {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
-          </CardContent>
-          <CardActions>
-            <Button type="submit" variant="contained">Valider</Button>
-            <Button variant="outlined" onClick={handleCancelForm}>Annuler</Button>
-          </CardActions>
-        </Box>
-      </Card>
+    <Card variant="outlined">
+      <Box component="form" onSubmit={onSubmit}>
+        <CardContent>
+          <Autocomplete renderInput={(params) => <TextField {...params} label="Pseudo" name="pseudo" />} options={resultSearch.map((user) => user.pseudo)} onInputChange={onChange} />
+          {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+        </CardContent>
+        <CardActions>
+          <Button type="submit" variant="contained">Valider</Button>
+          <Button variant="outlined" onClick={handleCancelForm}>Annuler</Button>
+        </CardActions>
+      </Box>
+    </Card>
   );
 
 
   return (
-    <>
-      <Typography variant="h4">
-        <Diversity1Outlined sx={{mr:1}}/>
-        MEMBRES
-        {isParent && <Button onClick={handleClickBtnAddCard}><AddCircleOutline color="success" /></Button>}
-      </Typography>
-
+    <Stack spacing={1}>
       {addCard ? addCardFormContent : (
-        <Carousel  autoPlay={false}>
-          {memberData.map((data) => <CardMembre key={data.id} {...data} />)}
-        </Carousel>
+          memberData.map((data) => <CardMembre key={data.id} {...data} />)
       )}
-    </>
+      {isParent &&
+        <Button onClick={handleClickBtnAddCard}>
+          <AddCircleOutline color="success" sx={{ mr: 1 }} />
+          Ajouter un membre
+        </Button>
+      }
+    </Stack>
   );
 }
 
-export default CarouselMember;
+export default ListCardsMembers;

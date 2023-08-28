@@ -3,15 +3,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import Carousel from "react-material-ui-carousel";
-import { Alert, Button, Card, Box, Typography, CardContent, CardActions, TextField, Stack} from "@mui/material";
+import { Alert, Button, Card, Box, Typography, CardContent, CardActions, TextField, Stack } from "@mui/material";
 // Components
-import { CardTask } from "../";
+import { CardTask } from "..";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
 import { AddCircleOutline, RocketLaunchOutlined } from "@mui/icons-material";
 
 
-function CarouselTask() {
+function ListCardsTasks() {
     // UTILS
     const dispatch = useDispatch();
     // STATES
@@ -84,9 +84,9 @@ function CarouselTask() {
             <Box component="form" onSubmit={onSubmit}>
                 <CardContent>
                     <Stack spacing={1}>
-                        <TextField label="Nom de l'objectif" name="title" required/>
-                        <TextField label="Description" name="description" required/>
-                        <TextField type="number" label="Gain" name="gain" required/>
+                        <TextField label="Nom de l'objectif" name="title" required />
+                        <TextField label="Description" name="description" required />
+                        <TextField type="number" label="Gain" name="gain" required />
                     </Stack>
                     {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
                 </CardContent>
@@ -99,20 +99,18 @@ function CarouselTask() {
     );
 
     return (
-        <>
-            <Typography variant="h4">
-                <RocketLaunchOutlined sx={{mr:1}}/>
-                OBJECTIFS
-                {isParent && <Button onClick={handleClickBtnAddCard}><AddCircleOutline color="success"/></Button>}
-            </Typography>
-
+        <Stack spacing={1}>
             {addCard ? addCardFormContent : (
-                <Carousel autoPlay={false} height="35vh">
-                    {taskData.map((data) => <CardTask key={data.id} {...data} />)}
-                </Carousel>
+                taskData.map((data) => <CardTask key={data.id} {...data} />)
             )}
-        </>
+            {isParent &&
+                <Button onClick={handleClickBtnAddCard}>
+                    <AddCircleOutline color="success" sx={{ mr: 1 }} />
+                    Ajouter un objectif
+                </Button>
+            }
+        </Stack>
     );
 }
 
-export default CarouselTask;
+export default ListCardsTasks;
