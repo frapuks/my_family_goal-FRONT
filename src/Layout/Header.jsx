@@ -1,16 +1,18 @@
-import { AppBar, Button, Select, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ButtonFamily } from "../components";
+import { selectToken } from "../store/slices/userSlice";
 
 const Header = () => {
   // Utils
   const navigate = useNavigate();
   const listFamilies = useSelector(state => state.families.listFamilies);
+  const token = useSelector(selectToken);
 
   // METHODS
   const handleClickTitle = () => {
-    navigate("/");
+    token ? navigate("/dashboard") : navigate("/");
   }
 
   return (
