@@ -10,7 +10,6 @@ import { setMembers } from "../store/slices/membersSlice";
 import { selectToken } from "../store/slices/userSlice";
 import { setSelectFamily } from "../store/slices/familiesSlice";
 
-// TODO : bouton non fonctionnel depuis le deplacement de la methode getFamily dans le useEffect de DashboardPage, copier ici et utiliser dans selectNameFamily()
 
 function ButtonFamily() {
     // UTILS

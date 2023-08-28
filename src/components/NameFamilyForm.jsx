@@ -33,8 +33,6 @@ const NameFamilyForm = () => {
             body: JSON.stringify({name}),
         });
 
-        console.log(response.ok);
-
         // treatment
         if (response.ok) {
             // get data
@@ -44,7 +42,7 @@ const NameFamilyForm = () => {
             dispatch(addFamily({ id, name, isParent : true, credit : 0 }));
 
             // redirect
-            navigate("/dashboard");
+            navigate("/settings");
         } else {
             setIsError(true);
         }
@@ -53,7 +51,7 @@ const NameFamilyForm = () => {
     return (
         <Box component="form" onSubmit={onSubmit}>
             <Stack spacing={1}>
-                <TextField label="Nom de votre Famille" name="name" required />
+                <TextField label="Nom de votre nouvelle famille" name="name" required />
                 <Button variant="contained" type="submit">Valider</Button>
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </Stack>

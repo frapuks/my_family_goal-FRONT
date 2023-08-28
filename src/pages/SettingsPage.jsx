@@ -38,11 +38,6 @@ function SettingsPage() {
       <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
       <Stack spacing={1}>
         {families[0] && families.map((family) => (
-          // <li key={family.id}>
-          //   <Link to="/familysettings" onClick={() => dispatch(setSelectFamily(family))}>
-          //     Famille : {family.name}
-          //   </Link>
-          // </li>
           <Button key={family.id} variant="contained" onClick={() => handleFamily(family)}>{family.name}</Button>
           ))}
       </Stack>
