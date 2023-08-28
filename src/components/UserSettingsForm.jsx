@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert, Box, Button, Stack, TextField } from "@mui/material";
 // Slices
 import { setToken, setUser } from "../store/slices/userSlice";
+import { setTabValue } from "../store/slices/navBarSlice";
 
 
 const UserSettingsForm = () => {
@@ -15,38 +16,25 @@ const UserSettingsForm = () => {
     const listFamilies = useSelector((state) => state.families.listFamilies);
     const token = useSelector(state => state.user.token);
     const user = useSelector(state => state.user.user);
-    const [passwordConfirm, setPasswordConfirm] = useState("");
     const [isError, setIsError] = useState(false);
-    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
-    const [lastname, setLastName] = useState(user.lastname);
-    const [firstname, setFirstName] = useState(user.firstname);
-    const [pseudo, setPseudo] = useState(user.pseudo);
-    const [email, setEmail] = useState(user.email);
-    const [password, setPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [isChanged, setIsChanged] = useState(false);
-
-    // USEEFFECT
-    useEffect(() => {
-        const canUpdate =
-            lastname !== user.lastname ||
-            firstname !== user.firstname ||
-            pseudo !== user.pseudo ||
-            email !== user.email ||
-            (newPassword !== "" && newPassword === passwordConfirm);
-
-        setIsChanged(canUpdate);
-    }, [lastname, firstname, pseudo, email, password, newPassword, passwordConfirm]);
 
     // METHODS
 
     // Submit form
-    const onSubmit = async e => {
-        e.preventDefault();
+    const onSubmit = async event => {
+        event.preventDefault();
         setIsConfirmPasswordValid(true);
         setIsError(false);
-
-        if (newPassword && newPassword !== passwordConfirm) {
+        const data = new FormData(event.currentTarget);
+        const firstname = data.get("firstname");
+        const lastname = data.get("lastname");
+        const pseudo = data.get("pseudo");
+        const email = data.get("email");
+        const password = data.get("password");
+        const newPassword = data.get("newPassword");
+        const newPasswordConfirm = data.get("newPasswordConfirm");
+        
+        if (newPassword && newPassword !== newPasswordConfirm) {
             setIsConfirmPasswordValid(false);
             return;
         }
@@ -76,6 +64,7 @@ const UserSettingsForm = () => {
 
             // redirect
             { listFamilies && listFamilies[0] ? navigate("/dashboard") : navigate("/createfamily") };
+            dispatch(setTabValue(1));
         } else {
             setIsError(true);
         }
@@ -84,14 +73,14 @@ const UserSettingsForm = () => {
     return (
         <Box component="form" onSubmit={onSubmit}>
             <Stack spacing={1}>
-                <TextField label="Nom" value={lastname} onChange={setLastName} />
-                <TextField label="Prénom" value={firstname} onChange={setFirstName} />
-                <TextField label="Pseudo" value={pseudo} onChange={setPseudo} />
-                <TextField label="Email" value={email} onChange={setEmail} type="email" />
-                <TextField label="Mot de passe actuel" value={password} onChange={setPassword} type="password" />
-                <TextField label="Nouveau mot de passe" value={newPassword} onChange={setNewPassword} type="password" />
-                <TextField label="Confirmation du nouveau mot de passe " value={passwordConfirm} onChange={setPasswordConfirm} type="password" />
-                <Button disabled={!isChanged} variant="contained">Valider les modifications</Button>
+                <TextField label="Nom" name="lastname" defaultValue={user.lastname} required />
+                <TextField label="Prénom" name="firstname" defaultValue={user.firstname} required />
+                <TextField label="Pseudo" name="pseudo" defaultValue={user.pseudo} required />
+                <TextField label="Email" type="email" name="email" defaultValue={user.email} required />
+                <TextField label="Mot de passe actuel" type="password" name="password" />
+                <TextField label="Nouveau mot de passe" type="password" name="newPassword" />
+                <TextField label="Confirmation du nouveau mot de passe" type="password" name="newPasswordConfirm" />
+                <Button type="submit" variant="contained">Valider les modifications</Button>
 
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </Stack>

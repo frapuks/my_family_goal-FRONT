@@ -64,19 +64,19 @@ function UserSettingsPage() {
                 <UserSettingsForm />
                 <Button variant="outlined" onClick={handleLogout} color="warning">Déconnexion</Button>
                 <Button variant="contained" onClick={handleDeleteAccount} color="error">Supprimer le compte</Button>
-                <Dialog open={open}>
-                    <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Etes-vous sur de vouloir supprimer ce compte?
-                        </DialogContentText>
-                        <DialogActions>
-                            <Button onClick={handleCancel}>Annuler</Button>
-                            <Button variant="contained" onClick={handleConfirmDelete} color="error">Supprimer</Button>
-                        </DialogActions>
-                    </DialogContent>
-                </Dialog>
             </Stack>
+            <Dialog open={open}>
+                <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Etes-vous sur de vouloir supprimer ce compte?
+                    </DialogContentText>
+                    <DialogActions>
+                        <Button onClick={handleCancel}>Annuler</Button>
+                        <Button variant="contained" onClick={handleConfirmDelete} color="error">Supprimer</Button>
+                    </DialogActions>
+                </DialogContent>
+            </Dialog>
         </Container>
     );
 }
