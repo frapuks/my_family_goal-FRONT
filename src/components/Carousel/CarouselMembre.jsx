@@ -80,7 +80,6 @@ function CarouselMember() {
   const onSubmit = async (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    console.log(form.get('pseudo'));
     const userSelected = resultSearch.find((user) => user.pseudo == form.get('pseudo'));
     setIsError(false);
     if (!userSelected) return setIsError(true);

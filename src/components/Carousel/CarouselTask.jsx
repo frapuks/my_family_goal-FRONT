@@ -5,17 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-material-ui-carousel";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
-import { Alert, Button, Card, Box} from "@mui/material";
+import { Alert, Button, Card, Box, Typography, CardContent, CardActions, TextField, Stack} from "@mui/material";
 // Components
 import { Btn } from "../Common/Button";
 import CardTask from "../Cards/CardTask";
 import { Colors } from "../../constants/Colors";
-import { TextField } from "../Common/TextField";
 import { ValidateButton } from "../Common/ValidateButton";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
 // Style
 import styles from "./Carousel.module.scss";
+import { AddCircleOutline, RocketLaunchOutlined } from "@mui/icons-material";
 
 
 function CarouselTask() {
@@ -27,9 +27,9 @@ function CarouselTask() {
     const family = useSelector(state => state.families.selectFamily || state.families.listFamilies[0]);
     const taskData = useSelector(state => state.tasks.listTasks);
     const [addCard, setAddCard] = useState(false);
-    const [title, setTitle] = useState("Title");
-    const [description, setDescription] = useState("");
-    const [gain, setGain] = useState("0");
+    // const [title, setTitle] = useState("Title");
+    // const [description, setDescription] = useState("");
+    // const [gain, setGain] = useState("0");
     const [isError, setIsError] = useState(false);
     // VARIABLES
     const isParent = family.isParent;
@@ -45,13 +45,17 @@ function CarouselTask() {
     const onSubmit = async event => {
         event.preventDefault();
         setIsError(false);
-        const gainNumber = parseInt(gain);
+        const form = new FormData(event.currentTarget);
+        const title = form.get('title');
+        const description = form.get('description');
+        const gain = form.get('gain');
+        // const gainNumber = parseInt(gain);
 
         // API => POST new reward
         const responsePostTask = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/task`, {
             method: "POST",
             headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-            body: JSON.stringify({ title, description, gain: gainNumber }),
+            body: JSON.stringify({ title, description, gain }),
         });
 
         // API => GET
@@ -86,47 +90,38 @@ function CarouselTask() {
 
     // CONTENT
     const addCardFormContent = (
-        <Box>
-            <Card variant="outlined" sx={{bgcolor: "#00b3ff"}}>
-                <div className={styles.containerCardTask}>
-                    <form onSubmit={onSubmit} className={styles.form}>
-                        <TextField label="" value={title} onChange={setTitle} />
-                        <TextField label="" value={description} onChange={setDescription} />
-                        <TextField label="" value={gain} onChange={setGain} />
-
-                        <div className={styles.formButton}>
-                            <ValidateButton text="Valider" />
-                            <Btn text="Annuler" color={Colors.Warning} onClick={handleCancelForm} />
-                        </div>
-
-                        {isError && (
-                            <Alert severity="warning">
-                                Une erreur est survenue. Veuillez réessayer plus tard.
-                            </Alert>
-                        )}
-                    </form>
-                </div>
-            </Card>
-        </Box>
+        <Card variant="outlined">
+            <Box component="form" onSubmit={onSubmit}>
+                <CardContent>
+                    <Stack spacing={1}>
+                        <TextField label="Nom de l'objectif" name="title" required/>
+                        <TextField label="Description" name="description" required/>
+                        <TextField type="number" label="Gain" name="gain" required/>
+                    </Stack>
+                    {/* <TextField label="" value={title} onChange={setTitle} />
+                    <TextField label="" value={description} onChange={setDescription} />
+                    <TextField label="" value={gain} onChange={setGain} /> */}
+                    {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+                </CardContent>
+                <CardActions>
+                    <Button type="submit" variant="contained">Valider</Button>
+                    <Button variant="outlined" onClick={handleCancelForm}>Annuler</Button>
+                </CardActions>
+            </Box>
+        </Card>
     );
 
     return (
         <>
-            <h2 className={styles.title}>
-                <RocketLaunchOutlinedIcon />
+            <Typography variant="h4">
+                <RocketLaunchOutlined sx={{mr:1}}/>
                 OBJECTIFS
-                {isParent &&
-                <Button onClick={handleClickBtnAddCard}>
-                    <AddCircleOutlineIcon sx={{ color: "green" }} />
-                </Button>
-                }
-            </h2>
+                {isParent && <Button onClick={handleClickBtnAddCard}><AddCircleOutline color="success"/></Button>}
+            </Typography>
 
             {addCard ? addCardFormContent : (
-                <Carousel sx={{ minWidth: "30%", maxHeight: "30%" }} autoPlay={false}>
-                    {taskData.map(data => (
-                        <CardTask key={data.id} {...data} />
-                    ))}
+                <Carousel autoPlay={false} height="35vh">
+                    {taskData.map((data) => <CardTask key={data.id} {...data} />)}
                 </Carousel>
             )}
         </>
