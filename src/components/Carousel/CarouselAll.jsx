@@ -6,13 +6,14 @@ import CarouselTask from "./CarouselTask";
 import CarouselReward from "./CarouselReward";
 import CarouselMembres from "./CarouselMembre";
 // Material UI
-import { Alert, TextField } from "@mui/material";
+import { Alert, Divider, Stack, TextField } from "@mui/material";
 // Slices
 import { setTasks } from "../../store/slices/tasksSlice";
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 import { selectToken } from "../../store/slices/userSlice";
 import { setSelectFamily } from "../../store/slices/familiesSlice";
+import ButtonFamily from "../ButtonFamily/ButtonFamily";
 
 
 function CarouselAll() {
@@ -58,9 +59,16 @@ function CarouselAll() {
     return ( 
         <>
             {isError && <Alert severity="warning">Une erreur est survenue</Alert>}
-            <CarouselReward/>
-            <CarouselTask/>
-            <CarouselMembres/>
+            <Stack spacing={1}>
+                <ButtonFamily/>
+                <Divider/>
+                <CarouselReward/>
+                <Divider/>
+                <CarouselTask/>
+                <Divider/>
+                <CarouselMembres/>
+                <Divider/>
+            </Stack>
         </>
     )
 }
