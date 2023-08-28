@@ -3,23 +3,12 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import ButtonMui from "@mui/material/Button";
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
-import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import { Alert,Box ,Button, ButtonGroup, Card,CardContent ,CardActions ,Dialog,DialogActions ,DialogContent ,DialogContentText  ,DialogTitle , TextField,Typography, Stack } from "@mui/material";
-// Components
-import { Btn } from "../Common/Button";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
+import { Alert,Box ,Button, Card, CardContent ,CardActions, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography, Stack } from "@mui/material";
+import { TaskAlt } from "@mui/icons-material";
 // Slices
 import { setRewards } from "../../store/slices/rewardsSlice";
 import { setMembers } from "../../store/slices/membersSlice";
 import { selectToken } from "../../store/slices/userSlice";
-// Styles
-import styles from "./Card.module.scss"
-import { TaskAlt } from "@mui/icons-material";
 
 
 function CardReward({ title, price, isPurchase, id }) {

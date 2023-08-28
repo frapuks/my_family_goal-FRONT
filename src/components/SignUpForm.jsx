@@ -4,12 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // Material UI
 import { Alert, Box, Button, Stack, TextField } from "@mui/material";
-// Components
-import { Btn } from "../../components/Common/Button";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
 // Slices
-import { setToken, setUser } from "../../store/slices/userSlice";
+import { setToken, setUser } from "../store/slices/userSlice";
 
 
 const SignUpForm = () => {
@@ -44,7 +40,7 @@ const SignUpForm = () => {
         const response = await fetch(import.meta.env.VITE_API_ROOT + "/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({lastname, firstname, pseudo, email, password}),
+            body: JSON.stringify({ lastname, firstname, pseudo, email, password }),
         });
 
         // treatment
@@ -71,14 +67,7 @@ const SignUpForm = () => {
                 <TextField label="Pseudo" value={pseudo} onChange={setPseudo} required />
                 <TextField label="Email" value={email} onChange={setEmail} required type="email" />
                 <TextField label="Mot de passe" value={password} onChange={setPassword} required type="password" />
-                <TextField
-                    label="Confirmation du mot de passe"
-                    required
-                    value={passwordConfirm}
-                    onChange={setPasswordConfirm}
-                    type="password"
-                    errorText={isConfirmPasswordValid === false ? "Ne correspond pas au mot de passe entré" : undefined}
-                />
+                <TextField label="Confirmation du mot de passe" required value={passwordConfirm} onChange={setPasswordConfirm} type="password" />
 
                 <Button type="submit" variant="contained">S'inscrire</Button>
                 <Button text="Login" href="/">Retour</Button>

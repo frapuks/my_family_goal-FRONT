@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // Material UI
-import { Alert, Box, Button, Container, IconButton, InputAdornment, Stack, Typography, TextField } from "@mui/material";
+import { Alert, Box, Button, Container, Stack, TextField } from "@mui/material";
 // Components
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
-import { Btn } from "../components/Common/Button";
-import { Colors } from "../constants/Colors";
-import { ValidateButton } from "../components/Common/ValidateButton";
 // Slices
 import { setFamilies } from "../store/slices/familiesSlice";
 import { setToken, setUser } from "../store/slices/userSlice";

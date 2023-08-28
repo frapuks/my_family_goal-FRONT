@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// Material UI
+import { Box, Button, Container, Fab, Stack } from "@mui/material";
+import { Add } from "@mui/icons-material";
+// Components
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setActivePage } from "../store/slices/navBarSlice";
 import { setSelectFamily } from "../store/slices/familiesSlice";
-import { Box, Button, Container, Fab, Stack } from "@mui/material";
-import { Add } from "@mui/icons-material";
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 
 function SettingsPage() {
@@ -41,7 +43,7 @@ function SettingsPage() {
           //     Famille : {family.name}
           //   </Link>
           // </li>
-          <Button variant="contained" onClick={() => handleFamily(family)}>{family.name}</Button>
+          <Button key={family.id} variant="contained" onClick={() => handleFamily(family)}>{family.name}</Button>
           ))}
       </Stack>
       <Fab variant="extended" color="primary" onClick={handleCreateFamily} sx={{position: 'absolute', bottom: 70, right: 16}}>

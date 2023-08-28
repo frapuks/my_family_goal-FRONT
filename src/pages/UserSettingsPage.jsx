@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// Material UI
+import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
 // Components
-import DeleteButton from "../components/UserSettings/DeleteButton/DeleteButton";
-import UserSettingsForm from "../components/UserSettings/UserSettingsForm";
-import DeconnextionButton from "../components/UserSettings/DeconnexionButton";
+import { UserSettingsForm } from "../components";
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setActivePage } from "../store/slices/navBarSlice";
-import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
 import { deleteToken } from "../store/slices/userSlice";
 import { resetFamily } from "../store/slices/familiesSlice";
 
@@ -37,11 +36,11 @@ function UserSettingsPage() {
     const handleDeleteAccount = () => {
         setOpen(true);
     };
-    
+
     const handleCancel = () => {
         setOpen(false);
     };
-    
+
     const handleConfirmDelete = async () => {
         const response = await fetch(import.meta.env.VITE_API_ROOT + `/user/${user.id}`, {
             method: "DELETE",
@@ -61,7 +60,7 @@ function UserSettingsPage() {
     return (
         <Container>
             <Stack spacing={1}>
-                <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
+                <Box component="img" src={logo} alt="logo The family Goal" sx={{ maxWidth: "50%", margin: "auto" }} />
                 <UserSettingsForm />
                 <Button variant="outlined" onClick={handleLogout} color="warning">Déconnexion</Button>
                 <Button variant="contained" onClick={handleDeleteAccount} color="error">Supprimer le compte</Button>

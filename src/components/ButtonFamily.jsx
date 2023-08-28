@@ -1,14 +1,10 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import { styled, alpha } from "@mui/material/styles";
-import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Menu, MenuItem, Button, Select, FormControl, InputLabel, FormHelperText, Typography, Stack } from "@mui/material";
+import { MenuItem, Select, FormControl } from "@mui/material";
 // Slices
-import { setSelectFamily } from "../../store/slices/familiesSlice";
+import { setSelectFamily } from "../store/slices/familiesSlice";
 
 
 function ButtonFamily() {
@@ -31,7 +27,7 @@ function ButtonFamily() {
     return (
         <FormControl fullWidth sx={{mt:1}}>
             <Select size="small" labelId="label" defaultValue={selectFamily ? selectFamily.id : listFamilies[0]?.id}>
-                {listFamilies.map(family => <MenuItem value={family.id} onClick={() => {selectNameFamily(family);}} >{family.name}</MenuItem>)}
+                {listFamilies.map(family => <MenuItem key={family.id} value={family.id} onClick={() => {selectNameFamily(family);}} >{family.name}</MenuItem>)}
             </Select>
         </FormControl>
     );

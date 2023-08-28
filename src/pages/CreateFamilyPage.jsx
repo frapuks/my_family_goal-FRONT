@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+// Material UI
+import { Box, Button, Card, CardActions, CardContent, Container, Stack, Typography } from "@mui/material";
 // Components
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
-import { Colors } from "../constants/Colors";
-import { ValidateButton } from "../components/Common/ValidateButton";
 // Slices
 import { selectToken } from "../store/slices/userSlice";
 import { setActivePage } from "../store/slices/navBarSlice";
-import { Box, Button, Card, CardActions, CardContent, Container, Stack, Typography } from "@mui/material";
 
 
 function CreateFamilyPage() {

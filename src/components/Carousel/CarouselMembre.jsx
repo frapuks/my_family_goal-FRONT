@@ -2,18 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import Carousel from "react-material-ui-carousel";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
-import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, TextField, Typography } from "@mui/material";
+import { AddCircleOutline, Diversity1Outlined } from "@mui/icons-material";
 // Components
-import { Btn } from "../Common/Button";
-import CardMembre from "../Cards/CardMembre";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
+import Carousel from "react-material-ui-carousel";
+import { CardMembre } from "../";
 // slices
 import { setFamilies } from "../../store/slices/familiesSlice";
-import { AddCircleOutline, AddCircleOutlined, Diversity1Outlined } from "@mui/icons-material";
 
 
 function CarouselMember() {
@@ -125,11 +120,6 @@ function CarouselMember() {
         <Box component="form" onSubmit={onSubmit}>
           <CardContent>
             <Autocomplete renderInput={(params) => <TextField {...params} label="Pseudo" name="pseudo"/>} options={resultSearch.map((user) => user.pseudo)} onInputChange={onChange}/>
-            {/* <TextField select fullWidth label="Pseudo" defaultValue={pseudo} onChange={onChange}>
-              {resultSearch.length > 0 && resultSearch.map((user) => (
-                <MenuItem key={user.id} onClick={handlePseudo} data-userid={user.id}>{user.pseudo}</MenuItem>
-              ))}
-            </TextField> */}
             {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
           </CardContent>
           <CardActions>

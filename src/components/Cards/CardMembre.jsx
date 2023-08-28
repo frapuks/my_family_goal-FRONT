@@ -1,25 +1,12 @@
-// Material UI
-// Components
-// Slices
-// Styles
 import React from "react";
 import PropTypes from 'prop-types';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import ButtonMui from "@mui/material/Button";
-import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
-import { Alert, Box, Button, ButtonGroup, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
-// Components
-import { Btn } from "../Common/Button";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
+import { Alert, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
 // Slices
 import { setMembers } from "../../store/slices/membersSlice";
 import { selectToken } from "../../store/slices/userSlice";
-// Styles
-import styles from "./Card.module.scss";
-import { BorderColorOutlined } from "@mui/icons-material";
 
 
 function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {

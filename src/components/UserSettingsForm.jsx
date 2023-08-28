@@ -3,14 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import { Alert, Box, Button, Stack, TextField } from "@mui/material";
-// Components
-import { Btn } from "../Common/Button";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
 // Slices
-import { setToken, setUser } from "../../store/slices/userSlice";
-// Styles
-import styles from "./UserSettingsForm.module.scss";
+import { setToken, setUser } from "../store/slices/userSlice";
 
 
 const UserSettingsForm = () => {
@@ -75,13 +69,13 @@ const UserSettingsForm = () => {
         if (response.ok) {
             // get data
             const { token, user } = await response.json();
-            
+
             // reset states
             dispatch(setToken(token));
             dispatch(setUser(user));
-            
+
             // redirect
-            {listFamilies && listFamilies[0] ? navigate("/dashboard") : navigate("/createfamily")};
+            { listFamilies && listFamilies[0] ? navigate("/dashboard") : navigate("/createfamily") };
         } else {
             setIsError(true);
         }
@@ -98,7 +92,7 @@ const UserSettingsForm = () => {
                 <TextField label="Nouveau mot de passe" value={newPassword} onChange={setNewPassword} type="password" />
                 <TextField label="Confirmation du nouveau mot de passe " value={passwordConfirm} onChange={setPasswordConfirm} type="password" />
                 <Button disabled={!isChanged} variant="contained">Valider les modifications</Button>
-                
+
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </Stack>
         </Box>

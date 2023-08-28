@@ -3,23 +3,12 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import ButtonMui from "@mui/material/Button";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import { Alert,Box,Button,ButtonGroup,Card,CardContent,CardActions,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,TextField,Typography, Stack, Autocomplete, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-// Components
-import { Btn } from "../Common/Button";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
-import SelectUserValidatingTask from "./SelectUserValidatingTask";
+import { Box, Button, Card, CardContent, CardActions, TextField, Typography, Stack, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { TaskAlt } from "@mui/icons-material";
 // Slices
 import { setTasks } from "../../store/slices/tasksSlice";
 import { setCredit } from "../../store/slices/membersSlice";
 import { completeTask } from "../../store/slices/tasksSlice";
-// Styles
-import styles from "./Card.module.scss";
-import { TaskAlt } from "@mui/icons-material";
 
 
 function CardTask({ title, gain, description, isComplete, id }) {
@@ -191,23 +180,6 @@ function CardTask({ title, gain, description, isComplete, id }) {
             </CardActions>
         </>
     );
-    
-    const modaleContent = (
-        <>
-        <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-        <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-                Etes-vous sur de vouloir supprimer cet objectif?
-            </DialogContentText>
-            <DialogActions>
-                <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
-            </DialogActions>
-            <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>
-                Supprimer
-            </ButtonMui>
-        </DialogContent>
-        </>
-    );
 
     const formEditContent = (
         <>
@@ -235,7 +207,7 @@ function CardTask({ title, gain, description, isComplete, id }) {
                 <FormControl fullWidth>
                     <InputLabel id="label">Qui a rempli l'objectif ?</InputLabel>
                     <Select labelId="label">
-                        {members.map(member => <MenuItem value={member.id}>{member.pseudo}</MenuItem>)}
+                        {members.map(member => <MenuItem key={member.id} value={member.id}>{member.pseudo}</MenuItem>)}
                     </Select>
                 </FormControl>
             </CardContent>
@@ -244,13 +216,6 @@ function CardTask({ title, gain, description, isComplete, id }) {
                 <Button variant="outlined" onClick={handleCancelClick}>Annuler</Button>
             </CardActions>
         </Box>
-        // <form onSubmit={onCompleteTask}>
-            // <SelectUserValidatingTask personId={personId} setPersonId={setPersonId} />
-        //     <div>
-        //         <ValidateButton />
-        //         <Btn text="Annuler" onClick={handleCancelClick} color={Colors.Warning} />
-        //     </div>
-        // </form>
     );
 
 

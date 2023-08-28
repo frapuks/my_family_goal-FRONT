@@ -3,18 +3,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import Carousel from "react-material-ui-carousel";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import { Alert, Button, Card, Box, Typography, CardContent, CardActions, TextField, Stack} from "@mui/material";
 // Components
-import { Btn } from "../Common/Button";
-import CardTask from "../Cards/CardTask";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
+import { CardTask } from "../";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
-// Style
-import styles from "./Carousel.module.scss";
 import { AddCircleOutline, RocketLaunchOutlined } from "@mui/icons-material";
 
 
@@ -27,9 +20,6 @@ function CarouselTask() {
     const family = useSelector(state => state.families.selectFamily || state.families.listFamilies[0]);
     const taskData = useSelector(state => state.tasks.listTasks);
     const [addCard, setAddCard] = useState(false);
-    // const [title, setTitle] = useState("Title");
-    // const [description, setDescription] = useState("");
-    // const [gain, setGain] = useState("0");
     const [isError, setIsError] = useState(false);
     // VARIABLES
     const isParent = family.isParent;
@@ -98,9 +88,6 @@ function CarouselTask() {
                         <TextField label="Description" name="description" required/>
                         <TextField type="number" label="Gain" name="gain" required/>
                     </Stack>
-                    {/* <TextField label="" value={title} onChange={setTitle} />
-                    <TextField label="" value={description} onChange={setDescription} />
-                    <TextField label="" value={gain} onChange={setGain} /> */}
                     {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
                 </CardContent>
                 <CardActions>

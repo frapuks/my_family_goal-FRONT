@@ -2,15 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import Carousel from "react-material-ui-carousel";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { Alert, Box, Button, Card, CardActions, CardContent, TextField, Stack, Typography } from "@mui/material";
-import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 // Components
-import { Btn } from "../Common/Button";
-import CardReward from "../Cards/CardReward";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
+import Carousel from "react-material-ui-carousel";
+import { CardReward } from "../";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
 import { AddCircleOutline, MilitaryTechOutlined } from "@mui/icons-material";

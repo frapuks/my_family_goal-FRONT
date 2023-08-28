@@ -3,15 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import { Alert, Box, Button, Stack } from "@mui/material";
-// Components
-import { TextField } from "../Common/TextField";
-import { ValidateButton } from "../Common/ValidateButton";
+import { Alert, Box, Button, TextField, Stack } from "@mui/material";
 // Slices
-import { addFamily } from "../../store/slices/familiesSlice";
-import { selectToken } from "../../store/slices/userSlice";
-// Styles
-import styles from "./NameFamilyForm.module.scss";
+import { addFamily } from "../store/slices/familiesSlice";
+import { selectToken } from "../store/slices/userSlice";
 
 
 const NameFamilyForm = () => {

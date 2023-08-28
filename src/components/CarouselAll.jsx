@@ -2,18 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Import Components
-import CarouselTask from "./CarouselTask";
-import CarouselReward from "./CarouselReward";
-import CarouselMembres from "./CarouselMembre";
+import CarouselTask from "./Carousel/CarouselTask";
+import CarouselReward from "./Carousel/CarouselReward";
+import CarouselMembres from "./Carousel/CarouselMembre";
 // Material UI
-import { Alert, Divider, Stack, TextField } from "@mui/material";
+import { Alert, Divider, Stack } from "@mui/material";
 // Slices
-import { setTasks } from "../../store/slices/tasksSlice";
-import { setRewards } from "../../store/slices/rewardsSlice";
-import { setMembers } from "../../store/slices/membersSlice";
-import { selectToken } from "../../store/slices/userSlice";
-import { setSelectFamily } from "../../store/slices/familiesSlice";
-import ButtonFamily from "../ButtonFamily/ButtonFamily";
+import { setTasks } from "../store/slices/tasksSlice";
+import { setRewards } from "../store/slices/rewardsSlice";
+import { setMembers } from "../store/slices/membersSlice";
+import { selectToken } from "../store/slices/userSlice";
+import { setSelectFamily } from "../store/slices/familiesSlice";
+import { ButtonFamily } from ".";
 
 
 function CarouselAll() {
@@ -67,7 +67,6 @@ function CarouselAll() {
                 <CarouselTask/>
                 <Divider/>
                 <CarouselMembres/>
-                <Divider/>
             </Stack>
         </>
     )

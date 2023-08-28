@@ -2,17 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import { Alert, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
-import ButtonMui from "@mui/material/Button";
-// Components
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
-import { Btn } from "../Common/Button";
-import { TextField } from "../Common/TextField";
+import { Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField } from "@mui/material";
 // Slices
-import { setFamilies, setSelectFamily } from "../../store/slices/familiesSlice";
-// Styles
-import styles from "./FamilySettingsForm.module.scss";
+import { setFamilies, setSelectFamily } from "../store/slices/familiesSlice";
 
 const FamilySettingsForm = () => {
     // UTILS
@@ -125,9 +117,9 @@ const FamilySettingsForm = () => {
         <Box component="form" onSubmit={onSubmit}>
             <Stack spacing={1}>
                 <TextField label="Nom de la famille" value={name} onChange={setName} />
-                {isParent && <ValidateButton text="Valider les modifications" />}
+                {isParent && <Button type="submit" variant="contained">Valider</Button>}
                 <Button variant="outlined" onClick={() => {navigate("/settings");}}>Annuler</Button>
-                {isParent && <Btn text="Supprimer la famille" color="error" onClick={handleClickOpen} />}
+                {isParent && <Button variant="contained" color="error" onClick={handleClickOpen}>Supprimer</Button>}
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
             </Stack>
             <Dialog open={open}>
