@@ -24,14 +24,6 @@ function ListCardsMembers() {
   const [isError, setIsError] = useState(false);
   const [resultSearch, setResultSearch] = useState([]);
   const [userIdSelected, setUserIdSelected] = useState(0);
-  // RESET STATES
-  const resetLocalStates = () => {
-    setAddCard(false);
-    setPseudo("");
-    setIsError(false);
-    setResultSearch([]);
-    setUserIdSelected(0);
-  };
   // VARIABLES
   const isParent = family.isParent;
 
@@ -102,16 +94,15 @@ function ListCardsMembers() {
       dispatch(setFamilies(families));
 
       // Close form
-      resetLocalStates();
+      setAddCard(false);
     } else {
       setIsError(true);
     }
   };
 
   // on cancel form
-  const handleCancelForm = (event) => {
-    event.preventDefault();
-    resetLocalStates();
+  const handleCancelForm = () => {
+    setAddCard(false);
   };
 
   // CONTENT

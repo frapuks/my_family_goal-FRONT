@@ -70,12 +70,8 @@ function ListCardsTasks() {
     };
 
     // on cancel form
-    const handleCancelForm = event => {
-        event.preventDefault();
+    const handleCancelForm = () => {
         setAddCard(false);
-        setTitle("Title");
-        setDescription("Description");
-        setGain("0");
     };
 
     // CONTENT

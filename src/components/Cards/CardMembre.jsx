@@ -29,10 +29,10 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
     setIsEditing(true);
   };
   
-    // Close form
-    const handleCancel = () => {
-      setIsEditing(false);
-    };
+  // Close form
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
 
   // Open modal
   const handleDelete = () => {

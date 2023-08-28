@@ -13,7 +13,7 @@ import { selectToken } from "../store/slices/userSlice";
 import { setSelectFamily } from "../store/slices/familiesSlice";
 
 
-function CarouselAll() {
+function DashboardPage() {
     // UTILS
     const dispatch = useDispatch();
     // States
@@ -81,4 +81,4 @@ function CarouselAll() {
 }
 
 
-export default CarouselAll;
+export default DashboardPage;

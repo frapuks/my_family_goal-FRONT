@@ -40,7 +40,6 @@ function ListCardsRewards() {
     const form = new FormData(event.currentTarget);
     const title = form.get('title');
     const price = form.get('price');
-    // const priceNumber = parseInt(price);
 
     // API => POST new reward
     const responsePostReward = await fetch(import.meta.env.VITE_API_ROOT + `/family/${family.id}/reward`, {
@@ -71,11 +70,8 @@ function ListCardsRewards() {
   };
 
   // on cancel form
-  const handleCancelForm = (event) => {
-    event.preventDefault();
+  const handleCancelForm = () => {
     setAddCard(false);
-    setTitle("Title");
-    setPrice("0");
   };
 
   // CONTENT
