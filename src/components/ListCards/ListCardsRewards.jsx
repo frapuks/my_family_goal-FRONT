@@ -8,7 +8,7 @@ import Carousel from "react-material-ui-carousel";
 import { CardReward } from "..";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
-import { AddCircleOutline, MilitaryTechOutlined } from "@mui/icons-material";
+import { AddCircleOutline, ArrowCircleUp, MilitaryTechOutlined } from "@mui/icons-material";
 
 
 function ListCardsRewards() {
@@ -95,13 +95,16 @@ function ListCardsRewards() {
 
   return (
     <Stack spacing={1}>
-      {addCard ? addCardFormContent : (
-        rewardData.map((data) => <CardReward key={data.id} {...data} />)
-      )}
+      {rewardData.map((data) => <CardReward key={data.id} {...data} />)}
+
+      {addCard && addCardFormContent}
+
       {isParent &&
         <Button onClick={handleClickBtnAddCard}>
-          <AddCircleOutline color="success" sx={{ mr: 1 }} />
-          Ajouter une récompense
+          {addCard
+            ? <ArrowCircleUp color="success" sx={{ mr: 1 }} />
+            : <AddCircleOutline color="success" sx={{ mr: 1 }} />
+          }
         </Button>
       }
     </Stack>

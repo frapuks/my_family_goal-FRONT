@@ -8,7 +8,7 @@ import { Alert, Button, Card, Box, Typography, CardContent, CardActions, TextFie
 import { CardTask } from "..";
 // Slices
 import { setFamilies } from "../../store/slices/familiesSlice";
-import { AddCircleOutline, RocketLaunchOutlined } from "@mui/icons-material";
+import { AddCircleOutline, ArrowCircleUp, RocketLaunchOutlined } from "@mui/icons-material";
 
 
 function ListCardsTasks() {
@@ -96,13 +96,16 @@ function ListCardsTasks() {
 
     return (
         <Stack spacing={1}>
-            {addCard ? addCardFormContent : (
-                taskData.map((data) => <CardTask key={data.id} {...data} />)
-            )}
+            {taskData.map((data) => <CardTask key={data.id} {...data} />)}
+
+            {addCard && addCardFormContent}
+            
             {isParent &&
                 <Button onClick={handleClickBtnAddCard}>
-                    <AddCircleOutline color="success" sx={{ mr: 1 }} />
-                    Ajouter un objectif
+                {addCard
+                    ? <ArrowCircleUp color="success" sx={{ mr: 1 }} />
+                    : <AddCircleOutline color="success" sx={{ mr: 1 }} />
+                }
                 </Button>
             }
         </Stack>

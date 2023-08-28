@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, Stack, TextField, Typography } from "@mui/material";
-import { AddCircleOutline, Diversity1Outlined } from "@mui/icons-material";
+import { AddCircleOutline, ArrowCircleUp, Diversity1Outlined } from "@mui/icons-material";
 // Components
 import Carousel from "react-material-ui-carousel";
 import { CardMembre } from "..";
@@ -124,13 +124,16 @@ function ListCardsMembers() {
 
   return (
     <Stack spacing={1}>
-      {addCard ? addCardFormContent : (
-          memberData.map((data) => <CardMembre key={data.id} {...data} />)
-      )}
+      {memberData.map((data) => <CardMembre key={data.id} {...data} />)}
+
+      {addCard && addCardFormContent}
+      
       {isParent &&
         <Button onClick={handleClickBtnAddCard}>
-          <AddCircleOutline color="success" sx={{ mr: 1 }} />
-          Ajouter un membre
+          {addCard
+            ? <ArrowCircleUp color="success" sx={{ mr: 1 }} />
+            : <AddCircleOutline color="success" sx={{ mr: 1 }} />
+          }
         </Button>
       }
     </Stack>
