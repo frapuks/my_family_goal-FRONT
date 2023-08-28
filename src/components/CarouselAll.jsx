@@ -59,9 +59,7 @@ function CarouselAll() {
     return ( 
         <>
             {isError && <Alert severity="warning">Une erreur est survenue</Alert>}
-            <Stack spacing={1}>
-                <ButtonFamily/>
-                <Divider/>
+            <Stack spacing={1} sx={{mt:1}}>
                 <CarouselReward/>
                 <Divider/>
                 <CarouselTask/>

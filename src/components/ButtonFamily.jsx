@@ -25,8 +25,8 @@ function ButtonFamily() {
 
     // RETURN
     return (
-        <FormControl fullWidth sx={{mt:1}}>
-            <Select size="small" labelId="label" defaultValue={selectFamily ? selectFamily.id : listFamilies[0]?.id}>
+        <FormControl sx={{m:1}}>
+            <Select size="small" labelId="label" value={selectFamily ? selectFamily.id : listFamilies[0]?.id} >
                 {listFamilies.map(family => <MenuItem key={family.id} value={family.id} onClick={() => {selectNameFamily(family);}} >{family.name}</MenuItem>)}
             </Select>
         </FormControl>
