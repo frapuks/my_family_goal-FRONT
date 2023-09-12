@@ -65,8 +65,8 @@ function LoginPage() {
 
             <Box component="form" onSubmit={onSubmit} >
                 <Stack spacing={1}>
-                    <TextField name="email" label="Email" type="email" required disabled={isLoggingIn} value="joueur2@gmail.com"/>
-                    <TextField name="password" label="Mot de passe" type='password' required disabled={isLoggingIn} value="joueur2"/>
+                    <TextField name="email" label="Email" type="email" required disabled={isLoggingIn}/>
+                    <TextField name="password" label="Mot de passe" type='password' required disabled={isLoggingIn}/>
                     <Button type="submit" variant="contained">Se connecter</Button>
                     <Button href="/signup">S'inscrire</Button>
                     {isError && <Alert severity="warning">Email ou mot de passe invalide</Alert>}

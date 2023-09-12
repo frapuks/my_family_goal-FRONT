@@ -1,0 +1,9 @@
+version: '1'
+
+services:
+  myfamilygoal-react:
+    container_name: "myfamilygoal-react"
+    image: myfamilygoal-react
+    ports:
+      - '6006:5173'
+    restart: always
