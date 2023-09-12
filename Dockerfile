@@ -8,4 +8,4 @@ RUN npm install
 
 CMD ["npm", "start"]
 
-EXPOSE 6005
+EXPOSE 6006
