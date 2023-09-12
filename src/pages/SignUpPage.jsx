@@ -1,21 +1,17 @@
 import React from "react";
+// Material UI
+import { Box, Container } from "@mui/material";
 // Components
-import SignUpForm from "../components/SignUp/SignUpForm";
+import { SignUpForm } from "../components";
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
-// Styles
-import styles from "./SignUpPage.module.scss";
 
 
 function SignUpPage() {
     return (
-        <div className={styles.container}>
-            <div className={styles.containerLogo}>
-                <img className={styles.logo} src={logo} />                
-            </div>
-            <div className={styles.actionContainer}>
-                <SignUpForm />                
-            </div>
-        </div>
+        <Container>
+            <Box component="img" src={logo} alt="logo The family Goal" sx={{ maxWidth: "50%", margin: "auto" }} />
+            <SignUpForm />
+        </Container>
     );
 }
 
