@@ -1,4 +1,4 @@
-![Logo](public/logo.svg)
+![Logo](src/assets/logo-fond-transparent-sans-police.svg)
 
 # My Family Goal
 
