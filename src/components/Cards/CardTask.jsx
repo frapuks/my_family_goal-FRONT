@@ -3,28 +3,19 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Material UI
-import ButtonMui from "@mui/material/Button";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import { Alert,Box,Button,ButtonGroup,Card,CardContent,CardActions,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,TextField,Typography } from "@mui/material";
-// Components
-import { Btn } from "../Common/Button";
-import { Colors } from "../../constants/Colors";
-import { ValidateButton } from "../Common/ValidateButton";
-import SelectUserValidatingTask from "./SelectUserValidatingTask";
+import { Box, Button, Card, CardContent, CardActions, TextField, Typography, Stack, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { TaskAlt } from "@mui/icons-material";
 // Slices
 import { setTasks } from "../../store/slices/tasksSlice";
 import { setCredit } from "../../store/slices/membersSlice";
 import { completeTask } from "../../store/slices/tasksSlice";
-// Styles
-import styles from "./Card.module.scss";
 
 
 function CardTask({ title, gain, description, isComplete, id }) {
     // UTILS
     const dispatch = useDispatch();
     // STATES
+    const members = useSelector(state => state.members.listMembers);
     const family = useSelector(state => state.families.selectFamily);
     const token = useSelector(state => state.user.token);
     const [personId, setPersonId] = useState();
@@ -178,118 +169,63 @@ function CardTask({ title, gain, description, isComplete, id }) {
     // CONTENT
 
     const cardContent = (
-        <React.Fragment>
-            <Typography variant="h5" component="div">
-                {title}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                {description}
-            </Typography>
-            <Button sx={{ color: "green", fontSize: 20, border: 3, borderRadius: 7 }}>
-                <MonetizationOnOutlinedIcon />
-                {gain}
-            </Button>
-            <CardActions>
-                <div className={styles.buttons}>
-                    {isComplete && <TaskAltIcon></TaskAltIcon>}
-                    {!isComplete && isParent &&
-                        <Button
-                            onClick={handleValidateClick}
-                            sx={{ bgcolor: "", color: "black", boxShadow: 5 }}
-                        >
-                            Valider la tâche !
-                        </Button>
-                    }
-                    {isParent && 
-                        <Button onClick={handleEditClick}>
-                            <BorderColorOutlinedIcon sx={{ color: "black" }} />
-                        </Button>
-                    }
-                </div>
-            </CardActions>
-        </React.Fragment>
-    );
-    
-    const modaleContent = (
         <>
-        <DialogTitle id="alert-dialog-title">{"ATTENTION"}</DialogTitle>
-        <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-                Etes-vous sur de vouloir supprimer cet objectif?
-            </DialogContentText>
-            <DialogActions>
-                <ButtonMui onClick={cancelDelete}>Annuler</ButtonMui>
-            </DialogActions>
-            <ButtonMui onClick={confirmDelete} color={Colors.Error} autoFocus>
-                Supprimer
-            </ButtonMui>
-        </DialogContent>
+            <CardContent>
+                <Typography variant="h5" textAlign="center">{title}</Typography>
+                <Typography variant="caption">{description}</Typography>
+            </CardContent>
+            <CardActions>
+                <Button variant="contained" onClick={handleValidateClick} disabled={isComplete || !isParent}>{isComplete ? <TaskAlt/> : `${gain} crédits`}</Button>
+                {isParent && <Button onClick={handleEditClick}>Modifier</Button>}
+            </CardActions>
         </>
     );
 
     const formEditContent = (
-        <React.Fragment>
-            <form action="" onSubmit={handleSubmit}>
-                <TextField
-                    label=""
-                    type="text"
-                    value={editedTitle}
-                    onChange={e => setEditedTitle(e.target.value)}
-                />
-                <TextField
-                    label=""
-                    type="text"
-                    value={editedDescription || ""}
-                    onChange={e => setEditedDescription(e.target.value)}
-                />
-                <TextField
-                    label=""
-                    type="text"
-                    value={editedGain}
-                    onChange={e => setEditedGain(e.target.value)}
-                />
+        <>
+            <Box component="form" onSubmit={handleSubmit}>
+                <CardContent>
+                    <Stack spacing={1}>
+                        <TextField size="small" label="Nom de l'objectif" name="title" defaultValue={title} required/>
+                        <TextField size="small" label="Description" name="description" defaultValue={description} required/>
+                        <TextField size="small" type="number" label="Gain" name="gain" defaultValue={gain} required/>
+                    </Stack>
+                </CardContent>
                 <CardActions>
-                    <ButtonGroup>
-                        <ValidateButton onClick={validateEdit} text="Enregistrer" />
-                        <Btn text="Annuler" color={Colors.Info} onClick={handleCancel} />
-                        <Btn text="Supprimer" color={Colors.Error} onClick={handleDelete} />
-                    </ButtonGroup>
+                    <Button type="submit" variant="contained">Valider</Button>
+                    <Button variant="outlined" onClick={handleCancel}>Annuler</Button>
+                    <Button variant="contained" color="error" onClick={handleDelete}>Supprimer</Button>
                 </CardActions>
-                <Dialog open={openModale} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" >
-                    {modaleContent}
-                </Dialog>
-                {isError && ( <Alert severity="warning"> Une erreur est survenue. Veuillez réessayer plus tard. </Alert> )}
-            </form>
-        </React.Fragment>
+            </Box>
+        </>
     );
 
 
     const formValidateContent = (
-        <form onSubmit={onCompleteTask}>
-            <SelectUserValidatingTask personId={personId} setPersonId={setPersonId} />
-            <div>
-                <ValidateButton />
-                <Btn text="Annuler" onClick={handleCancelClick} color={Colors.Warning} />
-            </div>
-        </form>
+        <Box component="form"onSubmit={onCompleteTask}>
+            <CardContent>
+                <FormControl fullWidth>
+                    <InputLabel id="label">Qui a rempli l'objectif ?</InputLabel>
+                    <Select labelId="label">
+                        {members.map(member => <MenuItem key={member.id} value={member.id}>{member.pseudo}</MenuItem>)}
+                    </Select>
+                </FormControl>
+            </CardContent>
+            <CardActions>
+                <Button type="submit" variant="contained">Valider</Button>
+                <Button variant="outlined" onClick={handleCancelClick}>Annuler</Button>
+            </CardActions>
+        </Box>
     );
 
 
     return (
         <>
-            <Box sx={{ minWidth: "30%", maxHeight: "30%" }}>
-                <Card variant="outlined" sx={{ borderRadius: 2 }}>
-                    <div className={styles.containerCardTask}>
-                        <React.Fragment>
-                            <CardContent>
-                                {openListMembers? formValidateContent : (
-                                    isEditing ? formEditContent : cardContent
-                                )}
-                            </CardContent>
-                        </React.Fragment>
-                    </div>
-                </Card>
-            </Box>
+            <Card variant="outlined">
+                {openListMembers? formValidateContent : (
+                    isEditing ? formEditContent : cardContent
+                )}
+            </Card>
         </>
     );
 }

@@ -6,12 +6,12 @@ export const theme = createTheme({
             main: "#f78888",
         },
         secondary: {
-            main: "#5da2d5",
-            contrastText: "#F3D250",
+            main: "#F3D250",
+            contrastText: "#000",
         },
         primary: {
-            main: "#F3D250",
-            contrastText: "#5da2d5",
+            main: "#5da2d5",
+            contrastText: "#fff",
         },
         success: {
             main: "#90CCF4",

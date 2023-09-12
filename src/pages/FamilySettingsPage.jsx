@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 // Components
-import FamilySettingsForm from "../components/FamilySettings/FamilySettingsForm";
+import { FamilySettingsForm } from "../components";
+import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setActivePage } from '../store/slices/navBarSlice';
-// Styles
-import styles from "./FamilySettingsPage.module.scss";
+import { Box, Container } from "@mui/material";
 
 
 function FamilySettingsPage() {
@@ -19,9 +19,10 @@ function FamilySettingsPage() {
 
 
   return(
-    <div className={styles.container}>
+    <Container>
+      <Box component="img" src={logo} alt="logo The family Goal" sx={{maxWidth:"50%", margin:"auto"}}/>
       <FamilySettingsForm />
-    </div>
+    </Container>
   );
 }
 
