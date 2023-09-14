@@ -12,7 +12,7 @@ import { store } from "./Store/store";
 import { theme } from "./Styles/theming";
 
 
-import "./styles/index.scss";
+import "./Styles/index.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-material-ui-carousel";
 import { Alert, Button, Card, Box, CardContent, CardActions, TextField, Stack } from "@mui/material";
 // Components
-import { CardTask } from "../Cards/CardTask";
+import { CardTask } from "../index.jsx";
 // Slices
 import { setFamilies } from "../../Store/Slices/familiesSlice";
 import { AddCircleOutline, ArrowCircleUp } from "@mui/icons-material";

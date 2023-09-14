@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, Stack, TextField } from "@mui/material";
 import { AddCircleOutline, ArrowCircleUp } from "@mui/icons-material";
 // Components
-import { CardMembre } from "../Cards/CardMembre";
+import { CardMember } from "../index.jsx";
 // slices
 import { setFamilies } from "../../Store/Slices/familiesSlice";
 
@@ -123,7 +123,7 @@ function ListCardsMembers() {
 
   return (
     <Stack spacing={1}>
-      {memberData.map((data) => <CardMembre key={data.id} {...data} />)}
+      {memberData.map((data) => <CardMember key={data.id} {...data} />)}
 
       {addCard && addCardFormContent}
 

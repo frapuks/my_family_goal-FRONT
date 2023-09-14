@@ -1,5 +1,5 @@
 // Cards
-import CardMembre from "./Cards/CardMembre";
+import CardMember from "./Cards/CardMember";
 import CardReward from "./Cards/CardReward";
 import CardTask from "./Cards/CardTask";
 // Carousels
@@ -13,4 +13,4 @@ import NameFamilyForm from "./NameFamilyForm";
 import SignUpForm from "./SignUpForm";
 import UserSettingsForm from "./UserSettingsForm";
 
-export { CardMembre, CardReward, CardTask, CarouselMember, CarouselReward, CarouselTask, ButtonFamily, FamilySettingsForm, NameFamilyForm, SignUpForm, UserSettingsForm };
+export { CardMember, CardReward, CardTask, CarouselMember, CarouselReward, CarouselTask, ButtonFamily, FamilySettingsForm, NameFamilyForm, SignUpForm, UserSettingsForm };
