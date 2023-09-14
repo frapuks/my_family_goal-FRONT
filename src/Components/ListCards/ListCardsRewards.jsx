@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import { Alert, Box, Button, Card, CardActions, CardContent, TextField, Stack } from "@mui/material";
 // Components
-import { CardReward } from "../Cards/CardReward";
+import { CardReward } from "../index.jsx";
 // Slices
 import { setFamilies } from "../../Store/Slices/familiesSlice";
 import { AddCircleOutline, ArrowCircleUp } from "@mui/icons-material";

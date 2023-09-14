@@ -9,7 +9,7 @@ import { setMembers } from "../../Store/Slices/membersSlice";
 import { selectToken } from "../../Store/Slices/userSlice";
 
 
-function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
+function CardMember({ firstname,  lastname, pseudo, isParent, credit, id }) {
   // UTILS
   const dispatch = useDispatch();
   // STATES
@@ -175,7 +175,7 @@ function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
   );
 }
 
-CardMembre.propTypes = {
+CardMember.propTypes = {
   firstname: PropTypes.string,
   lastname: PropTypes.string,
   pseudo: PropTypes.string,
@@ -184,4 +184,4 @@ CardMembre.propTypes = {
   id: PropTypes.number,
 };
 
-export default CardMembre;
+export default CardMember;
