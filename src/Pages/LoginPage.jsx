@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // Material UI
 import { Alert, Box, Button, Container, Stack, TextField } from "@mui/material";
 // Components
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setFamilies } from "../Store/Slices/familiesSlice";
 import { setToken, setUser } from "../Store/Slices/userSlice";

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 // Components
 import { FamilySettingsForm } from "../Components";
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setActivePage } from '../Store/Slices/navBarSlice';
 import { Box, Container } from "@mui/material";

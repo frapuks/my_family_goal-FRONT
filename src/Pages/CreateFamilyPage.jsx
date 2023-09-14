@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import { Box, Button, Card, CardActions, CardContent, Container, Stack, Typography } from "@mui/material";
 // Components
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { selectToken } from "../Store/Slices/userSlice";
 import { setActivePage } from "../Store/Slices/navBarSlice";

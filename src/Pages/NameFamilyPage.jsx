@@ -1,7 +1,7 @@
 import React from "react";
 // Components
 import { NameFamilyForm } from "../Components";
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 import { Box, Container } from "@mui/material";
 
 
