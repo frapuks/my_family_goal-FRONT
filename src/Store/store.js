@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 // Slices
-import userSlice from "./slices/userSlice";
-import navBarSlice from "./slices/navBarSlice";
-import familiesSlice from "./slices/familiesSlice";
-import membersSlice from "./slices/membersSlice";
-import tasksSlice from "./slices/tasksSlice";
-import rewardsSlice from "./slices/rewardsSlice";
+import userSlice from "./Slices/userSlice";
+import navBarSlice from "./Slices/navBarSlice";
+import familiesSlice from "./Slices/familiesSlice";
+import membersSlice from "./Slices/membersSlice";
+import tasksSlice from "./Slices/tasksSlice";
+import rewardsSlice from "./Slices/rewardsSlice";
 
 export const store = configureStore({
     reducer: {

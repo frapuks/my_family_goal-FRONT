@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 // Material UI
 import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
 // Components
-import { UserSettingsForm } from "../components";
+import { UserSettingsForm } from "../Components";
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
-import { setActivePage } from "../store/slices/navBarSlice";
-import { deleteToken } from "../store/slices/userSlice";
-import { resetFamily } from "../store/slices/familiesSlice";
+import { setActivePage } from "../Store/Slices/navBarSlice";
+import { deleteToken } from "../Store/Slices/userSlice";
+import { resetFamily } from "../Store/Slices/familiesSlice";
 
 
 function UserSettingsPage() {

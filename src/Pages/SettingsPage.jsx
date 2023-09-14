@@ -7,8 +7,8 @@ import { Add } from "@mui/icons-material";
 // Components
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
-import { setActivePage } from "../store/slices/navBarSlice";
-import { setSelectFamily } from "../store/slices/familiesSlice";
+import { setActivePage } from "../Store/Slices/navBarSlice";
+import { setSelectFamily } from "../Store/Slices/familiesSlice";
 
 
 function SettingsPage() {

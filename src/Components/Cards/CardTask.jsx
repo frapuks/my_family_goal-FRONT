@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Box, Button, Card, CardContent, CardActions, TextField, Typography, Stack, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import { TaskAlt } from "@mui/icons-material";
 // Slices
-import { setTasks } from "../../store/slices/tasksSlice";
-import { setCredit } from "../../store/slices/membersSlice";
-import { completeTask } from "../../store/slices/tasksSlice";
+import { setTasks } from "../../Store/Slices/tasksSlice";
+import { setCredit } from "../../Store/Slices/membersSlice";
+import { completeTask } from "../../Store/Slices/tasksSlice";
 
 
 function CardTask({ title, gain, description, isComplete, id }) {

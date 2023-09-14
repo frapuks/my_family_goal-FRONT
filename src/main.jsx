@@ -7,9 +7,9 @@ import { ThemeProvider } from "@mui/material";
 // Components
 import App from "./App/App";
 // Slices
-import { store } from "./store/store";
+import { store } from "./Store/store";
 // Styles
-import { theme } from "./styles/theming";
+import { theme } from "./Styles/theming";
 
 
 import "./styles/index.scss";

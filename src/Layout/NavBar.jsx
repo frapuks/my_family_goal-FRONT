@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // Material UI
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { AccountCircle, FamilyRestroom, Settings } from "@mui/icons-material";
-import { setTabValue } from "../store/slices/navBarSlice";
+import { setTabValue } from "../Store/Slices/navBarSlice";
 
 function NavBar() {
     const dispatch = useDispatch();

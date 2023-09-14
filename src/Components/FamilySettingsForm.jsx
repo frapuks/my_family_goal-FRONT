@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import { Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField } from "@mui/material";
 // Slices
-import { setFamilies, setSelectFamily } from "../store/slices/familiesSlice";
+import { setFamilies, setSelectFamily } from "../Store/Slices/familiesSlice";
 
 const FamilySettingsForm = () => {
     // UTILS

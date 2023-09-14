@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import Carousel from "react-material-ui-carousel";
-import { Alert, Button, Card, Box, Typography, CardContent, CardActions, TextField, Stack } from "@mui/material";
+import { Alert, Button, Card, Box, CardContent, CardActions, TextField, Stack } from "@mui/material";
 // Components
-import { CardTask } from "..";
+import { CardTask } from "../Cards/CardTask";
 // Slices
-import { setFamilies } from "../../store/slices/familiesSlice";
-import { AddCircleOutline, ArrowCircleUp, RocketLaunchOutlined } from "@mui/icons-material";
+import { setFamilies } from "../../Store/Slices/familiesSlice";
+import { AddCircleOutline, ArrowCircleUp } from "@mui/icons-material";
 
 
 function ListCardsTasks() {

@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
 import { Alert, Box, Button, Stack, TextField } from "@mui/material";
 // Slices
-import { setToken, setUser } from "../store/slices/userSlice";
-import { setTabValue } from "../store/slices/navBarSlice";
+import { setToken, setUser } from "../Store/Slices/userSlice";
+import { setTabValue } from "../Store/Slices/navBarSlice";
 
 
 const UserSettingsForm = () => {
