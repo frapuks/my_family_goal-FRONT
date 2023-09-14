@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Material UI
 import { Alert, Box, Button, Stack, TextField } from "@mui/material";
 // Slices
-import { setToken, setUser } from "../store/slices/userSlice";
+import { setToken, setUser } from "../Store/Slices/userSlice";
 
 
 const SignUpForm = () => {

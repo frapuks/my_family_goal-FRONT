@@ -1,8 +1,8 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ButtonFamily } from "../components";
-import { selectToken } from "../store/slices/userSlice";
+import { ButtonFamily } from "../Components";
+import { selectToken } from "../Store/Slices/userSlice";
 
 const Header = () => {
   // Utils

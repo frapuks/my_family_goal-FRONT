@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 // Material UI
 import { Alert, Box, Button, TextField, Stack } from "@mui/material";
 // Slices
-import { addFamily } from "../store/slices/familiesSlice";
-import { selectToken } from "../store/slices/userSlice";
+import { addFamily } from "../Store/Slices/familiesSlice";
+import { selectToken } from "../Store/Slices/userSlice";
 
 
 const NameFamilyForm = () => {

@@ -6,8 +6,8 @@ import { Box, Button, Card, CardActions, CardContent, Container, Stack, Typograp
 // Components
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
-import { selectToken } from "../store/slices/userSlice";
-import { setActivePage } from "../store/slices/navBarSlice";
+import { selectToken } from "../Store/Slices/userSlice";
+import { setActivePage } from "../Store/Slices/navBarSlice";
 
 
 function CreateFamilyPage() {

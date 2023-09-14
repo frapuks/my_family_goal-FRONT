@@ -6,8 +6,8 @@ import { Alert, Box, Button, Container, Stack, TextField } from "@mui/material";
 // Components
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 // Slices
-import { setFamilies } from "../store/slices/familiesSlice";
-import { setToken, setUser } from "../store/slices/userSlice";
+import { setFamilies } from "../Store/Slices/familiesSlice";
+import { setToken, setUser } from "../Store/Slices/userSlice";
 
 
 function LoginPage() {

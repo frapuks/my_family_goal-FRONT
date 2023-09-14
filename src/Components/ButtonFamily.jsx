@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 // Material UI
 import { MenuItem, Select, FormControl } from "@mui/material";
 // Slices
-import { setTasks } from "../store/slices/tasksSlice";
-import { setRewards } from "../store/slices/rewardsSlice";
-import { setMembers } from "../store/slices/membersSlice";
-import { selectToken } from "../store/slices/userSlice";
-import { setSelectFamily } from "../store/slices/familiesSlice";
+import { setTasks } from "../Store/Slices/tasksSlice";
+import { setRewards } from "../Store/Slices/rewardsSlice";
+import { setMembers } from "../Store/Slices/membersSlice";
+import { selectToken } from "../Store/Slices/userSlice";
+import { setSelectFamily } from "../Store/Slices/familiesSlice";
 
 
 function ButtonFamily() {

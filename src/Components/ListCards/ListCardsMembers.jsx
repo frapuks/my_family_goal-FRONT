@@ -2,13 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Material UI
-import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, Stack, TextField, Typography } from "@mui/material";
-import { AddCircleOutline, ArrowCircleUp, Diversity1Outlined } from "@mui/icons-material";
+import { Alert, Autocomplete, Box, Button, Card, CardActions, CardContent, Stack, TextField } from "@mui/material";
+import { AddCircleOutline, ArrowCircleUp } from "@mui/icons-material";
 // Components
-import Carousel from "react-material-ui-carousel";
-import { CardMembre } from "..";
+import { CardMembre } from "../Cards/CardMembre";
 // slices
-import { setFamilies } from "../../store/slices/familiesSlice";
+import { setFamilies } from "../../Store/Slices/familiesSlice";
 
 
 function ListCardsMembers() {
@@ -127,7 +126,7 @@ function ListCardsMembers() {
       {memberData.map((data) => <CardMembre key={data.id} {...data} />)}
 
       {addCard && addCardFormContent}
-      
+
       {isParent &&
         <Button onClick={handleClickBtnAddCard}>
           {addCard

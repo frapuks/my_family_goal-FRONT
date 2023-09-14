@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Alert,Box ,Button, Card, CardContent ,CardActions, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography, Stack } from "@mui/material";
 import { TaskAlt } from "@mui/icons-material";
 // Slices
-import { setRewards } from "../../store/slices/rewardsSlice";
-import { setMembers } from "../../store/slices/membersSlice";
-import { selectToken } from "../../store/slices/userSlice";
+import { setRewards } from "../../Store/Slices/rewardsSlice";
+import { setMembers } from "../../Store/Slices/membersSlice";
+import { selectToken } from "../../Store/Slices/userSlice";
 
 
 function CardReward({ title, price, isPurchase, id }) {

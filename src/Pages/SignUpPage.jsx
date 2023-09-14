@@ -2,7 +2,7 @@ import React from "react";
 // Material UI
 import { Box, Container } from "@mui/material";
 // Components
-import { SignUpForm } from "../components";
+import { SignUpForm } from "../Components";
 import logo from "../assets/logo-fond-transparent-sans-police.svg";
 
 

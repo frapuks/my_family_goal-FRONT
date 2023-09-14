@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 // Material UI
 import { Alert, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
 // Slices
-import { setMembers } from "../../store/slices/membersSlice";
-import { selectToken } from "../../store/slices/userSlice";
+import { setMembers } from "../../Store/Slices/membersSlice";
+import { selectToken } from "../../Store/Slices/userSlice";
 
 
 function CardMembre({ firstname,  lastname, pseudo, isParent, credit, id }) {
