@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Container } from "@mui/material";
 // Components
 import { SignUpForm } from "../Components";
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 
 
 function SignUpPage() {

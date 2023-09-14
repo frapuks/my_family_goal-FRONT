@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
 // Components
 import { UserSettingsForm } from "../Components";
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setActivePage } from "../Store/Slices/navBarSlice";
 import { deleteToken } from "../Store/Slices/userSlice";

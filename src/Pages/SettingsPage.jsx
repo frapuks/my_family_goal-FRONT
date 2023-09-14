@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Fab, Stack } from "@mui/material";
 import { Add } from "@mui/icons-material";
 // Components
-import logo from "../assets/logo-fond-transparent-sans-police.svg";
+import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { setActivePage } from "../Store/Slices/navBarSlice";
 import { setSelectFamily } from "../Store/Slices/familiesSlice";
