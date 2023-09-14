@@ -13,14 +13,8 @@ const SignUpForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // STATES
-    const [passwordConfirm, setPasswordConfirm] = useState("");
     const [isError, setIsError] = useState(false);
-    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState();
-    const [lastname, setLastname] = useState("");
-    const [firstname, setFirstname] = useState("");
-    const [pseudo, setPseudo] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [isErrorConfirmPassword, setIsErrorConfirmPassword] = useState(false);
 
     // METHODS
 
@@ -28,11 +22,19 @@ const SignUpForm = () => {
     const onSubmit = async e => {
         e.preventDefault();
         setIsError(false);
-        setIsConfirmPasswordValid(true);
+        setIsErrorConfirmPassword(false);
+
+        const data = new FormData(e.currentTarget);
+        const firstname = data.get("firstname");
+        const lastname = data.get("lastname");
+        const pseudo = data.get("pseudo");
+        const email = data.get("email");
+        const password = data.get("password");
+        const passwordConfirm = data.get("passwordConfirm");
 
         // Check confirm password
         if (password !== passwordConfirm) {
-            setIsConfirmPasswordValid(false);
+            setIsErrorConfirmPassword(true);
             return;
         };
 
@@ -62,16 +64,17 @@ const SignUpForm = () => {
     return (
         <Box component="form" onSubmit={onSubmit} >
             <Stack spacing={1}>
-                <TextField label="Nom" value={lastname} onChange={setLastname} required />
-                <TextField label="Prénom" value={firstname} onChange={setFirstname} required />
-                <TextField label="Pseudo" value={pseudo} onChange={setPseudo} required />
-                <TextField label="Email" value={email} onChange={setEmail} required type="email" />
-                <TextField label="Mot de passe" value={password} onChange={setPassword} required type="password" />
-                <TextField label="Confirmation du mot de passe" required value={passwordConfirm} onChange={setPasswordConfirm} type="password" />
+                <TextField name="lastname" label="Nom" required />
+                <TextField name="firstname" label="Prénom" required />
+                <TextField name="pseudo" label="Pseudo" required />
+                <TextField name="email" label="Email" required type="email" />
+                <TextField name="password" label="Mot de passe" required type="password" />
+                <TextField name="passwordConfirm" label="Confirmation du mot de passe" required type="password" />
 
                 <Button type="submit" variant="contained">S'inscrire</Button>
-                <Button text="Login" href="/">Retour</Button>
+                <Button href="/">Retour</Button>
                 {isError && <Alert severity="warning">Une erreur est survenue. Veuillez réessayer plus tard.</Alert>}
+                {isErrorConfirmPassword && <Alert severity="warning">Confirmaton du mot de passe incorrecte</Alert>}
             </Stack>
         </Box>
     );
