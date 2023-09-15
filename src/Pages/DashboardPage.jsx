@@ -11,6 +11,7 @@ import { setRewards } from "../Store/Slices/rewardsSlice";
 import { setMembers } from "../Store/Slices/membersSlice";
 import { selectToken } from "../Store/Slices/userSlice";
 import { setSelectFamily } from "../Store/Slices/familiesSlice";
+import { setTabValue } from "../Store/Slices/navBarSlice";
 
 
 function DashboardPage() {
@@ -27,15 +28,16 @@ function DashboardPage() {
     const familyIndex = listFamilies[0];
     const familyId = select?.id || familyIndex.id;
 
-    const [tabValue, setTabValue] = useState(0);
+    const [carouselValue, setCarouselValue] = useState(0);
 
     const handleChange = (event, newvalue) => {
-        setTabValue(newvalue);
+        setCarouselValue(newvalue);
     }
 
     // USEEFFECT
     useEffect(() => {
         getFamily();
+        dispatch(setTabValue(1));
     }, []);
 
     async function getFamily() {
@@ -67,15 +69,15 @@ function DashboardPage() {
     return (
         <Container>
             {isError && <Alert severity="warning">Une erreur est survenue</Alert>}
-            <Tabs value={tabValue} onChange={handleChange} >
+            <Tabs value={carouselValue} onChange={handleChange} >
                 <Tab label="Récompenses" />
                 <Tab label="Objectifs" />
                 <Tab label="Membres" />
             </Tabs>
             <Divider sx={{mb:1}}/>
-            {tabValue === 0 && <CarouselReward/>}
-            {tabValue === 1 && <CarouselTask/>}
-            {tabValue === 2 && <CarouselMember/>}
+            {carouselValue === 0 && <CarouselReward/>}
+            {carouselValue === 1 && <CarouselTask/>}
+            {carouselValue === 2 && <CarouselMember/>}
         </Container>
     )
 }

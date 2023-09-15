@@ -8,6 +8,7 @@ import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 // Slices
 import { selectToken } from "../Store/Slices/userSlice";
 import { setActivePage } from "../Store/Slices/navBarSlice";
+import { setTabValue } from "../Store/Slices/navBarSlice";
 
 
 function CreateFamilyPage() {
@@ -23,6 +24,7 @@ function CreateFamilyPage() {
     // USEEFFECT
     useEffect(() => {
         dispatch(setActivePage("dashBoardPage"));
+        dispatch(setTabValue(1));
     }, [dispatch]);
 
     // METHODS
