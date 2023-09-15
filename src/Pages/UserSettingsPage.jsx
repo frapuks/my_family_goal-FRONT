@@ -11,6 +11,7 @@ import logo from "../Assets/logo-fond-transparent-sans-police.svg";
 import { setActivePage } from "../Store/Slices/navBarSlice";
 import { deleteToken } from "../Store/Slices/userSlice";
 import { resetFamily } from "../Store/Slices/familiesSlice";
+import { deleteUser } from "../Store/Slices/userSlice";
 
 
 function UserSettingsPage() {
@@ -46,6 +47,8 @@ function UserSettingsPage() {
             method: "DELETE",
             headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
         });
+
+        console.log(response.ok);
 
         if (response.ok) {
             dispatch(deleteUser());

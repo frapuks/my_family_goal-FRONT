@@ -19,7 +19,7 @@ const Header = () => {
     <AppBar component="header" position="static">
       <Toolbar>
         <Typography variant="h6" component="div" onClick={handleClickTitle} sx={{ flexGrow: 1 }}>My Family Goal</Typography>
-        {listFamilies[0] && <ButtonFamily/>}
+        {listFamilies && listFamilies[0] && <ButtonFamily/>}
       </Toolbar>
     </AppBar>
   );
